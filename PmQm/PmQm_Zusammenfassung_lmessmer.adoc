@@ -1,0 +1,11 @@
+:pdf-theme: ../asciidoc/summary-theme.yml
+
+== AI Foundation
+=== Definition
+Ein Projekt ist ein *einmaliges*, *komplexes*, *zeitlich begrenztes* Vorhaben, zu dessen Realisierung unterschiedliche Ressourcen (Personen, Arbeitsgruppen, etc.) herangezogen werden müssen.
+
+=== OTOBOS
+Ein Projekt ist ein *einmaliges*, *komplexes*, *zeitlich begrenztes* Vorhaben, zu dessen Realisierung unterschiedliche Ressourcen (Personen, Arbeitsgruppen, etc.) herangezogen werden müssen.
+
+== AI test
+asdasdasd
