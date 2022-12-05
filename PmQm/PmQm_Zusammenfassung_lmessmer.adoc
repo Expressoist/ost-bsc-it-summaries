@@ -1,11 +1,126 @@
-:pdf-theme: ../asciidoc/summary-theme.yml
+= PmQm Zusammenfassung von Lukas Messmer
+:author: Lukas Messmer
+:imagesdir: ./assets
+:stylesheet: ../resources/summary-theme.css
+:docinfodir: ../resources/
+:docinfo: shared-head
+:lang: de
 
-== AI Foundation
+== Projekt- und Qualitätsmanagement
 === Definition
-Ein Projekt ist ein *einmaliges*, *komplexes*, *zeitlich begrenztes* Vorhaben, zu dessen Realisierung unterschiedliche Ressourcen (Personen, Arbeitsgruppen, etc.) herangezogen werden müssen.
+Ein Projekt ist ein *einmaliges*, *komplexes* und *zeitlich begrenztes* Vorhaben, zu dessen Realisierung unterschiedliche Ressourcen herangezogen werden müssen.
+
+footnote:[Ressourcen sind z.B. Personen, Arbeitsgruppen, etc.]
+
+==== Projektgrösse
+Die Grösse eines Projektes wird normalerweise an den Kosten, der Zeit sowie den Arbeitsstunden gemessen.
+
+footnote:[Akademisch auch in Form von https://de.wikipedia.org/wiki/Function-Point-Verfahren[Function Points].]
+
+==== Projekterfolg
+Der Erfolg eines Projektes hängt direkt mit dessen Grösse zusammen.
+
+footnote:[Grosse Projekte sind i.d.R. *nicht* Erfolgreich!]
+
+'''
+
+image::statistics-size-of-projects.jpg[statistic]
+
+==== Make or Buy
+Es ist nicht immer sinnvoll, ein Projekt selber durchzuführen. Je nach Kosten und Aufwand, kann sich auch eine «schlechtere» Standardlösung lohnen.
+
+footnote:[Wir nennen das den Make or Buy Entscheid.]
+footnote:[z.B. CMR oder eigene Webseite?]
 
 === OTOBOS
-Ein Projekt ist ein *einmaliges*, *komplexes*, *zeitlich begrenztes* Vorhaben, zu dessen Realisierung unterschiedliche Ressourcen (Personen, Arbeitsgruppen, etc.) herangezogen werden müssen.
+Wir können den Stand eines Projekts mittels OTOBOS beurteilen. Wir stellen uns dabei die Frage: Ist das Projekt...
 
-== AI test
-asdasdasd
+* ... on Time (OT)
+* ... on Budget (OB)
+* ... on Specification / Scope (OS)
+
+// image::otobos.jpg[OTOBOS,200,100]
+
+==== Konflikte
+Die 3 Aspekte von OTOBOS stehen grundsätzlich miteinander im Konflikt. Ändern wir einen Aspekt, so beeinflussen wir auch die andern.
+
+footnote:[Ein neues Feature (Scope) braucht mehr Zeit (Time).]
+
+
+== Projektkontrolle
+=== Definition
+Unter «Controlling» in einem Projekt verstehen wir mehrere Tätigkeiten:
+
+. Planung
+. Kontrolle & Abweichungsanalysen
+. Informationsversorgung & Berichtswesen
+. Steuerung & Koordination
+
+Grundsätzlich geht es darum, den Projektstand zu *ermitteln*, diesen zu *kommunizieren* und allfällige *Änderungen* am Projekt *vorzunehmen*.
+
+footnote:[«Controlling» ist also mehr als nur «kontrollieren».]
+
+=== Wer kontrolliert Projekte?
+Schlussendlich dient das «Controlling» besonders den entscheidenden Akteuren eines Projekts:
+
+* Der *Lenkungsausschuss*, also die Auftraggeber und Kunden, haben sinngemäss die stärkste Kontrolle über das Projekt (Soll).
+* Die *internen Mitarbeiter* wie Projekt-Controller, Audit und Portfolio-/Programm-Manager können ebenfalls beteiligt sein (Kann).
+
+footnote:[Portfolio: Alle Projekte, die ein Unternehmen ausmachen.]
+footnote:[Programm: Zusammenhängende Projekte, die eine Teilmenge des Portfolios bilden.]
+
+'''
+
+image::portfolio-and-programm.jpg[]
+
+=== Kontrolle & Abweichungsanalysen
+==== Ausgangslage
+Im ersten Schritt müssen wir den aktuellen Projektstand ermitteln. Das bedeutet, wir müssen den Projektfortschritt in irgend einer Form messen.
+
+==== Methoden
+Leider ist es faktisch kaum möglich, den genauen Projektfortschritt zu ermitteln. Wir können aber:
+
+* Das Produkt betrachten und den Fertigungsgrad bestimmen.
+* Die Entwickler fragen, wie viel *Zeit* sie noch benötigen.
+* Die einzelnen Module betrachten und deren Fertigungsgrad bestimmen.
+
+Für den Kunden müssen diese Werte dann in «einfache» Metriken umgewandelt werden.
+
+footnote:[z.B. Modul zu 55% fertig bedeutet noch «in Arbeit».]
+
+==== Messwerte
+Haben wir den Projektfortschritt ermittelt, so können wir den Projektstand anhand der OTOBOS-Messwerte auswerten.
+
+==== Darstellung
+Nachdem der Projektstand ausgewertet wurde, müssen diese Werte für den Kunden in eine «einfache» Metrik umgewandelt werden.
+
+===== Ampel-Prinzip
+Das Ampel-Prinzip hilft, Fakten transparent und klar zu kommunizieren. Ausserdem zwingen die 3 Stufen den Projektleiter dazu, klare Stellung zu nehmen.
+
+image::signal-prinziple.jpg[]
+
+footnote:[Jedes Unternehmen hat eine eigene Definition der Farben.]
+
+'''
+
+In Bezug auf OTOBOS können wir die Ampel auch anhand des maximum Prinzips aggregieren.
+
+footnote:[Also z.B. Budget: Rot => Gesamtprojekt: Rot]
+
+
+
+=== Informationsversorgung & Berichtswesen
+==== Ausgangslage
+Die meisten Projekte scheitern aufgrund *ungenügender Kommunikation*. Um das zu verhindern, benötigen wir im «Controlling» ein robustes Berichtswesen.
+
+'''
+
+image::reasons-for-project-failure.jpg[]
+
+==== Messwerte eines Projekts
+Faktisch kann
+
+
+=== Steuerung & Koordination
+==== Change Management
+Kein Projekt wird so durchgeführt, wie es ursprünglich geplant wurde. Um mit Änderungen im Projekt umzugehen, brauchen wir ein klares «Change Management».

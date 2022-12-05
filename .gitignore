@@ -3,3 +3,6 @@
 /.idea/modules.xml
 /.idea/vcs.xml
 /.idea/Zusammenfassungen.iml
+/.sass-cache/
+/.idea/
+/node_modules/

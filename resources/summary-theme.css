@@ -1,0 +1,111 @@
+@font-face {
+  font-family: Roboto;
+  src: url("fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: Roboto;
+  src: url("fonts/Roboto/Roboto-Medium.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal; }
+@page {
+  size: 297mm 210mm;
+  margin: 0.5cm;
+  padding: 0; }
+.title-document {
+  position: absolute;
+  top: -0.5cm;
+  left: -0.5cm;
+  font-size: 5pt; }
+
+body {
+  font-size: 8pt;
+  font-family: Roboto, sans-serif;
+  line-height: 1.1;
+  letter-spacing: 0px; }
+
+#content {
+  /* background: red; */
+  padding: 0;
+  height: 100vh;
+  width: 100%;
+  column-count: 5;
+  column-fill: auto;
+  column-gap: 0.3cm; }
+
+.body {
+  background: blue; }
+
+.sect1 {
+  height: auto;
+  flex-grow: 0;
+  border: 1px solid black;
+  box-sizing: border-box; }
+
+h1, h2, h3, h4, h5 {
+  font-size: inherit;
+  font-weight: normal; }
+
+p {
+  hyphens: auto;
+  margin: 0; }
+
+a {
+  color: #34495e;
+  text-decoration: none; }
+
+h1, h2, h3, h4, h5, .paragraph {
+  padding: 0.05cm 0.1cm;
+  margin: 0; }
+
+h3, h4, h5 {
+  border-bottom: 1px solid black;
+  border-top: 1px solid black; }
+
+ul, ol {
+  padding: 0 0.4cm;
+  margin: 0.1cm 0;
+  font-size: 7.2pt; }
+  ul li::marker, ol li::marker {
+    font-weight: bold; }
+
+hr {
+  border: 1px solid black;
+  border-bottom: none;
+  margin: 0; }
+
+h2 {
+  font-weight: bold;
+  background-color: #808080;
+  color: #FFFFFF; }
+
+h3 {
+  background-color: #a6a6a6; }
+
+h4 {
+  background-color: #d9d9d9; }
+
+h5 {
+  background-color: #f2f2f2; }
+
+.footnote {
+  display: block;
+  position: relative;
+  font-size: 5pt;
+  margin-left: 2mm; }
+  .footnote::before {
+    content: '\21E8';
+    position: absolute;
+    left: -2mm; }
+
+.imageblock {
+  padding: 0.05cm 0.1cm;
+  height: auto;
+  width: 100%; }
+
+img {
+  display: block;
+  height: auto;
+  width: 100%; }
+
+/*# sourceMappingURL=summary-theme.css.map */
