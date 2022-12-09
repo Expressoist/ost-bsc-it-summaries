@@ -65,8 +65,18 @@ h1, h2, h3, h4, h5 {
 }
 
 p {
+  break-inside: avoid;
   hyphens: auto;
   margin: 0;
+
+  .footnote:last-of-type {
+    margin-bottom: -0.05cm;
+  }
+
+  .inline-stem {
+    display: inline-block;
+    padding: 0.05cm 0 0.1cm 0;
+  }
 }
 
 a {
@@ -143,5 +153,13 @@ h5 {
 img {
   display: block;
   height: auto;
+  max-width: 100%;
+}
+
+.inlined {
   width: 100%;
+  text-align: center;
+}
+.smaller {
+  font-size: smaller;
 }
