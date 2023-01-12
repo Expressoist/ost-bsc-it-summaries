@@ -12,14 +12,14 @@
   font-style: normal;
 }
 @page {
-  size: 297mm 210mm;
-  margin: 0.5cm;
+  size: 58mm 210mm;
+  margin: 0;
   padding: 0;
 }
 .title-document {
   position: absolute;
-  top: -0.5cm;
-  left: -0.5cm;
+  top: 0;
+  left: 0;
   font-size: 5pt;
 }
 
@@ -31,13 +31,12 @@ body {
 }
 
 #content {
-  /* background: red; */
   padding: 0;
   height: 100vh;
   width: 100%;
-  column-count: 5;
+  /*column-count: 5;
   column-fill: auto;
-  column-gap: 0.3cm;
+  column-gap: $column-gap;*/
 }
 
 .body {
@@ -85,12 +84,15 @@ h3, h4, h5 {
 }
 
 ul, ol {
-  padding: 0 0.4cm;
+  padding: 0 0.1cm 0 0.4cm;
   margin: 0.1cm 0;
   font-size: 7.2pt;
 }
 ul li::marker, ol li::marker {
   font-weight: bold;
+}
+ul ul, ul ol, ol ul, ol ol {
+  padding-right: 0;
 }
 
 hr {
@@ -148,6 +150,34 @@ img {
 
 .smaller {
   font-size: smaller;
+}
+
+.stemblock .MathJax {
+  margin: 2mm 0 !important;
+}
+
+.highlight {
+  margin: 2mm 0;
+}
+.highlight code {
+  font-size: 7pt;
+  display: block;
+  border: 1px solid #808080;
+  background: #f5f5f5;
+  margin: 0.5mm;
+  padding: 0.5mm;
+  border-radius: 3px;
+}
+
+.code-annotation {
+  display: block;
+  position: absolute;
+  right: 6px;
+  margin: -17px 0;
+  background: white;
+  border: 1px solid #808080;
+  padding: 0.2mm 0.5mm;
+  font-size: 6pt;
 }
 
 /*# sourceMappingURL=summary-theme.css.map */
