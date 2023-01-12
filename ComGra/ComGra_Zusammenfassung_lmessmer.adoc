@@ -1,0 +1,25 @@
+= ComGra Zusammenfassung von Lukas Messmer
+:author: Lukas Messmer
+:imagesdir: ./assets
+:stylesheet: ../resources/summary-theme.css
+:docinfodir: ../resources/
+:docinfo: shared-head
+:source-highlighter: rouge
+:lang: de
+:stem:
+
+include::chapters/01_einfuehrung.adoc[]
+
+include::chapters/03_vektorgeometrie.adoc[]
+
+include::chapters/02_geometrien.adoc[]
+
+include::chapters/04_projektionen.adoc[]
+
+include::chapters/05_belichtung.adoc[]
+
+include::chapters/06_komplexe_oberflaechen.adoc[]
+
+include::chapters/07_rasterisierung.adoc[]
+
+include::chapters/08_ray_tracing.adoc[]

@@ -1,0 +1,8 @@
+== Einführung
+=== Anwendungen
+Das Thema "Computer Grafiken" lässt sich in vielen Gebieten antreffen, wie z.B.:
+
+* Videospiele
+* Cartoons & Filme
+* Datenvisualisierungen
+* Berechnungen

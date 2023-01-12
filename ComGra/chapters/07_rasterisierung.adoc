@@ -1,0 +1,132 @@
+== Rasterisierung & Sichtbarkeit
+=== Rasterisierung
+Da ein 2D-Bildschirm aus Pixeln besteht, müssen wir nach der Projektion die Linien noch in ein Raster abbilden. Es gibt verschiedene Methoden dazu:
+
+* Vollständig Zusammenhängend
+* Minimal Zusammenhängend
+    ** Aliased (Binär)
+    ** Anti-Aliased (Prozentual)
+
+'''
+
+image:lines-and-rasterisation.jpg[]
+
+
+==== Aliasing
+Zeichne ausschliesslich die Pixel eines Dreiecks, für die gilt:
+
+* Das Pixel-Zentrum liegt *in* dem Dreieck.
+* Das Pixel-Zentrum liegt *auf* der oberen oder linken Seite des Dreiecks.
+
+footnote:[Technisch wird das Dreieck **zeilen**weise gezeichnet.]
+footnote:[Dazu wird u.a. der Bresenham Linien-Algorithmus verwendet.]
+
+===== Bresenham Linien-Algorithmus
+Basierend auf zwei Punkten stem:[P_"Start"] und stem:[P_"Ende"], zeichne die Linie nach dem Bresenham Linien-Algorithmus:
+
+. Berechne stem:[Δx = x_"Ende" - x_"Start"]
+. Berechne stem:[Δy = y_"Ende" - y_"Start"]
+. Berechne stem:[m = Δy \/ Δx]
+. Wenn stem:[Δx >= Δy] dann mit stem:[i = 0]:
+.. stem:[x_i = x_"Start" + i]
+.. stem:[y_i = y_"Start" + floor(m * i + 0.5)]
+.. Zeichne den Pixel stem:[(x_i, y_i)]
+.. stem:[i larr i + 1]
+
+footnote:[Bei stem:[Δx >= Δy] wird die Berechnung von stem:[x_i] und stem:[y_i] vertauscht.]
+
+==== Anti-Aliasing
+Zeichne alle Pixel eines Dreiecks unter Beachtung der prozentualen Abdeckung. Das bedeutet:
+
+* Erhöhe das Pixelraster (z.B. 4x)
+* Berechne die Abdeckung nach Aliasing
+* Reduziere das Pixelraster und zeichne alle Pixel anhand der berechneten Abdeckung.
+
+Varianten davon sind:
+
+* *Super-Sampling*: Die komplette GPU-Pipeline läuft mit einem erhöhten Pixelraster.
+* *Multisampling*: Nur der Z-Buffer läuft mit einem erhöhten Pixelraster.
+
+'''
+
+image::aliasing-variants.png[]
+
+==== Probleme (Aliasing Effekte)
+Wenn die Auflösung eines Texturmusters grösser ist als die Auflösung der Anzeigefläche, kann der Moiré-Effekt auftreten.
+
+footnote:[Dies passiert bei beiden Aliasing-Verfahren.]
+footnote:[Problem: Ein Pixel alleine kann kein Muster darstellen.]
+
+===== Mipmaps
+Beschreibt eine "Pyramide" von Texturen, bei der die Auflösung anhand der Distanz zur Kamera gewählt wird.
+
+footnote:[Je näher das Objekt, desto hochauflösender die Textur.]
+footnote:[Damit kann der Moiré-Effekt verhindert werden.]
+
+'''
+
+image::mipmap-example.png[]
+
+=== Sichtbarkeit
+==== Z-Buffer (Depth-Buffer)
+Erlaubt das korrekte Zeichnen von überlappenden Objekten.
+
+* Initialisiere den Buffer mit stem:[Z_"B" = oo"]
+* Für alle Objekt-Pixel:
+    ** Ermittle die Distanz zur Kamera stem:[Z_"O"]
+    ** Wenn stem:[Z_"B" > Z_"O"]:
+        *** Zeichne das Pixel
+        *** Setze stem:[Z_"B" larr Z_"O"]
+    ** Wenn stem:[Z_"B" < Z_"O"]:
+        *** Zeichne das Pixel nicht
+
+footnote:[stem:[Z_"B" > Z_"O"] bedeutet, dass das Objekt näher ist.]
+footnote:[Z-Fighting: Problem bei gleichen Z-Werten.]
+footnote:[Z-Funktion: Normalerweise 1 - 1/z]
+
+'''
+
+image::z-buffer-example.png[]
+
+== Spiegelungen & Schatten
+=== Spiegelungen
+==== Flächen
+Berechne die Szene aus Sicht einer virtuellen Spiegelkamera und projiziere das Bild in Form einer Textur auf die Fläche.
+
+footnote:[Winkel und Distanz sind dabei äquivalent.]
+
+'''
+
+image::mirror-projection-flat.png[]
+
+==== Kugeln
+Berechne die Szene für alle Seiten einer umliegenden Bounding-Box und projiziere das Bild dann auf die Kugel.
+
+footnote:[Die Spiegelkamera steht dabei in der Kugelmitte.]
+footnote:[Je grösser die Bounding-Box, desto kleiner der Fehler.]
+
+'''
+
+image::mirror-projection-sphere.png[]
+
+==== Environment Mapping
+Beschreiben 360°-Bilder, welche für Spiegelungen und Hintergründe verwendet werden können.
+
+footnote:[z.B. Cube-Maps, Sphere-Maps, Cylinder-Maps, etc.]
+
+=== Schatten
+==== Shadow Mapping
+Projiziere die Szene aus Sicht der Lichtquelle auf die zu belichtende Oberfläche.
+
+footnote:[Zeichne zuerst die Schatten und dann die Objekte.]
+footnote:[Bilde dazu nicht die Farbwerte, sondern die Tiefenwerte ab.]
+
+'''
+
+image::shadow-mapping-projection.png[]
+
+==== Depth-Map
+Visualisierung des Z-Buffers.
+
+* Schwarz: stem:[Z_O=0] (Nahe)
+* Weiss: stem:[Z_O=oo] (Weit weg)

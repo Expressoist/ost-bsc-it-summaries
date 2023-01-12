@@ -1,0 +1,198 @@
+== Komplexe Oberflächen
+=== Grundformen
+3D-Objekte lassen sich wie bisher durch Punkte, aber auch durch Funktionen beschreiben:
+
+* *Funktionen*: Kontinuierlicher Wertebereich
+    ** Explizit: stem:[z = -ax + by + ...]
+    ** Implizit: stem:[0 = x^2 + 2y^2 + ...]
+    ** Parametrisch: stem:[P = vec 0 + s vec u + ...]
+* *Punkte*: Festgelegter Wertebereich
+
+footnote:[Explizite Funktionen sind nach einer Variablen aufgelöst.]
+footnote:[Implizite sind nicht aufgelöst (algebraische Oberflächen).]
+footnote:[Algebraische Oberflächen: Sphäre, Torus, Würfel, etc.]
+
+==== Vor- und Nachteile
+Es gibt keine beste Repräsentationsform für Objekte. Beide haben ihre Vor- und Nachteile:
+
+* *Funktionen*:
+    ** *Pro*: Wenig Speicherplatz, Schnittpunkte mathematisch berechenbar, beliebig genaue Auflösung
+    ** *Con*: Beschränkte Formen, komplexe Herleitung, grafische Transformationen sind schwierig
+* *Punkte*:
+    ** *Pro*: Beliebige Geometrie, vielseitig einsetzbar, direkter GPU-Support, einfache Berechnung
+    ** *Con*: Fixe Genauigkeit, hoher Speicherbedarf, Rechenzeit abhängig von der Anzahl Primitiven
+
+=== Zusammengesetzte Formen
+TODO
+
+=== Triangulation
+Beschreibt die Umwandlung einer Punktwolke (z.B. Rohdaten) in ein Polygon-Mesh.
+
+footnote:[Die Oberflächen werden rekonstruiert / approximiert.]
+
+==== Sweep-Strategie
+. Laufe von *links* nach *rechts*.
+. Für jeden Punkt:
+    .. Zeichne eine Linie zu den *2* vorherigen Punkten, für die gilt:
+        ** Keine Dellen entstehen
+        ** Keine Überschneidungen entstehen
+    .. Verbinde nun alle weiteren Punkte innerhalb dieser Form.
+. Wiederhole, bis zum Ende.
+
+footnote:[Die entstehende Form nennt sich "Konvexe Hülle".]
+
+'''
+
+image::sweep-strategie.jpg[]
+
+==== Insert-Strategie
+. Zeichne *2* Anfangsdreiecke um alle Punkte.
+. Für alle Punkte (zufällige Wahl):
+    .. Bestimme das umfassende Dreieck.
+    .. Unterteile dieses Dreieck in 3 weitere Dreiecke. D.h. Verbinde alle Eckpunkte mit dem gewählten Punkt.
+. Wiederhole, bis zum Ende.
+. Entferne nun alle künstlichen Anfangs**punkte** und die damit verbundenen Dreiecke.
+
+'''
+
+image::insert-strategie.jpg[]
+
+==== Problem
+Beide Strategien erzeugen "unschöne", spitze Dreiecke.
+
+===== Delaunay Triangulation
+. Rekursiv für alle Dreiecke:
+    .. Wähle ein anliegendes Dreieck
+    .. Ersetze die längere der inneren Kanten durch die Kürzere. (Edge-Flip)
+. Wiederhole, bis zum Ende.
+
+=== Approximationen
+==== Marching Squares Algorithmus
+Mit diesem Algorithmus lassen sich die Isolinien von Heat Maps diskret bestimmen.
+
+. Gitter über die Daten legen.
+. Betrachtungshöhe (Potenzial) festlegen.
+. Für alle Quadrate im Gitter:
+    .. Eckpunkte beachten.
+    .. Nach Schema unten Linien einzeichnen.
+. Wiederhole, bis zum Ende.
+
+footnote:["Heat Map": 2D-Visualisierung von 3D-Landschaften.]
+footnote:["Isolinien": Die Höhenlinien einer Heat Map.]
+
+'''
+
+image::marching-squares-algorithm.jpg[]
+
+==== Weitere Algorithmen
+
+* Marching Cubes (3D-Heat-Maps)
+* Interpolation: Punkte «vervollständigen»
+    ** Polynomial: stem:[f=a_0x^0 + ... + a_nx^n]
+    ** Splines: Stückweise Interpolation der Punkte mit linearen, quadratischen oder kubischen Funktionen.
+* NURBS: Interpolation in 3D
+
+'''
+
+image::interpolation.jpg[]
+
+=== Lindenmayer Systeme
+L-Systeme beschreiben beliebig feine, selbstähnliche geometrische Strukturen.
+
+footnote:[Sie können rekursiv definiert und aufgebaut werden.]
+
+==== Formale Definition
+
+* Anfangsform: stem:[f]
+* Ersetzungsregeln: stem:[f rarr f+f--f+f]
+    ** Strich: stem:[f]
+    ** Positive Rotation: stem:[+]
+    ** Negative Rotation: stem:[-]
+    ** Abzweigung (Kind): stem:[\[f\]]
+* Kontext: Rotation stem:[60°]
+
+footnote:[Beispiele: Koch Kurve, Hilbert Kurve, Fraktale, etc.]
+footnote:[So lassen sich u.a. Bäume generieren (z.B. mit Zufallszahlen).]
+
+'''
+
+image::lindenmayer-systems.jpg[]
+
+=== Subdivision Surfaces
+Beschreibt ein rekursives Verfahren für das Verfeinern von Oberflächen.
+
+footnote:[Subdivision Curves ist das Äquivalent für Kurven.]
+
+==== *Curves*: Chaikin’s Algorithmus
+. Beginne mit einer Kurve
+. Markiere die Anfangspunkte (Blau)
+. Setze in der Mitte von *allen* Strecken einen neuen Punkt (Schwarz ohne Füllung)
+. Setze nun in der Mitte der *neuen* Strecken einen Punkt (Rot)
+. Streiche nun alle schwarzen Punkte und verbinde die Roten und Blauen.
+. Wiederhole, solange wie gewünscht.
+
+footnote:[Die neuen Punkte stehen an stem:[1 \/ 4] und stem:[3 \/ 4] der Originalstrecke.]
+footnote:[Diese Gewichtung kann auch variiert werden.]
+
+'''
+
+image::subdivision-surface.jpg[]
+
+==== *Surfaces*: Algorithmen
+===== Dreiecksbasiert
+[.inlined]
+[cols="1,1"]
+|===
+| Loop
+| stem:[sqrt(3)] Subdivision
+
+a| image::subdivision-surfaces-loop.png[]
+a| image::subdivision-surfaces-sqrt-3.png[]
+|===
+
+===== Rechtecksbasiert
+[.inlined]
+[cols="1,1"]
+|===
+| Catmull-Clark
+| Doo-Sabin
+
+a| image::subdivision-surfaces-catmull-clark.png[]
+a| image::subdivision-surfaces-doo-sabin.png[]
+|===
+
+==== Vorteile
+Vorteile von Subdivision-Surface, insbesondere im Vergleich zu NURBS:
+
+* Beliebige Oberflächentopologie
+* Kompakte Repräsentation
+* Level-of-Detail Rendering
+* Intuitiv mit einfachen Algorithmen
+
+footnote:[NURBS-Flächen können nur Scheiben, Zylinder oder Tori sein.]
+
+=== Korrektur & Optimierung
+TODO
+
+==== Qualitätsmerkmale
+
+==== Mesh Smoothing
+
+==== Mesh Reduktion / Remeshing
+Diese Verfahren haben das Ziel, die Anzahl der Oberflächen zu reduzieren.
+
+===== Vertex Clustering
+. Wähle ein Grösse epsilon (Toleranz)
+. Teile den Raum in Quadrate dieser Grösse
+. Berechne pro Quadrat *einen* repräsentativen Eckpunkt (z.B. Mittelpunkt aller Punkte)
+. Lösche die originalen Punkte und ersetzte sie durch den neuen Eckpunkt.
+
+Je nach Berechnungsverfahren des repräsentativen Eckpunkts kann sich die Topologie des Meshes stark unterscheiden.
+
+footnote:[Das Verfahren spielt also eine starke Rolle für die Qualität]
+
+===== Inkrementelle Reduktion
+
+
+
+==== Resampling / Remeshing

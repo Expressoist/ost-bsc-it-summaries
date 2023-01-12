@@ -1,0 +1,132 @@
+== 3D Geometrien
+=== Bestandteile von 3D-Objekten
+3D-Objekte bestehen im Allgemeinen immer aus diesen Elementen:
+
+* Eckpunkte (Vertices): stem:[V in RR^3]
+* Linien (Edges): stem:[E in (V_1,V_2)]
+* Oberflächen (Faces): stem:[F in (V_1,V_2,V_3)]
+
+footnote:[Wir nennen 3D-Objekte auch «Meshes»]
+footnote:[Meist werden Dreiecke für die Faces verwendet.]
+footnote:[Eckpunkte können definiert oder berechnet werden.]
+
+=== Indexing
+Die Punkte stem:[V] der Fläche stem:[F] lassen sich auf verschiedene Arten referenzieren:
+
+* *Ohne* Indexing:
+    ** 1 Punkte-Array [.smaller]#(stem:[l = 9 * n_F])#
+    ** 3 Koordinaten pro Punkt
+    ** 3 Punkte pro Fläche
+* *Mit* Indexing:
+    ** 1 Punkte-Array [.smaller]#(stem:[l = 3 * n_V])#
+    ** 1 Index-Array [.smaller]#(stem:[l = 3 * n_F])#
+    ** 3 Koordinaten pro einzigartigen Punkt
+    ** 3 Indexe pro Fläche
+
+footnote:[Mit Indexing ist meistens effizienter als ohne Indexing]
+
+=== Koordinatensysteme
+Ein Punkt einer Geometrie kann je nach Ansichtsweise von verschiedenen Koordinatensystemen referenziert werden:
+
+. Modell (3D / Rechtshändig)
+. Welt (3D / Rechtshändig)
+. Kamera (3D / Linkshändig)
+. Bildschirm (2D)
+
+footnote:[Bei der Darstellung werden diese Punkte umtransformiert.]
+footnote:[z.B. stem:[P(1, 3, 2)] steht auf dem Bildschirm an stem:[P(5, 4)].]
+
+'''
+
+image:spaces-and-transformations.jpg[]
+
+=== Transformation
+Transformation können *sukzessiv* oder *gemeinsam* angewandt werden.
+
+footnote:[Die nachfolgenden Beispiele sind alle in 2D.]
+footnote:[Weitere Transformationen sind Spiegelung und Scherung.]
+
+==== Translation
+Verschiebe alle Punkte einer Geometrie um einen *Vektor* (Vektoraddition).
+
+[stem]
+++++
+    T(vec x) = ((x + d_1), (y + d_2)) = vec x + vec d
+++++
+
+==== Skalierung
+Verschiebe alle Punkte einer Geometrie um einen *Faktor* (Skalarmultiplikation).
+
+[stem]
+++++
+    S(vec x) = ((s * x), (s * y)) = s * vec x
+++++
+
+footnote:[Die Faktoren stem:[s] können auch unterschiedlich sein (s. Matrix).]
+
+==== Rotation
+Rotiere alle Punkte einer Geometrie um einen *Winkel stem:[θ]*.
+
+[stem]
+++++
+    R_θ(vec x) => ((x * cos θ - y * sin θ), (x * sin θ + y * cos θ))
+++++
+
+footnote:[Einfachheitshalber nur in 2D.]
+
+==== Gesamt-Transformationen
+Wir würden gerne zuerst die Transformationen zusammenrechnen und dan auf alle Punkte anwenden (effizenz). Problem: Die Translation ist keine lineare Abbildung. Das bedeutet:
+
+[stem]
+++++
+    s * (vec d + vec x) != (s * vec d) + vec x
+++++
+
+footnote:[Oder: Sukzessiv ist nicht gleich gemeinsam.]
+
+=== Homogene Koordinaten
+Um das Problem der Translation zu lösen, werden alle kartesischen Koordinaten stem:[P(x,y)] auf homogene Koordinaten stem:[P_H(x,y,1)] abgebildet.
+
+footnote:[Oder Allgemeiner: stem:[P(x,y,w)] repräsentiert stem:[P(x \/ w, y \/ w)].]
+footnote:[Die Punkte werden also zu Linien im projektiven Raum.]
+footnote:[Diese Linien verlaufen alle durch den Nullpunkt.]
+
+'''
+
+image::homogene-coordinates.jpg[]
+
+==== Translation (Matrix)
+Die Translation lautet nun:
+
+[.smaller]
+[stem]
+++++
+([1, ,d_1],[ ,1,d_2],[ , ,1]) * ([x],[y],[1]) = ((x+d_1),(y+d_2),(1))
+++++
+
+==== Skalierung (Matrix)
+Die Skalierung lautet nun:
+
+[.smaller]
+[stem]
+++++
+([s_1, , ],[ ,s_2, ],[ , ,1]) * ([x],[y],[1]) = ((s_1*x),(s_2*y),(1))
+++++
+
+==== Rotation (Matrix)
+Die Rotation lautet nun:
+
+[.smaller]
+[stem]
+++++
+([cos θ,-sin θ, ],[sin θ,cos θ, ],[ , ,1]) ([x],[y],[1]) = ((x cos θ - y sin θ),(x sin θ + y cos θ),(1))
+++++
+
+==== Gesamt-Transformationen (Matrix)
+Wir können nun die einzelnen Transformations-Matrizen miteinander multiplizieren und erhalten so die Gesamt-Transformation:
+
+[stem]
+++++
+    M_\text{R} * (M_\text{S} * vec x) = (M_\text{R} * M_\text{S}) * vec x
+++++
+

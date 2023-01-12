@@ -1,0 +1,173 @@
+== Beleuchtung & Texturen
+=== Allgemeines
+Die Farbe eines Objekts (bzw. Pixels) besteht immer aus:
+
+* Objekt-Farben / Texturen
+* Beleuchtung
+
+=== Farbdarstellung
+==== Subtraktive Farbberechnung
+Die Farbanteile, welche in Lichtquelle *und* Objekt vorkommen, sind sichtbar:
+
+[stem]
+++++
+    C_"Total" = ((R_"Light" * R_"Object"),(G_"Light" * G_"Object"),(B_"Light" * B_"Object"))
+++++
+
+Alternative mit gemittelten Werten:
+[stem]
+[.smaller]
+++++
+    C_"Total" = 1/(2) * (C_"Light" + C_"Object")
+++++
+==== Additive Farbberechnung
+Die Farbanteile der Lichtquellen werden zusammengerechnet:
+
+[stem]
+++++
+    C_"Total" = vec 1 - (((1 - R_"L1") * (1- R_"L2")),((1 - G_"L1") * (1- G_"L2")),((1 - B_"L1") * (1- B_"L2")))
+++++
+
+footnote:[Die *nicht enthaltenen* Lichtanteile werden
+reduziert.]
+
+=== Oberflächennormale
+Nicht-triviale Belichtungsmodelle berücksichtigen die Ausrichtung der Oberfläche:
+
+[stem]
+++++
+    "N"_(V_1) =  (V_2 - V_1) xx (V_3 - V_1)
+++++
+
+footnote:[Normale eines Vertex stem:[V_1] von einer Fläche stem:[F in (V_1,V_2,V_3)]]
+footnote:[Dieser Wert wird nun auf die Fläche stem:[F] interpoliert.]
+footnote:[Kann im voraus oder «on-the-fly» berechnet werden.]
+
+'''
+
+EVT. BILD
+
+=== Beleuchtungsmodelle
+==== Ambient Lighting
+Belichtung von einem globalen Licht mit Remission in alle Richtungen.
+
+image::ambient-lighting.jpg[]
+
+'''
+
+[source,glsl]
+----
+uniform float ambientStrength;
+uniform vec3 lightColor;
+uniform vec3 objectColor;
+out vec4 fragColor;
+
+void main() {
+  vec3 ambient = ambientStrength
+                 * lightColor;
+  // Component-wise multiplication
+  vec3 color = ambient * objectColor;
+  fragColor = vec4(color, 1.0);
+}
+----
+[.code-annotation]#ambient-fragment-shader.glsl#
+
+==== Diffuse Lighting
+Belichtung von einer Punktquelle mit Remission in alle Richtungen.
+
+image::diffuse-lighting.jpg[]
+
+[source,glsl]
+----
+# Initializations...
+
+void main() {
+  vec3 normDir = normalize(normal);
+  vec3 lightDir =
+    normalize(lightPos - fragPos);
+  float cosTheta =
+    max(dot(normDir, lightDir), 0.0);
+  vec3 diffuse = cosTheta
+                 * lightColor
+                 * objectColor;
+  fragColor = vec4(diffuse, 1.0);
+}
+----
+[.code-annotation]#diffuse-fragment-shader.glsl#
+footnote:[Wird für *matte* Oberflächen verwendet.]
+
+==== Specular Lighting
+Belichtung von einer Punktquelle mit Remission in *eine* Richtung.
+
+image::specular-lighting.jpg[]
+
+[source,glsl]
+----
+# Initializations
+
+void main() {
+  vec3 normDir = normalize(normal);
+  vec3 cameraDir = normalize(cameraPos - fragPos);
+  vec3 lightDir = normalize(lightPos - fragPos);
+  vec3 reflectDir = reflect(-lightDir, normDir);
+  float cosTheta = max(dot(cameraDir, reflectDir), 0.0);
+  float intensity = pow(cosTheta, shininess);
+  vec3 specular = intensity * lightColor * objectColor;
+  fragColor = vec4(specular, 1.0);
+}
+----
+[.code-annotation]#specular-fragment-shader.glsl#
+footnote:[Wird für *spiegelnde* Oberflächen verwendet.]
+
+=== Kombinationsmodelle
+==== Phong-Shading
+Die Belichtung wird aus Ambient-, Diffuse- und Specular-Anteilen zusammengesetzt.
+
+[stem]
+[.smaller]
+++++
+C_"Total" = 1/(3) * (C_"Ambient" + C_"Diffuse" + C_"Specular")
+++++
+
+footnote:[Problem: Ab 90° gibt es keine Spiegelung mehr.]
+
+==== Blinn-Phong-Shading
+Löst das Problem von Phong-Shading durch die Verwendung eines «Halfway-Vectors».
+
+image::blinn-phong-shading.jpg[]
+
+[source,glsl]
+----
+void main() {
+  ...
+  vec3 halfwayDir = normalize(lightDir + cameraDir);
+  float cosTheta = max(dot(normDir, halfwayDir), 0.0);
+  ...
+}
+----
+[.code-annotation]#blinn-phong-fragment-shader.glsl#
+
+=== Texturen
+Texturen sind Bilddateien, welche Eigenschaften (wie z.B. die Farbe) einer Oberfläche definieren.
+
+==== Texture-Mapping
+Beschreibt die Abbildung von 3D-Vertex-Koordinaten auf 2D-Textur-Koordinaten.
+
+image::uv-mapping.png[]
+
+footnote:[Auch UV-Mapping genannt.]
+
+'''
+
+[source,glsl]
+----
+uniform sampler2D texUnit;
+in vec2 texCoord;
+out vec4 fragColor;
+
+void main(void) {
+  fragColor = texture(texUnit,
+                      texCoord);
+}
+----
+[.code-annotation]#texture-fragment-shader.glsl#
