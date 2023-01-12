@@ -1,0 +1,135 @@
+== Projektmanagement (Klassisch)
+=== Vorgehensmodelle
+Vorgehensmodelle beschreiben die Art und Weise, wie ein Projekt realisiert wird. Wir unterscheiden zwischen *agilen* und *klassischen* Modellen.
+
+footnote:[Das Modell wird zu Beginn des Projekts festgelegt.]
+footnote:[Änderungen daran sind mit grossem Aufwand verbunden.]
+
+==== Agile Modelle
+Agile Modelle basieren auf *iterativen* Arbeitsschritten und *schlanken* Prozessen. Sie benötigen insbesondere ein gutes Team Management.
+
+footnote:[Grundsätzlich geringen administrativen Aufwand.]
+
+==== Klassische Modelle
+Klassische Modelle sind *formeller* und *strikter*, wodurch sie klare Aussagen zum Fortschritt und Inhalt eines Projekts zulassen. Sie benötigen ein gutes Change Management.
+
+footnote:[Grundsätzlich hohen administrativen Aufwand.]
+
+=== Wasserfallmodell
+Beim Wasserfallmodell werden *sequenziell* mehrere sogenannten *Phasen* durchlaufen. Das Vorgehensmodell hat dabei folgende Eigenschaften:
+
+* Phasen sind aufbauend, d.h. der Output einer Phase ist Input der nächsten.
+* Phasen müssen immer *vollständig* abgeschlossen werden.
+* Das Zurückkehren in eine abgeschlossene Phase ist *nicht* erlaubt.
+* Die Parallelisierung der Phasen soll vermieden werden.
+
+Das Wasserfallmodell erlaubt eine klare und transparente Aussage über den Projektfortschritt.
+
+footnote:[Das Modell ist aber enorm statisch.]
+footnote:[Daher gilt: Je später eine Änderung, desto teurer.]
+
+'''
+
+image::wasserfallmodell.jpg[]
+
+==== Definition von «Phase»
+Eine Phase beschreibt eine Sammlung von mehreren Arbeitspaketen, welche *zeitlich* und *inhaltlich* zusammenhängen. Phasen werden mit Meilensteinen terminiert und sollen ein Projekt in logische Abschnitte unterteilen.
+
+footnote:[Die Arbeitspakete sind dabei alle Aufgaben / Tasks.]
+
+'''
+
+image::definition-of-phases.jpg[]
+
+footnote:[Phasenübergänge werden z.T. auch «Gates» genannt.]
+footnote:[Eine Parallelisierung von Phasen ist nicht vorgesehen.]
+
+
+=== Rational Unified Process (RUP)
+Beim RUP-Modell werden sequenziell *4 Phasen* durchlaufen. Anders als beim Wasserfallmodell können fachliche Arbeiten (sogenannte «Disciplines») über mehrere Phasen verteilt sein.
+
+'''
+
+image::rup-modell.jpg[]
+
+==== Phasen vom RUP-Modell
+Die *4* Phasen vom RUP-Modell sind:
+
+. *Inception*: Konzeption & Planung
+. *Elaboration*: Design & Prototyp
+. *Construction*: Entwicklung & Tests
+. *Transition*: Übergabe & Auslieferung
+
+footnote:[RUP endet immer mit dem «Product Release Milestone».]
+
+
+=== HERMES
+HERMES ist ein strikt definiertes Vorgehensmodell des Bundes. Das Modell besteht aus exakt *4* Phasen:
+
+. Initialisierung
+. Konzept
+. Realisierung
+. Einführung
+
+Alle Phasenübergänge müssen dabei zwingend vom Lenkungsausschuss freigegeben werden.
+
+footnote:[Unabhängiges Arbeiten also nur innerhalb einer Phase.]
+footnote:[HERMES: «Handbuch der Elektronischen Rechenzentren des Bundes, eine Methode zur Entwicklung von Systemen».]
+
+'''
+
+image::hermes-phases.jpg[]
+
+==== Szenarien & Module
+Bei HERMES gibt es *8* Standardszenarien für Projekte. Ein Szenario besteht dabei aus mehreren Modulen, welche wiederum aus Aufgaben, Rollen und Ergebnissen bestehen.
+
+image::hermes-szenarios.jpg[]
+
+==== Partner & Hierarchien
+Weiter werden bei HERMES alle «Rollen» in *eine* Hierarchie und *eine oder mehrere* Partner unterteilt. Es gibt genau *3* Hierarchien und *3* Partner.
+
+image::hermes-partner-and-hierarchies.jpg[]
+
+footnote:[z.B. Entwickler: Hierarchie «Ausführung», Partner «Ersteller»]
+footnote:[z.B. Kunde: Hierarchie «Steuerung», Partner «Anwender»]
+footnote:[Alle Rollen sind dabei strikt definiert.]
+
+==== Vor- und Nachteile
+Vorteile:
+
+* Hohe Standardisierung
+* Viele Tools und Vorlagen
+* Zertifizierung möglich
+* Einbettung von Scrum möglich
+* Passt für öffentliche Ausschreiben
+
+Nachteile:
+
+* Sehr starke Vorgaben
+* Vier Phasen sind etwas knapp
+* In der Privatwirtschaft kaum relevant
+* Im Ausland gar nicht relevant
+* Kann Projekte verkomplizieren
+
+=== CYNEFIN Framework
+Das CYNEFIN Framework soll bei der Wahl eines Vorgehensmodells (agil vs. klassisch) helfen. Dazu unterteilt es Projekte in *4* Kategorien:
+
+. *Simple*: Die Lösung für das Problem ist offensichtlich.
+. *Complicated*: Die Lösung benötigt eine Analyse von Fachwissen (stabile Herausforderungen).
+. *Complex*: Die Lösung muss zuerst erarbeitet werden (dynamische Herausforderungen).
+. *Chaotic*: Das Problem hat keine Lösung.
+
+Simple und Complicated sollen dabei *klassisch* und Complex *agil* gelöst werden. Chaotic lässt sich nicht lösen.
+
+footnote:[Stabil: Ich kenne die Herausforderungen zu Beginn.]
+footnote:[Dynamisch: Die Herausforderungen sind noch unbekannt.]
+
+'''
+
+image::cynefin_framework.jpg[]
+
+=== Einordnung
+
+image::standards-and-methods.jpg[]
+
+footnote:[Grün: Standards, Rot: Vorgehensmodelle]

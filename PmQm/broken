@@ -1,0 +1,27 @@
+[.inlined]
+[.smaller]
+[cols="1,1"]
+|===
+| stem:[CV = EV - AC]
+| stem:[CPI = (EV) / (AC)]
+|===
+
+footnote:[Wobei `EV` = Fertigstellungswert, `CPI` = Kosteneffizienz]
+
+'''
+
+image::../assets/earned-value-diagramm.jpg[]
+
+'''
+
+Es gibt *3* Berechnungsmethoden:
+
+. *Strikt*: Alle *vollständig abgeschlossenen* Komponenten werden beachtet.
+[.inline-stem]#stem:[EV = K_1 + K_2 + K_3 + ...]#
+. *Zwischenresultate*: Alle *brauchbaren* Komponenten werden beachtet.
+[.inline-stem]#stem:[EV = K_1.1 + K_1.3 + K_2.2 + ...]#
+. *Restaufwand*: Die Berechnung erfolgt über die Schätzung des Restaufwands.
+[.inline-stem]#stem:[EV = (PC) / (AC + Rest) * AC]#
+
+footnote:[«Zwischenresultate» sind z.B. Module einer Software.]
+footnote:[Bei «Strikt» muss die gesamte Software fertig sein.]

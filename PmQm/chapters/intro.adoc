@@ -1,0 +1,38 @@
+== Projekt- und Qualitätsmanagement
+=== Definition
+Projekte sind *einmalige*, *komplexe* und *zeitlich begrenzte* Vorhaben, zu dessen Realisierung unterschiedliche Ressourcen herangezogen werden müssen.
+
+footnote:[Ressourcen sind z.B. Personen, Arbeitsgruppen, etc.]
+
+==== Projektgrösse
+Die Projektgrösse wird im Normalfall anhand der *Kosten*, der *Zeitspanne* und den *Arbeitsstunden* gemessen.
+
+footnote:[Akademisch auch in Form von https://de.wikipedia.org/wiki/Function-Point-Verfahren[Function Points].]
+
+==== Projekterfolg
+Der Projekterfolg hängt dabei direkt mit der Grösse des Projekts zusammen.
+
+footnote:[Grosse Projekte sind i.d.R. *nicht* Erfolgreich!]
+
+'''
+
+image::statistics-size-of-projects.jpg[]
+
+==== Make or Buy
+Es ist nicht immer sinnvoll, ein Projekt selbst durchzuführen. Je nach Kosten und Aufwand kann sich auch eine «schlechtere» Standardlösung lohnen.
+
+footnote:[Wir nennen das den «Make or Buy» Entscheid.]
+footnote:[z.B. CMR oder eigene Webseite?]
+
+=== OTOBOS
+Wir können den Stand eines Projekts mittels OTOBOS beurteilen. Wir stellen uns also die Frage: Ist das Projekt...
+
+* on Time (OT)
+* on Budget (OB)
+* on Specification / Scope (OS)
+
+==== Konflikte
+Die 3 Aspekte von OTOBOS stehen immer miteinander im Konflikt. Ändern wir einen Aspekt, so beeinflussen wir auch die anderen.
+
+footnote:[Ein neues Feature (Scope) braucht mehr Zeit (Time).]
+footnote:[Ein besserer Mitarbeiter (Budget) arbeitet schneller (Time).]
