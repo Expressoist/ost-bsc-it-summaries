@@ -1,4 +1,4 @@
-all: compile-scss make-pdf
+all: compile-scss make-pdf merge-pdf
 
 SOURCE_DIR = ./resources
 
@@ -10,4 +10,10 @@ compile-scss:
 
 make-pdf:
 	npx asciidoctor-web-pdf $(lecture)/*.adoc
-	# rm $(lecture)/*.html
+	rm $(lecture)/*.html
+
+merge-pdf:
+	for file in $(lecture)/*.pdf; \
+	do \
+		yes | pdfxup -x 5 -fw 0 -m 3pt -o $${file} $${file}; \
+	done
