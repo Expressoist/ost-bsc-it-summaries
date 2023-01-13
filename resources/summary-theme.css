@@ -55,6 +55,10 @@ h1, h2, h3, h4, h5 {
   font-weight: normal;
 }
 
+.with-padding td {
+  padding: 0.5mm 0.5mm !important;
+}
+
 p {
   break-inside: avoid;
   hyphens: auto;
@@ -130,6 +134,9 @@ h5 {
   position: absolute;
   left: -2mm;
 }
+.footnote .mjx-n *::before {
+  font-size: smaller;
+}
 
 .imageblock {
   padding: 0.05cm 0.1cm;
@@ -146,10 +153,23 @@ img {
 .inlined {
   width: 100%;
   text-align: center;
+  border-collapse: collapse;
+}
+.inlined td, .inlined tr, .inlined th {
+  margin: 0;
+  padding: 0;
+}
+
+.align-left {
+  text-align: left;
 }
 
 .smaller {
   font-size: smaller;
+}
+
+.tiny {
+  font-size: 70%;
 }
 
 .stemblock .MathJax {
