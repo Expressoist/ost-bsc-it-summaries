@@ -1,0 +1,5 @@
+- OpenGL Funktionen (V01)
+- | vec u xx vec v | entspricht dem Flächeninhalt des aufgespannten Parallelogramms (V03)
+- Die Welt aus Sicht der Kamera (V04)
+- Orthografische Projektion mit «normalized device coordinates» (V04)
+- Approximation quadratischer & kubischer B-Splines (V06)

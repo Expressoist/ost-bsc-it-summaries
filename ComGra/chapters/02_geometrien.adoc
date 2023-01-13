@@ -1,13 +1,12 @@
 == 3D Geometrien
 === Bestandteile von 3D-Objekten
-3D-Objekte bestehen im Allgemeinen immer aus diesen Elementen:
+3D-Objekte («Meshes») bestehen im Allgemeinen immer aus diesen Elementen:
 
 * Eckpunkte (Vertices): stem:[V in RR^3]
 * Linien (Edges): stem:[E in (V_1,V_2)]
 * Oberflächen (Faces): stem:[F in (V_1,V_2,V_3)]
 
-footnote:[Wir nennen 3D-Objekte auch «Meshes»]
-footnote:[Meist werden Dreiecke für die Faces verwendet.]
+footnote:[Meist werden Dreiecke für die Faces verwendet. Vorteile: Garantiert flach, eindeutige Definition, einfache Transformation]
 footnote:[Eckpunkte können definiert oder berechnet werden.]
 
 === Indexing
@@ -23,7 +22,7 @@ Die Punkte stem:[V] der Fläche stem:[F] lassen sich auf verschiedene Arten refe
     ** 3 Koordinaten pro einzigartigen Punkt
     ** 3 Indexe pro Fläche
 
-footnote:[Mit Indexing ist meistens effizienter als ohne Indexing]
+footnote:[Mit Indexing ist meistens effizienter als ohne Indexing.]
 
 === Koordinatensysteme
 Ein Punkt einer Geometrie kann je nach Ansichtsweise von verschiedenen Koordinatensystemen referenziert werden:
@@ -31,6 +30,7 @@ Ein Punkt einer Geometrie kann je nach Ansichtsweise von verschiedenen Koordinat
 . Modell (3D / Rechtshändig)
 . Welt (3D / Rechtshändig)
 . Kamera (3D / Linkshändig)
+. Sichtbarkeitsbereich (2D)
 . Bildschirm (2D)
 
 footnote:[Bei der Darstellung werden diese Punkte umtransformiert.]
@@ -38,10 +38,10 @@ footnote:[z.B. stem:[P(1, 3, 2)] steht auf dem Bildschirm an stem:[P(5, 4)].]
 
 '''
 
-image:spaces-and-transformations.jpg[]
+image:spaces-and-transformations.png[]
 
 === Transformation
-Transformation können *sukzessiv* oder *gemeinsam* angewandt werden.
+Transformationen können *sukzessiv* oder *gemeinsam* angewandt werden.
 
 footnote:[Die nachfolgenden Beispiele sind alle in 2D.]
 footnote:[Weitere Transformationen sind Spiegelung und Scherung.]
@@ -69,64 +69,61 @@ Rotiere alle Punkte einer Geometrie um einen *Winkel stem:[θ]*.
 
 [stem]
 ++++
-    R_θ(vec x) => ((x * cos θ - y * sin θ), (x * sin θ + y * cos θ))
+    R_θ(vec x) = ((x * cos θ - y * sin θ), (x * sin θ + y * cos θ))
 ++++
 
-footnote:[Einfachheitshalber nur in 2D.]
+footnote:[Die 3D-Berechnung ist in diesem Modul nicht relevant.]
 
-==== Gesamt-Transformationen
-Wir würden gerne zuerst die Transformationen zusammenrechnen und dan auf alle Punkte anwenden (effizenz). Problem: Die Translation ist keine lineare Abbildung. Das bedeutet:
+==== Gesamt-Transformation
+Aus Effizienzgründen würden wir gerne die Transformationen zuerst zusammenrechnen und dann auf alle Punkte anwenden.
+
+*Problem:* Die Translation ist keine lineare Abbildung. Das bedeutet:
 
 [stem]
 ++++
     s * (vec d + vec x) != (s * vec d) + vec x
 ++++
 
-footnote:[Oder: Sukzessiv ist nicht gleich gemeinsam.]
+footnote:[D.h.: Sukzessive Anwendung ist nicht gleich gemeinsame.]
 
 === Homogene Koordinaten
-Um das Problem der Translation zu lösen, werden alle kartesischen Koordinaten stem:[P(x,y)] auf homogene Koordinaten stem:[P_H(x,y,1)] abgebildet.
+Um das Problem der Translation zu lösen, werden alle kartesischen Koordinaten [.smaller]#stem:[P(x,y)]# auf homogene Koordinaten [.smaller]#stem:[P_H(x,y,1)]# abgebildet.
 
 footnote:[Oder Allgemeiner: stem:[P(x,y,w)] repräsentiert stem:[P(x \/ w, y \/ w)].]
-footnote:[Die Punkte werden also zu Linien im projektiven Raum.]
-footnote:[Diese Linien verlaufen alle durch den Nullpunkt.]
+footnote:[Die Punkte werden so zu Linien im projektiven Raum.]
+footnote:[Die Translation wird damit zu einer linearen Abbildung.]
 
 '''
 
 image::homogene-coordinates.jpg[]
 
-==== Translation (Matrix)
-Die Translation lautet nun:
-
+==== Translation [.tiny]#Matrix#
 [.smaller]
 [stem]
 ++++
 ([1, ,d_1],[ ,1,d_2],[ , ,1]) * ([x],[y],[1]) = ((x+d_1),(y+d_2),(1))
 ++++
 
-==== Skalierung (Matrix)
-Die Skalierung lautet nun:
-
+==== Skalierung [.tiny]#Matrix#
 [.smaller]
 [stem]
 ++++
 ([s_1, , ],[ ,s_2, ],[ , ,1]) * ([x],[y],[1]) = ((s_1*x),(s_2*y),(1))
 ++++
 
-==== Rotation (Matrix)
-Die Rotation lautet nun:
-
+==== Rotation [.tiny]#Matrix#
 [.smaller]
 [stem]
 ++++
 ([cos θ,-sin θ, ],[sin θ,cos θ, ],[ , ,1]) ([x],[y],[1]) = ((x cos θ - y sin θ),(x sin θ + y cos θ),(1))
 ++++
 
-==== Gesamt-Transformationen (Matrix)
-Wir können nun die einzelnen Transformations-Matrizen miteinander multiplizieren und erhalten so die Gesamt-Transformation:
+==== Gesamt-Transformation [.tiny]#Matrix#
+Wir können nun die einzelnen Transformationen miteinander multiplizieren und erhalten so die Gesamt-Transformation:
 
 [stem]
 ++++
     M_\text{R} * (M_\text{S} * vec x) = (M_\text{R} * M_\text{S}) * vec x
 ++++
 
+footnote:[Die Reihenfolge spielt weiterhin eine Rolle: stem:[M_\text{R} M_\text{S} != M_\text{S} M_\text{R}]]

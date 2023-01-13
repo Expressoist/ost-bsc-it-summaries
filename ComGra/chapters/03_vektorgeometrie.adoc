@@ -12,6 +12,7 @@ Grundsätzlich sind alle Punkte *Ortsvektoren* durch den Ursprung. Es gilt daher
 
 [.inlined]
 [.smaller]
+[.with-padding]
 [cols="1,1"]
 |===
 | Addition / Subtraktion
@@ -28,30 +29,14 @@ stem:[vec a xx vec b = ((a_2 b_3 - a_3 b_2), (a_3 b_1 - a_1 b_3), (a_1 b_2 - a_2
 stem:[\|vec a\| = sqrt(a_1^2 + a_2^2 + ...)]
 | Normalisierung
 stem:[hat a = 1 / \|vec a\| * vec a ]
+
+2.1+| Skalarprodukt
+
+    stem:[vec a circ vec b = sum_i(a_i * b_i) = \|\vec a\| * \|\vec b\| * cos α]
 |===
-
-=== Skalarprodukt
-
-[.smaller]
-[stem]
-++++
-    vec a circ vec b = a_1 * b_1 + a_2 * b_2 + ... = |\vec a| * |\vec b| * cos α
-++++
 
 footnote:[Ist stem:[vec a circ vec b = 0], sind die Vektoren orthogonal.]
 footnote:[Orthogonal: Vektoren stehen senkrecht aufeinander.]
-
-==== Orthogonale Projektion
-
-[.inlined]
-[.smaller]
-[cols="1,1"]
-|===
-| stem:[vec u_p = ((vec u circ vec v) / (\|vec u\|^2)) * vec u]
-1.2+a| image::orthogonal-projection.jpg[]
-
-| stem:[= \|vec v\| * cos α * hat u]
-|===
 
 === Multiplikation
 Allgemein *nicht* kommutativ:
@@ -65,3 +50,33 @@ Allgemein *nicht* kommutativ:
 |===
 
 image::matrix-multiplication.jpg[]
+
+=== Gleichungssysteme
+Allgemeine Definition:
+
+[stem]
+++++
+    Ax+b <=> {:(a_11x_1+a_12x_2=b_1),(a_21x_1+a_22x_2=b_2):}
+++++
+
+==== Gauss-Verfahren
+
+[.inlined]
+[.with-padding]
+[cols="1,3"]
+|===
+| stem:[[A\|b\]]:
+| stem:[[[1,4,\|,2\],[2,9,\|,5\]\] => [[1,0,\|,-2\],[0,1,\|,1\]\]]
+|===
+
+=== Orthogonale Projektion
+
+[.inlined]
+[.smaller]
+[cols="1,1"]
+|===
+| stem:[vec u_p = ((vec u circ vec v) / (\|vec u\|^2)) * vec u]
+1.2+a| image::orthogonal-projection.jpg[]
+
+| stem:[= \|vec v\| * cos α * hat u]
+|===

@@ -1,4 +1,5 @@
 == Projektionen
+[.not-in-cheatsheet]
 === Definition
 Um ein 3D-Objekt auf einem 2D-Bildschirm darzustellen, müssen wir es zuerst in diese 2D-Dimension projizieren. Wir unterscheiden dabei:
 
@@ -9,27 +10,28 @@ Um ein 3D-Objekt auf einem 2D-Bildschirm darzustellen, müssen wir es zuerst in 
 
 image::types-of-projections.jpg[]
 
-==== Perspektivische Projektion
+=== Berechnung
 Projiziere den Punkt stem:[P(x, y, z)] auf die XY-Ebene (stem:[z = 0]) basierend auf der Kameraposition stem:[E(e_x, e_y, e_z)].
 
 Gesucht ist die Projektion stem:[C(c_x, c_y)].
 
+footnote:[Die Dimension wird also um eins reduziert (stem:[RR]³ zu stem:[RR]²).]
+footnote:[Bei 2D einfach eine Komponente (z.B. stem:[x]) weglassen.]
+
+==== Perspektivisch
 [.inlined]
+[.with-padding]
 [cols="1,1"]
 |===
 | stem:[c_x = (e_x z - e_z x)/(z - e_z)]
 | stem:[c_y = (e_y z - e_z y)/(z - e_z)]
 |===
 
-footnote:[Die Dimension wird also um eins reduziert (stem:[RR]³ zu stem:[RR]²).]
-footnote:[Bei 2D einfach eine Komponente (z.B. stem:[x]) weglassen.]
+footnote:[Herleitung aus der Formel stem:[y = Δy \/ Δz * z + c]]
 
-==== Orthogonale Projektion
-Projiziere den Punkt stem:[P(x, y, z)] auf die XY-Ebene (stem:[z = 0]) basierend auf der Kameraposition stem:[E(e_x, e_y, e_z)].
-
-Gesucht ist die Projektion stem:[C(c_x, c_y)].
-
+==== Orthogonal
 [.inlined]
+[.with-padding]
 [cols="1,1"]
 |===
 | stem:[c_x = x]
@@ -51,8 +53,14 @@ footnote:[Die Brennweite (Kamera) bestimmt die Tiefenschärfe.]
 
 image::graphics-pipeline.png[]
 
-=== Double Buffering
-TODO
+=== Double Frame Buffering
+Beschreibt die *abwechselnde* Verwendung von zwei Framebuffer für die Berechnung und Darstellung eines Frames.
+
+* *Frame*: Bild auf dem Display
+* *Framebuffer*: Speicherort des Frames
+
+footnote:[Berechnungen werden nicht auf dem Anzeigebild durchgeführt.]
+footnote:[So können Berechnungsartefakte vermieden werden.]
 
 === Shader-Programme
 Sind auf der GPU laufende Programme für die Berechnung des Bildes. Es gibt:
@@ -60,7 +68,7 @@ Sind auf der GPU laufende Programme für die Berechnung des Bildes. Es gibt:
 * *Vertex-Shader*: Projektion der Modell-Eckpunkte in den Clip-Space.
 * *Fragment-Shader*: Berechnung der Farbe eines Pixels.
 
-footnote:[Arbeitet immer in *einzelnen* Primitiven (z.B. *ein* Eckpunkt).]
+footnote:[Arbeiten immer mit *einzelnen* Primitiven (z.B. *ein* Eckpunkt).]
 
 ==== GLSL Programmiermodell
 Kommunikation in den Pipeline-Stages:

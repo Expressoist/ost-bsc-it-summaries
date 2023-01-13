@@ -12,23 +12,41 @@ footnote:[Explizite Funktionen sind nach einer Variablen aufgelöst.]
 footnote:[Implizite sind nicht aufgelöst (algebraische Oberflächen).]
 footnote:[Algebraische Oberflächen: Sphäre, Torus, Würfel, etc.]
 
+==== Kombinationen
+Punkte und Funktionen sind die Grundbausteine für alle komplexen Formen:
+
+* *Aus Primitiven*: Punktwolke, Meshes
+* *Approximierend*: Iso-Surface, Splines
+* *Konstruiert*: Subdivision Surfaces, Fraktale
+
 ==== Vor- und Nachteile
-Es gibt keine beste Repräsentationsform für Objekte. Beide haben ihre Vor- und Nachteile:
+Es gibt keine beste Repräsentationsform für Objekte. Vor- und Nachteile sind:
 
 * *Funktionen*:
-    ** *Pro*: Wenig Speicherplatz, Schnittpunkte mathematisch berechenbar, beliebig genaue Auflösung
-    ** *Con*: Beschränkte Formen, komplexe Herleitung, grafische Transformationen sind schwierig
+    ** *Vorteile*: Wenig Speicherplatz, Schnittpunkte mathematisch berechenbar, beliebig genaue Auflösung
+    ** *Nachteile*: Beschränkte Formen, komplexe Herleitung, grafische Transformationen sind schwierig
 * *Punkte*:
-    ** *Pro*: Beliebige Geometrie, vielseitig einsetzbar, direkter GPU-Support, einfache Berechnung
-    ** *Con*: Fixe Genauigkeit, hoher Speicherbedarf, Rechenzeit abhängig von der Anzahl Primitiven
-
-=== Zusammengesetzte Formen
-TODO
+    ** *Vorteile*: Beliebige Geometrie, vielseitig einsetzbar, direkter GPU-Support, einfache Berechnung
+    ** *Nachteile*: Fixe Genauigkeit, hoher Speicherbedarf, Rechenzeit abhängig von der Anzahl Primitiven
 
 === Triangulation
-Beschreibt die Umwandlung einer Punktwolke (z.B. Rohdaten) in ein Polygon-Mesh.
+Beschreibt die Umwandlung einer Punktwolke in ein Polygon-Mesh.
 
 footnote:[Die Oberflächen werden rekonstruiert / approximiert.]
+footnote:[Wird z.B. bei Rohdaten von 3D-Scans angewandt.]
+
+'''
+
+[.tiny]
+[.inlined]
+[cols="1,1"]
+|===
+a| image::sweep-strategie.jpg[]
+a| image::insert-strategie.jpg[]
+
+| Sweep-Strategie
+| Insert-Strategie
+|===
 
 ==== Sweep-Strategie
 . Laufe von *links* nach *rechts*.
@@ -39,11 +57,7 @@ footnote:[Die Oberflächen werden rekonstruiert / approximiert.]
     .. Verbinde nun alle weiteren Punkte innerhalb dieser Form.
 . Wiederhole, bis zum Ende.
 
-footnote:[Die entstehende Form nennt sich "Konvexe Hülle".]
-
-'''
-
-image::sweep-strategie.jpg[]
+footnote:[Die entstehende Form nennt sich «Konvexe Hülle».]
 
 ==== Insert-Strategie
 . Zeichne *2* Anfangsdreiecke um alle Punkte.
@@ -53,22 +67,28 @@ image::sweep-strategie.jpg[]
 . Wiederhole, bis zum Ende.
 . Entferne nun alle künstlichen Anfangs**punkte** und die damit verbundenen Dreiecke.
 
-'''
+==== Probleme
+Beide Strategien können «unschöne», d.h. spitze Dreiecke erzeugen.
 
-image::insert-strategie.jpg[]
-
-==== Problem
-Beide Strategien erzeugen "unschöne", spitze Dreiecke.
+footnote:[Wir können dies mit «Delaunay» nachträglich verbessern.]
+footnote:[Teilweise lassen sich spitze Winkel jedoch nicht vermeiden.]
 
 ===== Delaunay Triangulation
-. Rekursiv für alle Dreiecke:
-    .. Wähle ein anliegendes Dreieck
-    .. Ersetze die längere der inneren Kanten durch die Kürzere. (Edge-Flip)
+
+[.align-left]
+[.inlined]
+[cols="4,1"]
+|===
+a| . Rekursiv für alle Dreiecke:
+.. Wähle ein anliegendes Dreieck
+.. Ersetze die längere der inneren Kanten durch die Kürzere. (Edge-Flip)
 . Wiederhole, bis zum Ende.
+a| image::edge-flip-example.png[]
+|===
 
 === Approximationen
 ==== Marching Squares Algorithmus
-Mit diesem Algorithmus lassen sich die Isolinien von Heat Maps diskret bestimmen.
+Mit diesem Algorithmus lassen sich Isolinien von Heat Maps diskret bestimmen.
 
 . Gitter über die Daten legen.
 . Betrachtungshöhe (Potenzial) festlegen.
@@ -77,8 +97,8 @@ Mit diesem Algorithmus lassen sich die Isolinien von Heat Maps diskret bestimmen
     .. Nach Schema unten Linien einzeichnen.
 . Wiederhole, bis zum Ende.
 
-footnote:["Heat Map": 2D-Visualisierung von 3D-Landschaften.]
-footnote:["Isolinien": Die Höhenlinien einer Heat Map.]
+footnote:[«Heat Map»: 2D-Visualisierung von 3D-Landschaften.]
+footnote:[«Isolinien»: Die Höhenlinien einer Heat Map.]
 
 '''
 
@@ -90,7 +110,7 @@ image::marching-squares-algorithm.jpg[]
 * Interpolation: Punkte «vervollständigen»
     ** Polynomial: stem:[f=a_0x^0 + ... + a_nx^n]
     ** Splines: Stückweise Interpolation der Punkte mit linearen, quadratischen oder kubischen Funktionen.
-* NURBS: Interpolation in 3D
+* NURBS: Approximation von 3D-Flächen
 
 '''
 
@@ -103,9 +123,9 @@ footnote:[Sie können rekursiv definiert und aufgebaut werden.]
 
 ==== Formale Definition
 
-* Anfangsform: stem:[f]
+* Anfangsform [.smaller]#(z.B. Strich)#: stem:[f]
 * Ersetzungsregeln: stem:[f rarr f+f--f+f]
-    ** Strich: stem:[f]
+    ** Ersetzungsmöglichkeit: stem:[f]
     ** Positive Rotation: stem:[+]
     ** Negative Rotation: stem:[-]
     ** Abzweigung (Kind): stem:[\[f\]]
@@ -127,7 +147,7 @@ footnote:[Subdivision Curves ist das Äquivalent für Kurven.]
 . Beginne mit einer Kurve
 . Markiere die Anfangspunkte (Blau)
 . Setze in der Mitte von *allen* Strecken einen neuen Punkt (Schwarz ohne Füllung)
-. Setze nun in der Mitte der *neuen* Strecken einen Punkt (Rot)
+. Setze nun in der Mitte von allen *neuen* Strecken einen Punkt (Rot)
 . Streiche nun alle schwarzen Punkte und verbinde die Roten und Blauen.
 . Wiederhole, solange wie gewünscht.
 

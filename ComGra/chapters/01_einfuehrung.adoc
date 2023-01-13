@@ -1,8 +1,18 @@
 == Einführung
 === Anwendungen
-Das Thema "Computer Grafiken" lässt sich in vielen Gebieten antreffen, wie z.B.:
+Das Thema «Computer Grafiken» lässt sich in vielen Gebieten antreffen, wie z.B.:
 
 * Videospiele
 * Cartoons & Filme
 * Datenvisualisierungen
 * Berechnungen
+
+=== Standards
+Im Bereich «Computer Grafiken»:
+
+* *Treiber APIs*: OpenGL, DirectX, Vulkan
+* *Bare API Wrappers*: OpenTK, JOGL, WebGL
+* *Mid-Level APIs*: Three.js, SharpGfx
+* *Rendering Engines*: Renderman, Mental Ray
+* *Modelling Software*: Blender, Maya
+* *Game Engines*: Unity, Unreal
