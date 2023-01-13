@@ -95,8 +95,8 @@ void main() {
                 * view
                 * projection;
 
-  normal = vec4(normalIn, 1.0)
-           * model;
+  // Component-wise multiplication
+  normal = vec4(normalIn, 1.0) * model;
 }
 ----
 [.code-annotation]#vertex-shader.glsl#

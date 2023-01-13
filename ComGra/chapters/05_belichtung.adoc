@@ -63,15 +63,8 @@ image::ambient-lighting.jpg[]
 
 [source,glsl]
 ----
-uniform float ambientStrength;
-uniform vec3 lightColor;
-uniform vec3 objectColor;
-out vec4 fragColor;
-
 void main() {
-  vec3 ambient = ambientStrength
-                 * lightColor;
-  // Component-wise multiplication
+  vec3 ambient = strength * lightColor;
   vec3 color = ambient * objectColor;
   fragColor = vec4(color, 1.0);
 }
@@ -85,14 +78,11 @@ image::diffuse-lighting.jpg[]
 
 [source,glsl]
 ----
-# Initializations...
-
 void main() {
-  vec3 normDir = normalize(normal);
-  vec3 lightDir =
-    normalize(lightPos - fragPos);
-  float cosTheta =
-    max(dot(normDir, lightDir), 0.0);
+  vec3 normDir = norm(normal);
+  vec3 lightDir = norm(lightPos - fragPos);
+  float cosTheta
+    = max(dot(normDir, lightDir), 0.0);
   vec3 diffuse = cosTheta
                  * lightColor
                  * objectColor;
@@ -101,6 +91,7 @@ void main() {
 ----
 [.code-annotation]#diffuse-fragment-shader.glsl#
 footnote:[Wird für *matte* Oberflächen verwendet.]
+footnote:[Das `+norm+` steht für die Funktion `+normalize+`.]
 
 ==== Specular Lighting
 Belichtung von einer Punktquelle mit Remission in *eine* Richtung.
@@ -109,16 +100,18 @@ image::specular-lighting.jpg[]
 
 [source,glsl]
 ----
-# Initializations
-
 void main() {
-  vec3 normDir = normalize(normal);
-  vec3 cameraDir = normalize(cameraPos - fragPos);
-  vec3 lightDir = normalize(lightPos - fragPos);
-  vec3 reflectDir = reflect(-lightDir, normDir);
-  float cosTheta = max(dot(cameraDir, reflectDir), 0.0);
-  float intensity = pow(cosTheta, shininess);
-  vec3 specular = intensity * lightColor * objectColor;
+  vec3 normDir = norm(normal);
+  vec3 camDir = norm(camPos - fragPos);
+  vec3 lightDir = norm(lightPos - fragPos);
+  vec3 reflectDir
+    = reflect(-lightDir, normDir);
+  float cosTheta
+    = max(dot(camDir, reflectDir), 0.0);
+  float strength = pow(cosTheta, shininess);
+  vec3 specular = strength
+                  * lightColor
+                  * objectColor;
   fragColor = vec4(specular, 1.0);
 }
 ----
@@ -146,8 +139,9 @@ image::blinn-phong-shading.jpg[]
 ----
 void main() {
   ...
-  vec3 halfwayDir = normalize(lightDir + cameraDir);
-  float cosTheta = max(dot(normDir, halfwayDir), 0.0);
+  vec3 halfwayDir = norm(lightDir + camDir);
+  float cosTheta
+    = max(dot(normDir, halfwayDir), 0.0);
   ...
 }
 ----
@@ -168,13 +162,8 @@ footnote:[Sampling: Umrechnung von Fragment- in Texturkoordinaten.]
 
 [source,glsl]
 ----
-uniform sampler2D texUnit;
-in vec2 texCoord;
-out vec4 fragColor;
-
 void main(void) {
-  fragColor = texture(texUnit,
-                      texCoord);
+  fragColor = texture(texUnit, texCoord);
 }
 ----
 [.code-annotation]#texture-fragment-shader.glsl#
