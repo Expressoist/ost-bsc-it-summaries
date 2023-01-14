@@ -36,3 +36,22 @@ Die 3 Aspekte von OTOBOS stehen immer miteinander im Konflikt. Ändern wir einen
 
 footnote:[Ein neues Feature (Scope) braucht mehr Zeit (Time).]
 footnote:[Ein besserer Mitarbeiter (Budget) arbeitet schneller (Time).]
+
+=== Projektantrag
+Bevor wir ein Projekt starten können, müssen wir meistens zuerst einen Projektantrag schreiben. Dieser beinhaltet:
+
+. *Ausgangslage*: Was ist die aktuelle Situation?
+. *Ziele*: Was wollen wir erreichen?
+. *Motivation*: Warum wollen wir es erreichen?
+. *Ressourcen*: Welche Ressourcen stehen uns zur Verfügung?
+. *Termine*: Welche Zeitvorgaben, Meilensteine, etc. haben wir?
+. *Risiken*: Welche Risiken hat das Projekt?
+
+footnote:[Denke dabei an KISS: «Keep it short and simple.»]
+
+=== Innovation
+Wir bezeichnen ein Projekt als innovativ, wenn es Fortschritte in der *Technologie* und der *Organisation* erzielt.
+
+'''
+
+image::definition-of-innovation.png[]

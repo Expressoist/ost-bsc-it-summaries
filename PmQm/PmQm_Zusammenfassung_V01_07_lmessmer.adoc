@@ -1,0 +1,20 @@
+= PmQm Zusammenfassung von Lukas Messmer
+:author: Lukas Messmer
+:imagesdir: ./assets
+:stylesheet: ../resources/summary-theme.css
+:docinfodir: ../resources/
+:docinfo: shared-head
+:lang: de
+:stem:
+
+include::chapters/intro.adoc[]
+
+include::chapters/projektkontrolle.adoc[]
+
+include::chapters/projektmanagement_klassisch.adoc[]
+
+include::chapters/finanzen.adoc[]
+
+include::chapters/risikomanagement.adoc[]
+
+include::chapters/qualitatsmanagement.adoc[]

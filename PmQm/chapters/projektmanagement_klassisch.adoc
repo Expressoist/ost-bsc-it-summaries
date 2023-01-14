@@ -8,12 +8,12 @@ footnote:[Änderungen daran sind mit grossem Aufwand verbunden.]
 ==== Agile Modelle
 Agile Modelle basieren auf *iterativen* Arbeitsschritten und *schlanken* Prozessen. Sie benötigen insbesondere ein gutes Team Management.
 
-footnote:[Grundsätzlich geringen administrativen Aufwand.]
+footnote:[Grundsätzlich geringer administrativen Aufwand.]
 
 ==== Klassische Modelle
 Klassische Modelle sind *formeller* und *strikter*, wodurch sie klare Aussagen zum Fortschritt und Inhalt eines Projekts zulassen. Sie benötigen ein gutes Change Management.
 
-footnote:[Grundsätzlich hohen administrativen Aufwand.]
+footnote:[Grundsätzlich hoher administrativen Aufwand.]
 
 === Wasserfallmodell
 Beim Wasserfallmodell werden *sequenziell* mehrere sogenannten *Phasen* durchlaufen. Das Vorgehensmodell hat dabei folgende Eigenschaften:
@@ -46,7 +46,7 @@ footnote:[Eine Parallelisierung von Phasen ist nicht vorgesehen.]
 
 
 === Rational Unified Process (RUP)
-Beim RUP-Modell werden sequenziell *4 Phasen* durchlaufen. Anders als beim Wasserfallmodell können fachliche Arbeiten (sogenannte «Disciplines») über mehrere Phasen verteilt sein.
+Beim RUP-Modell werden sequenziell *4 Phasen* durchlaufen. Anders als beim Wasserfallmodell können fachliche Arbeiten (sogenannte «Disciplines») auch über mehrere Phasen verteilt sein.
 
 '''
 
@@ -83,7 +83,8 @@ image::hermes-phases.jpg[]
 ==== Szenarien & Module
 Bei HERMES gibt es *8* Standardszenarien für Projekte. Ein Szenario besteht dabei aus mehreren Modulen, welche wiederum aus Aufgaben, Rollen und Ergebnissen bestehen.
 
-image::hermes-szenarios.jpg[]
+[.centered]
+image::hermes-szenarios.jpg[hermes, 82%]
 
 ==== Partner & Hierarchien
 Weiter werden bei HERMES alle «Rollen» in *eine* Hierarchie und *eine oder mehrere* Partner unterteilt. Es gibt genau *3* Hierarchien und *3* Partner.
@@ -114,9 +115,9 @@ Nachteile:
 === CYNEFIN Framework
 Das CYNEFIN Framework soll bei der Wahl eines Vorgehensmodells (agil vs. klassisch) helfen. Dazu unterteilt es Projekte in *4* Kategorien:
 
-. *Simple*: Die Lösung für das Problem ist offensichtlich.
-. *Complicated*: Die Lösung benötigt eine Analyse von Fachwissen (stabile Herausforderungen).
-. *Complex*: Die Lösung muss zuerst erarbeitet werden (dynamische Herausforderungen).
+. *Simple*: Die Lösung ist offensichtlich.
+. *Complicated*: Die Lösung benötigt eine Fachanalyse (stabile Herausforderungen).
+. *Complex*: Die Lösung muss neu erarbeitet werden (dynamische Herausforderungen).
 . *Chaotic*: Das Problem hat keine Lösung.
 
 Simple und Complicated sollen dabei *klassisch* und Complex *agil* gelöst werden. Chaotic lässt sich nicht lösen.

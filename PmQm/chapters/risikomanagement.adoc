@@ -3,13 +3,15 @@
 *Risiken* und *Chancen* sind Unsicherheitsfaktoren in einem Projekt, welche sich positiv oder negativ auf das Ergebnis auswirken können. Die Risikoanalyse ist ein wichtiger Bestandteil des Projektmanagements.
 
 footnote:[Die Chancenanalyse ist seltener, aber hilfreich.]
-footnote:[Ein eingetretenes Risiko nennt man «Issue».]
+footnote:[Ein eingetretenes Risiko nennt man auch «Issue».]
 
 ==== Bestandteile von Risiken
 Ein Risiko besteht aus *2* Faktoren:
 
 * Eintrittswahrscheinlichkeit
 * Schadensausmass
+
+footnote:[Diese Faktoren dienen u.a. der Priorisierung von Risiken.]
 
 ==== Risikomanagement
 Das Risikomanagement selbst kann in *5* Schritte aufgeteilt werden.
@@ -40,9 +42,9 @@ Jedes Risiko muss entweder *qualitativ* (Hoch, Mittel, Tief) oder *quantitativ* 
 
 * Schätzung der maximalen Werte
 * Schätzung der mittleren Werte
-* Schätzung via statistische Verteilfunktion
+* Schätzung via statistischer Verteilfunktion
 
-Im Normalfall wird zuerst Eintrittswahrscheinlichkeit und dann das Schadensausmass geschätzt.
+Im Normalfall wird zuerst die Eintrittswahrscheinlichkeit und dann das Schadensausmass geschätzt.
 
 footnote:[Dies kann «Bottom-Up» oder «Top-Down» gemacht werden.]
 footnote:[Bottom-Up: Zuerst Detailanalyse, dann Übersicht.]
@@ -104,6 +106,7 @@ Um ein Risiko zu bewältigen, können wir eine oder mehrere der folgenden *4* Me
 . *Überwälzen*: z.B. eine entsprechende Versicherung abschliessen.
 . *Selbst tragen*: z.B. den Schaden beim Eintritt akzeptieren und abzahlen.
 
+footnote:[Überwälzen bedeutet, das Risiko auf andere zu übertragen.]
 footnote:[Merke: Es bleibt immer ein Restrisiko vorhanden!]
 
 === *5.* Massnahmen
@@ -111,7 +114,7 @@ Grundsätzlich gilt: Eine Massnahme soll nicht teurer sein, als das Risiko selbs
 
 * Risiken mit hoher Eintrittswahrscheinlichkeit vermeiden.
 * Risiken mit hohem Schadensausmass vermindern.
-* Seltene Risiken auf Versicherungen überwälzen.
+* Seltene Risiken überwälzen.
 * Für alle anderen Risiken eine zeitliche / finanzielle Projektreserve bereitstellen.
 
 footnote:[Risiken ohne gute Massnahmen sollen akzeptiert werden.]

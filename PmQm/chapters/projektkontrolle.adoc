@@ -34,8 +34,8 @@ In einem ersten Schritt müssen wir den aktuellen Projektstand ermitteln. Das be
 ==== Methoden
 Leider ist es faktisch kaum möglich, den exakten Projektfortschritt zu ermitteln. Wir können aber:
 
-* Das Produkt betrachten und den Fertigungsgrad bestimmen.
-* Die Entwickler fragen, wie viel Zeit sie noch benötigen.
+* Das *Produkt* betrachten und dessen Fertigungsgrad bestimmen.
+* Die *Entwickler* fragen, wie viel Zeit sie noch benötigen.
 
 footnote:[Unschärfe ist dabei vorprogrammiert.]
 
@@ -48,14 +48,7 @@ footnote:[Wir können so den Projektstand als Trend abbilden.]
 Gemäss OTOBOS messen wir mindestens die verbrauchte Zeit, die aktuellen Kosten sowie die erbrachte Leistung.
 
 ===== *2.* Earned-Value-Analyse (EVA)
-Die EVA ist die bekannteste Messgrösse für den Projektfortschritt. Sie bestimmt den *Fertigstellungswert* eines Projekts, woraus dann die *Kosteneffizienz* abgeleitet werden kann.
-
-footnote:[Das Verhältnis der Kosten zur erbrachten Leistung]
-footnote:[Wir streben immer eine Kosteneffizienz` > 1` an.]
-
-'''
-
-Die Earned-Value-Analyse beinhaltet:
+Die EVA ist die bekannteste Messgrösse für den Projektfortschritt. Sie bestimmt den *Fertigstellungswert* eines Projekts, woraus dann die *Kosteneffizienz* abgeleitet werden kann. Die EVA beinhaltet:
 
 * *Planned Cost* (PC)
 * *Actual Cost* (AC)
@@ -63,8 +56,18 @@ Die Earned-Value-Analyse beinhaltet:
 * *Cost Variance* (CV)
 * *Cost Performance Index* (CPI)
 
+[.inlined]
+[.smaller]
+[.with-padding]
+[cols="1,1"]
+|===
+| stem:[CV = EV - AC]
+| stem:[CPI = (EV) / (AC)]
+|===
 
 footnote:[Wobei `EV` = Fertigstellungswert, `CPI` = Kosteneffizienz]
+footnote:[Kosteneffizienz: Verhältnis der Kosten zur erbrachten Leistung]
+footnote:[Wir streben immer eine Kosteneffizienz > 1 an.]
 
 '''
 
@@ -79,6 +82,7 @@ Es gibt *3* Berechnungsmethoden:
 . *Zwischenresultate*: Alle *brauchbaren* Komponenten werden beachtet.
 [.inline-stem]#stem:[EV = K_1.1 + K_1.3 + K_2.2 + ...]#
 . *Restaufwand*: Die Berechnung erfolgt über die Schätzung des Restaufwands.
+[.inline-stem]#stem:[EV = (PC) / (AC + Rest) * AC]#
 
 footnote:[«Zwischenresultate» sind z.B. Module einer Software.]
 footnote:[Bei «Strikt» muss die gesamte Software fertig sein.]
@@ -93,10 +97,17 @@ footnote:[Diese Analyse zeigt eindrucksvoll den Projektverlauf.]
 
 image::../assets/milestone-trend-analysis.jpg[]
 
-footnote:[Links: Gutes Projekt, Rechts: Schlechtes Projekt.]
+[.inlined]
+[.with-padding]
+[.tiny]
+[cols="1,1"]
+|===
+| Gutes Projekt
+| Schlechtes Projekt
+|===
 
 ==== Weiteres
-Im zusammenhang mit dem Projektstand beachtet man auch oft:
+Im Zusammenhang mit dem Projektstand beachtet man auch oft:
 
 * Risiken und Chancen
 * Aktuelle Issues
@@ -113,10 +124,10 @@ Die meisten Projekte scheitern aufgrund *ungenügender Kommunikation*. Um das zu
 
 image::../assets/reasons-for-project-failure.jpg[]
 
-==== Darstellung
-Nach der Auswertung des aktuellen Projektstands müssen die ermittelten Werte in «einfache» Metriken umgewandelt werden.
+==== Kommunikationsvarianten
+Die beste Methode für das Erreichen einer guten Kommunikation ist das Umwandeln der ermittelten Werte über den Projektstand in «einfache» Metriken.
 
-footnote:[Dies vereinfacht die Kommunikation mit dem Kunden.]
+footnote:[Dies vereinfacht insbesondere die Kundenkommunikation.]
 
 ===== *1.* Definition of Done
 Die einfachste Variante ist die Einteilung des Arbeitsfortschritts in einfache Kategorien. Wann etwas «fertig» ist, bestimmen wir dabei selbst.
@@ -126,9 +137,9 @@ footnote:[z.B. 0% nicht begonnen, 30% in Arbeit, 80% fertig.]
 ===== *2.* Ampel-Prinzip
 Beim Ampel-Prinzip drücken wir den Projektstand in Form einer Ampel aus. Dies hilft, die aktuelle Situation transparent und klar zu kommunizieren.
 
-image::../assets/signal-prinziple.jpg[]
+image::../assets/signal-prinziple.jpg[signal-prinziple, 160]
 
-footnote:[Jedes Unternehmen hat eine eigene Farbdefinition.]
+footnote:[Jedes Unternehmen hat dabei eine eigene Farbdefinition.]
 footnote:[Der Projektleiter muss somit klare Stellung nehmen.]
 
 ===== *3.* Aggregiertes Ampel-Prinzip
@@ -136,8 +147,10 @@ In Bezug auf OTOBOS können wir auch mehrere Ampeln anhand des maximum Prinzips 
 
 image::../assets/otobos-signal.jpg[otobos-signal, 140]
 
-=== Cockpit
-Ein Projekt Cockpit erlaubt es uns, schnell den aktuellen Projektstand zu sehen.
+footnote:[Maximum Prinzip: Ist etwas Orange, ist alles Orange.]
+
+==== *4.* Cockpit
+Ein Projekt Cockpit ist eine Sammlung von verschiedenen Messwerten und Analysen. Es erlaubt uns, den Projektstand schnell zu ermitteln und zu beeinflussen.
 
 === Steuerung & Koordination
 ==== Change Management
@@ -157,21 +170,22 @@ Bei klassischen Projektmethoden müssen wir bei Abweichungen vom Plan irgendwie 
 * Überzeiten anordnen
 * Coaching & Unterstützung anfordern
 
-Wenn diese Massnahmen keine Verbesserungen bringen, müssen wir einen «Change Request» anfragen.
+Wenn diese Massnahmen keine Verbesserungen bringen, müssen wir einen «Change Request» beantragen.
 
-footnote:[Vorgehensweise heisst z.B. serielle Tätigkeiten in parallele umwandeln.]
+footnote:[Die Vorgehensweise ändern heisst z.B. serielle Tätigkeiten in parallele umzuwandeln.]
 
 ==== Change Requests
 Ein «Change Request» ist eine Anfrage beim Kunden, gewisse Aspekte des Projekts abzuändern. Change Requests müssen immer begründet sein.
 
 footnote:[Meistens ändern wir Aspekte in Bezug auf OTOBOS.]
 footnote:[z.B.: Weniger Inhalt, damit das Geld reicht (Scope)]
+footnote:[Oftmals ist mehr Budget besser als weniger Scope.]
 
 ===== Kategorien
 Streng genommen gibt es genau *3* Kategorien von Change Requests: *Scope*, *Budget* und *Time*. In der Praxis sind aber auch weitere Kategorien anzutreffen:
 
-* *Legal Terms*: z.B. Änderung eines Vertragsortes
-* *Ressourcen*: z.B. Änderung eines Herstellers
+* *Legal Terms*: z.B. Vertragsort
+* *Ressourcen*: z.B. Hersteller
 
 ===== Voraussetzungen
 Um einen Change Request zu stellen, müssen zuerst einige Voraussetzungen erfüllt sein:
@@ -191,9 +205,9 @@ In einem Change Request muss sinngemäss die *gewünschte Änderung* beschrieben
 * Sich an die Zielgruppe orientieren.
 * Keinen Entscheid erpressen.
 * Wahlfreiheit suggerieren.
-* Die ausgelösten Risiken erwähnen.
-* Wörter verwenden wie: «Ermöglichen, ausserordentlich, neue Rahmenbedingungen, mehr Gewissheit»
-* Wörter vermeiden wie: «muss, darf nicht sein, keine Ahnung, aus heiterem Himmel, keine Chance»
+* Die eingetroffenen Risiken erwähnen.
+* Wörter verwenden wie: «Ermöglichen, ausserordentlich, neue Rahmenbedingungen»
+* Wörter vermeiden wie: «muss, darf nicht sein, keine Ahnung, aus heiterem Himmel»
 
 ===== Auswirkungen und Risiken
 Die Auswirkungen und Risiken eines Changes sollten in einem separaten Kapitel beschrieben werden. Dabei sollten u.a. auch diese Punkte erwähnt werden:
@@ -210,4 +224,6 @@ footnote:[Bei neuen Anforderungen immer Budget *und* Zeit erhöhen.]
 
 ===== Vorgehen
 
-image::../assets/change-request-diagramm.jpg[]
+image::../assets/change-request-diagramm-1.jpg[]
+
+image::../assets/change-request-diagramm-2.jpg[]

@@ -1,42 +1,42 @@
 == Finanzen
 === Gewinne & Kosten
-Der Gewinn stem:[G] eines Projektes berechnet sich aus dem Projektertrag und den Kosten.
+Der Gewinn stem:[G] eines Projektes berechnet sich aus Projektertrag und Kosten.
 
-stem:[G = Ertrag - Kosten]
+stem:[G_"Projekt" = "Ertrag" - "Kosten"]
 
 Weiter lässt sich der Gesamtgewinn eines Unternehmens mittels der Summe der einzelnen Projektgewinne bestimmen:
 
-stem:[G_\text{Gesamt} = G_1 + G_2 + G_3 + ...]
+stem:[G_"Gesamt" = G_1 + G_2 + G_3 + ...]
 
-footnote:[Das Ziel ist meistens ein Gewinn von 10%.]
+footnote:[Das Ziel ist meistens ein Gewinn von 10% des Ertrags.]
 footnote:[Dazu kommen 10% Projektreserve, also insgesamt 20%.]
 
 ==== Kostenarten
 Wir unterscheiden *2* Kostenarten:
 
-. *Variable Kosten*: Entstehen während eines Projektes (z.B. Spesen, Material, ...)
-. *Fixe Kosten*: Entstehen fortlaufend, unabhängig davon, ob Projekte laufen oder nicht (z.B. Lohnkosten, Miete, ...)
+. *Variable Kosten* [.tag.blue]#V#: Entstehen während eines Projektes (z.B. Spesen, Material, ...)
+. *Fixe Kosten* [.tag.green]#F#: Entstehen fortlaufend, unabhängig davon, ob Projekte laufen oder nicht (z.B. Lohnkosten, Miete, ...)
 
 ==== Deckungsbeitrag
 Die Kosten eines Projekts stammen aus vielen verschiedenen Quellen:
 
-. *Projektspesen*: Reisen, Übernachtungen (Variabel)
-. *Lohnkosten*: Gehälter, AHV (Variabel & Fix)
-. *Indirekte Kosten*: Telefonie, Lizenzen (Fix)
-. *Verwaltungskosten*: Miete, Reinigung (Fix)
-. *Auslastung und Gewinn*: Abschreibungen, Zinsen, Steuern (Fix)
+. *Projektspesen* [.tag.blue]#V#: Reisen, Übernachtungen
+. *Lohnkosten* [.tag.blue]#V# [.tag.green]#F#: Gehälter, AHV
+. *Indirekte Kosten* [.tag.green]#F#: Telefonie, Lizenzen
+. *Verwaltungskosten* [.tag.green]#F#: Miete, Reinigung
+. *Auslastung und Gewinn* [.tag.green]#F#: Abschreibungen, Zinsen, Steuern
 
 Oftmals wird anhand dieser Punkte eine Deckungsbeitragsrechnung erstellt. Diese soll aufzeigen, wie sich die Kosten auf den Gewinn auswirken.
 
-footnote:[Kosten können sich in je nach Land stark unterscheiden.]
-footnote:[Die Lohnkosten sind z.B. in der Schweiz sehr hoch.]
+footnote:[Die Kosten können sich je nach Land stark unterscheiden.]
+footnote:[z.B. Sind die Lohnkosten in der Schweiz sehr hoch.]
 
 '''
 
 image::example-deckungsbeitrag.jpg[]
 
 footnote:[Da Gewinn ≥ 20% war das Projekt erfolgreich.]
-footnote:[Als Faustregel gilt: stem:[Ertrag = 2.5 * Lohnkosten].]
+footnote:[Als Faustregel gilt: stem:["Ertrag" = 2.5 * "Lohnkosten"].]
 
 ==== Erfolgsfaktoren
 Wichtig für den finanzellen Erfolg sind:
@@ -46,26 +46,26 @@ Wichtig für den finanzellen Erfolg sind:
 
 === Nutzen
 ==== Nutzbetrachtung
-Jedes Projekt braucht einen Nutzen, welcher auch zu Beginn des Projektes festgelegt und akzeptiert wurde. Wir unterscheiden zwischen:
+Jedes Projekt braucht einen Nutzen, welcher zu Beginn des Projektes auch festgelegt und akzeptiert wurde. Wir unterscheiden zwischen:
 
-* *Quantitativer Nutzen* (materiell)
-* *Qualitativer Nutzen* (immateriell)
+* *Quantitativer Nutzen* [.tag.blue]#Quan# (materiell)
+* *Qualitativer Nutzen* [.tag.green]#Qual# (immateriell)
 
 ==== Nutzelemente
 Es gibt *4* Nutzelemente:
 
-. *Finanzen* (Quant): Mehr Einnahmen, weniger Ausgaben
-. *Compliance* (Qual): Erfüllung von Gesetzen, Einhaltung von Normen
-. *Agilität* (Qual): Schnellere Prozesse, flexiblere Strukturen
-. *Qualität* (Qual): Image, Zuverlässigkeit, Datenhygiene
+. *Finanzen* [.tag.blue]#Quan#: Mehr Einnahmen, weniger Ausgaben
+. *Compliance* [.tag.green]#Qual#: Erfüllung von Gesetzen, Einhaltung von Normen
+. *Agilität* [.tag.green]#Qual#: Schnellere Prozesse, flexiblere Strukturen
+. *Qualität* [.tag.green]#Qual#: Image, Zuverlässigkeit, Datenhygiene
 
 === Return on Investment (ROI)
-Beim ROI geht es um die Frage, wann eine Investition wieder zurückgeholt werden kann. Man unterscheidet bei den Projektarten zwischen:
+Beim ROI geht es um die Frage, wann eine Investition wieder zurückgeholt werden kann. Man unterscheidet dabei bei den Projektarten zwischen:
 
 * *Neuanschaffung*: Einmalige Kosten mit jährlichen Betriebskosten (zukünftiger Nutzen relevant).
 * *Ersatzinvestition*: Einmalige Kosten mit neuen/alten Betriebskosten (Unterschied der neuen/alten Nutzen relevant).
 
-Weiter unterscheidet man die Finanzierung:
+Weiter unterscheidet man die Finanzierung von einem Projekt:
 
 * *Fremdfinanzierung*: Betrachtung der Zins- und Rückzahlungskosten
 * *Eigenfinanzierung*: Betrachtung der Diskontierung (Zins & Risiko)
@@ -73,7 +73,7 @@ Weiter unterscheidet man die Finanzierung:
 footnote:[Der ROI ist vor allem für den Auftraggeber relevant.]
 
 ==== Berechnung
-Beim ROI werden die Kosten und Erträge eines Projekts über die Zeit hinweg ausgerechnet. Das Resultat ist die Zeit, die es dauert, bis wir einen Gewinn erzielen.
+Beim ROI werden die Kosten und Erträge eines Projekts über die Zeit hinweg ausgerechnet. Das *Resultat* ist die Zeit, die es dauert, bis wir einen Gewinn erzielen.
 
 image::roi-hockeystick.jpg[]
 
@@ -86,10 +86,16 @@ image::example-roi-neuanschaffung.jpg[]
 image::example-roi-ersatzinvestition.jpg[]
 
 ==== Diskontierung
+Der Diskontierungssatz beschreibt einen internen Zinssatz in Kombination mit einem Risikozuschlag. Das soll miteinbeziehen, dass Gewinne in der Zukunft weniger Wert haben wie Gewinne heute.
 
-TODO
+stem:[G_"Mit Disk." = G_i * (1 - "Diskontierung")^i]
+
+footnote:[Wobei stem:[i] das aktuelle Betrachtungsjahr darstellt.]
+footnote:[Wird meistens bei Eigenfinanzierungen verwendet.]
 
 ===== Beispiel: Diskontierung
+
+image::example-roi-diskontierung.jpg[]
 
 === Business Case
 In einem Business Case werden mehrere *Geschäftsfälle* und *Varianten* (Best Case, Worst Case, etc.) miteinander verglichen. Ein Business Case beinhaltet:
@@ -118,8 +124,5 @@ Jedes Projekt muss finanziert werden, d.h. die finanzellen Mittel müssen zur ri
 
 Projekte, die mittels externen Mitteln finanziert werden, sind *Hochrisiko-Projekte* (Konkursrisiko).
 
+footnote:[D.h.: Diese Projekte unterliegen einer schärferen Kontrolle.]
 footnote:[Das Risiko hängt von der Liquidität des Unternehmens ab.]
-footnote:[D.h.: Die Projekte unterliegen einer schärferen Kontrolle.]
-
-==== Projektliquidität
-Die Liquidität beschreibt die vorhandenen finanzellen Mittel eines Unternehmens.
