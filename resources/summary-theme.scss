@@ -25,6 +25,7 @@ $annotation-font-size: 5pt;
 }
 
 .title-document {
+  display: none;
   position: absolute;
   top: -$page-margin;
   left: -$page-margin;
@@ -217,4 +218,30 @@ img {
   border: 1px solid #808080;
   padding: 0.2mm 0.5mm;
   font-size: 6pt;
+}
+
+.centered{
+  text-align: center;
+  img {
+    margin: 0 auto;
+  }
+}
+
+.tag {
+  display: inline-block;
+  background: #1E88E5;
+  padding: 0.2mm 0.5mm;
+  color: white;
+  border-radius: 2px;
+  font-size: 80%;
+  font-weight: bold;
+  margin: 0 0.2mm;
+
+  &.blue {
+    background: #1E88E5;
+  }
+
+  &.green {
+    background: #43A047;
+  }
 }

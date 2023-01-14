@@ -17,6 +17,7 @@
   padding: 0;
 }
 .title-document {
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -198,6 +199,30 @@ img {
   border: 1px solid #808080;
   padding: 0.2mm 0.5mm;
   font-size: 6pt;
+}
+
+.centered {
+  text-align: center;
+}
+.centered img {
+  margin: 0 auto;
+}
+
+.tag {
+  display: inline-block;
+  background: #1E88E5;
+  padding: 0.2mm 0.5mm;
+  color: white;
+  border-radius: 2px;
+  font-size: 80%;
+  font-weight: bold;
+  margin: 0 0.2mm;
+}
+.tag.blue {
+  background: #1E88E5;
+}
+.tag.green {
+  background: #43A047;
 }
 
 /*# sourceMappingURL=summary-theme.css.map */
