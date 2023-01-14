@@ -13,7 +13,7 @@ make-pdf:
 	rm $(lecture)/*.html
 
 merge-pdf:
-	for file in $(lecture)/*.pdf; \
+	for file in $(lecture)/*.adoc; \
 	do \
-		yes | pdfxup -x 5 -fw 0 -m 3pt -o $${file} $${file}; \
+		yes | pdfxup -x 5 -fw 0 -m 3pt -o $${file%.adoc}.pdf $${file%.adoc}.pdf; \
 	done
