@@ -1,0 +1,21 @@
+.not-in-cheatsheet, .footnote, hr {
+  display: none;
+}
+
+body {
+  font-size: 12pt;
+}
+
+mjx-math {
+  font-size: 95% !important;
+}
+
+ul, ol {
+  font-size: 11pt;
+}
+
+@page {
+  size: 74mm 210mm;
+}
+
+/*# sourceMappingURL=cheatsheet-theme.css.map */

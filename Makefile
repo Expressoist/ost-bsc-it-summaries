@@ -1,4 +1,4 @@
-all: compile-scss make-pdf merge-pdf
+all: compile-scss make-summary
 
 SOURCE_DIR = ./resources
 
@@ -8,12 +8,22 @@ compile-scss:
   		npx sass $${file} $${file%.scss}.css; \
   	done
 
-make-pdf:
-	npx asciidoctor-web-pdf $(lecture)/*.adoc
-	rm $(lecture)/*.html
-
-merge-pdf:
+make-summary:
 	for file in $(lecture)/*.adoc; \
 	do \
-		yes | pdfxup -x 5 -fw 0 -m 3pt -o $${file%.adoc}.pdf $${file%.adoc}.pdf; \
+		npx asciidoctor-web-pdf $${file}; \
+		yes | pdfxup -x 5 -fw 0 -im 2pt -o $${file%.adoc}.pdf $${file%.adoc}.pdf; \
 	done
+	rm $(lecture)/*.html
+
+make-cheatsheet:
+	for file in $(lecture)/*.adoc; \
+	do \
+	  	npx asciidoctor-web-pdf $${file} -a stylesdir="../resources" -a stylesheet="summary-theme.css,cheatsheet-theme.css"; \
+	  	yes | pdfxup -x 4 -fw 0 -im 2pt -o $${file%.adoc}.pdf $${file%.adoc}.pdf; \
+	done
+	rm $(lecture)/*.html
+
+summary: compile-scss make-summary
+
+cheatsheet: compile-scss make-cheatsheet
