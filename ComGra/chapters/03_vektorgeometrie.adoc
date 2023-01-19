@@ -1,5 +1,6 @@
 == Vektorgeometrie
 === Punkte vs. Vektoren
+[.not-in-cheatsheet]
 Grundsätzlich sind alle Punkte *Ortsvektoren* durch den Ursprung. Es gilt daher:
 
 [.smaller]
@@ -10,9 +11,7 @@ Grundsätzlich sind alle Punkte *Ortsvektoren* durch den Ursprung. Es gilt daher
 
 === Operationen
 
-[.inlined]
-[.smaller]
-[.with-padding]
+[.inlined.with-padding.smaller]
 [cols="1,1"]
 |===
 | Addition / Subtraktion

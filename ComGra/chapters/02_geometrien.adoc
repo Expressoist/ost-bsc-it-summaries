@@ -25,8 +25,10 @@ Die Punkte stem:[V] der Fläche stem:[F] lassen sich auf verschiedene Arten refe
 footnote:[Mit Indexing ist meistens effizienter als ohne Indexing.]
 
 === Koordinatensysteme
+[.not-in-cheatsheet]
 Ein Punkt einer Geometrie kann je nach Ansichtsweise von verschiedenen Koordinatensystemen referenziert werden:
 
+[.not-in-cheatsheet]
 . Modell (3D / Rechtshändig)
 . Welt (3D / Rechtshändig)
 . Kamera (3D / Linkshändig)
@@ -47,6 +49,7 @@ footnote:[Die nachfolgenden Beispiele sind alle in 2D.]
 footnote:[Weitere Transformationen sind Spiegelung und Scherung.]
 
 ==== Translation
+[.not-in-cheatsheet]
 Verschiebe alle Punkte einer Geometrie um einen *Vektor* (Vektoraddition).
 
 [stem]
@@ -55,6 +58,7 @@ Verschiebe alle Punkte einer Geometrie um einen *Vektor* (Vektoraddition).
 ++++
 
 ==== Skalierung
+[.not-in-cheatsheet]
 Verschiebe alle Punkte einer Geometrie um einen *Faktor* (Skalarmultiplikation).
 
 [stem]
@@ -65,6 +69,7 @@ Verschiebe alle Punkte einer Geometrie um einen *Faktor* (Skalarmultiplikation).
 footnote:[Die Faktoren stem:[s] können auch unterschiedlich sein (s. Matrix).]
 
 ==== Rotation
+[.not-in-cheatsheet]
 Rotiere alle Punkte einer Geometrie um einen *Winkel stem:[θ]*.
 
 [stem]
@@ -75,6 +80,7 @@ Rotiere alle Punkte einer Geometrie um einen *Winkel stem:[θ]*.
 footnote:[Die 3D-Berechnung ist in diesem Modul nicht relevant.]
 
 ==== Gesamt-Transformation
+[.not-in-cheatsheet]
 Aus Effizienzgründen würden wir gerne die Transformationen zuerst zusammenrechnen und dann auf alle Punkte anwenden.
 
 *Problem:* Die Translation ist keine lineare Abbildung. Das bedeutet:
@@ -95,6 +101,7 @@ footnote:[Die Translation wird damit zu einer linearen Abbildung.]
 
 '''
 
+[.not-in-cheatsheet]
 image::homogene-coordinates.jpg[]
 
 ==== Translation [.tiny]#Matrix#
@@ -119,6 +126,7 @@ image::homogene-coordinates.jpg[]
 ++++
 
 ==== Gesamt-Transformation [.tiny]#Matrix#
+[.not-in-cheatsheet]
 Wir können nun die einzelnen Transformationen miteinander multiplizieren und erhalten so die Gesamt-Transformation:
 
 [stem]
