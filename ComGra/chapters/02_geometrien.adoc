@@ -1,4 +1,6 @@
 == 3D Geometrien
+
+[.not-in-cheatsheet]
 === Bestandteile von 3D-Objekten
 3D-Objekte («Meshes») bestehen im Allgemeinen immer aus diesen Elementen:
 
@@ -9,6 +11,7 @@
 footnote:[Meist werden Dreiecke für die Faces verwendet. Vorteile: Garantiert flach, eindeutige Definition, einfache Transformation]
 footnote:[Eckpunkte können definiert oder berechnet werden.]
 
+[.not-in-cheatsheet]
 === Indexing
 Die Punkte stem:[V] der Fläche stem:[F] lassen sich auf verschiedene Arten referenzieren:
 
@@ -42,7 +45,9 @@ footnote:[z.B. stem:[P(1, 3, 2)] steht auf dem Bildschirm an stem:[P(5, 4)].]
 
 image:spaces-and-transformations.png[]
 
+[.compress-in-cheatsheet]
 === Transformation
+[.not-in-cheatsheet]
 Transformationen können *sukzessiv* oder *gemeinsam* angewandt werden.
 
 footnote:[Die nachfolgenden Beispiele sind alle in 2D.]
@@ -92,7 +97,9 @@ Aus Effizienzgründen würden wir gerne die Transformationen zuerst zusammenrech
 
 footnote:[D.h.: Sukzessive Anwendung ist nicht gleich gemeinsame.]
 
+[.compress-in-cheatsheet]
 === Homogene Koordinaten
+[.not-in-cheatsheet]
 Um das Problem der Translation zu lösen, werden alle kartesischen Koordinaten [.smaller]#stem:[P(x,y)]# auf homogene Koordinaten [.smaller]#stem:[P_H(x,y,1)]# abgebildet.
 
 footnote:[Oder Allgemeiner: stem:[P(x,y,w)] repräsentiert stem:[P(x \/ w, y \/ w)].]

@@ -1,4 +1,6 @@
 == Komplexe Oberflächen
+
+[.not-in-cheatsheet]
 === Grundformen
 3D-Objekte lassen sich wie bisher durch Punkte, aber auch durch Funktionen beschreiben:
 
@@ -30,6 +32,7 @@ Es gibt keine beste Repräsentationsform für Objekte. Vor- und Nachteile sind:
     ** *Nachteile*: Fixe Genauigkeit, hoher Speicherbedarf, Rechenzeit abhängig von der Anzahl Primitiven
 
 === Triangulation
+[.not-in-cheatsheet]
 Beschreibt die Umwandlung einer Punktwolke in ein Polygon-Mesh.
 
 footnote:[Die Oberflächen werden rekonstruiert / approximiert.]
@@ -37,8 +40,7 @@ footnote:[Wird z.B. bei Rohdaten von 3D-Scans angewandt.]
 
 '''
 
-[.tiny]
-[.inlined]
+[.inlined.tiny]
 [cols="1,1"]
 |===
 a| image::sweep-strategie.jpg[]
@@ -67,6 +69,7 @@ footnote:[Die entstehende Form nennt sich «Konvexe Hülle».]
 . Wiederhole, bis zum Ende.
 . Entferne nun alle künstlichen Anfangs**punkte** und die damit verbundenen Dreiecke.
 
+[.not-in-cheatsheet]
 ==== Probleme
 Beide Strategien können «unschöne», d.h. spitze Dreiecke erzeugen.
 
@@ -88,6 +91,7 @@ a| image::edge-flip-example.png[]
 
 === Approximationen
 ==== Marching Squares Algorithmus
+[.not-in-cheatsheet]
 Mit diesem Algorithmus lassen sich Isolinien von Heat Maps diskret bestimmen.
 
 . Gitter über die Daten legen.
@@ -102,8 +106,10 @@ footnote:[«Isolinien»: Die Höhenlinien einer Heat Map.]
 
 '''
 
+[.not-in-cheatsheet]
 image::marching-squares-algorithm.jpg[]
 
+[.not-in-cheatsheet]
 ==== Weitere Algorithmen
 
 * Marching Cubes (3D-Heat-Maps)
@@ -116,6 +122,7 @@ image::marching-squares-algorithm.jpg[]
 
 image::interpolation.jpg[]
 
+[.not-in-cheatsheet]
 === Lindenmayer Systeme
 L-Systeme beschreiben beliebig feine, selbstähnliche geometrische Strukturen.
 
@@ -139,6 +146,7 @@ footnote:[So lassen sich u.a. Bäume generieren (z.B. mit Zufallszahlen).]
 image::lindenmayer-systems.jpg[]
 
 === Subdivision Surfaces
+[.not-in-cheatsheet]
 Beschreibt ein rekursives Verfahren für das Verfeinern von Oberflächen.
 
 footnote:[Subdivision Curves ist das Äquivalent für Kurven.]
@@ -159,6 +167,7 @@ footnote:[Diese Gewichtung kann auch variiert werden.]
 image::subdivision-surface.jpg[]
 
 ==== *Surfaces*: Algorithmen
+[.compress-in-cheatsheet]
 ===== Dreiecksbasiert
 [.inlined]
 [cols="1,1"]
@@ -170,6 +179,7 @@ a| image::subdivision-surfaces-loop.png[]
 a| image::subdivision-surfaces-sqrt-3.png[]
 |===
 
+[.compress-in-cheatsheet]
 ===== Rechtecksbasiert
 [.inlined]
 [cols="1,1"]
@@ -181,6 +191,7 @@ a| image::subdivision-surfaces-catmull-clark.png[]
 a| image::subdivision-surfaces-doo-sabin.png[]
 |===
 
+[.not-in-cheatsheet]
 ==== Vorteile
 Vorteile von Subdivision-Surface, insbesondere im Vergleich zu NURBS:
 
@@ -191,6 +202,7 @@ Vorteile von Subdivision-Surface, insbesondere im Vergleich zu NURBS:
 
 footnote:[NURBS-Flächen können nur Scheiben, Zylinder oder Tori sein.]
 
+[.not-in-cheatsheet]
 === Korrektur & Optimierung
 TODO
 

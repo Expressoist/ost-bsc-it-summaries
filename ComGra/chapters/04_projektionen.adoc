@@ -1,8 +1,9 @@
 == Projektionen
-[.not-in-cheatsheet]
 === Definition
+[.not-in-cheatsheet]
 Um ein 3D-Objekt auf einem 2D-Bildschirm darzustellen, müssen wir es zuerst in diese 2D-Dimension projizieren. Wir unterscheiden dabei:
 
+[.not-in-cheatsheet]
 * Perspektivische Projektion
 * Orthogonale Projektion
 
@@ -10,17 +11,19 @@ Um ein 3D-Objekt auf einem 2D-Bildschirm darzustellen, müssen wir es zuerst in 
 
 image::types-of-projections.jpg[]
 
+[.compress-in-cheatsheet]
 === Berechnung
+[.not-in-cheatsheet]
 Projiziere den Punkt stem:[P(x, y, z)] auf die XY-Ebene (stem:[z = 0]) basierend auf der Kameraposition stem:[E(e_x, e_y, e_z)].
 
+[.not-in-cheatsheet]
 Gesucht ist die Projektion stem:[C(c_x, c_y)].
 
 footnote:[Die Dimension wird also um eins reduziert (stem:[RR]³ zu stem:[RR]²).]
 footnote:[Bei 2D einfach eine Komponente (z.B. stem:[x]) weglassen.]
 
 ==== Perspektivisch
-[.inlined]
-[.with-padding]
+[.inlined.with-padding]
 [cols="1,1"]
 |===
 | stem:[c_x = (e_x z - e_z x)/(z - e_z)]
@@ -30,14 +33,14 @@ footnote:[Bei 2D einfach eine Komponente (z.B. stem:[x]) weglassen.]
 footnote:[Herleitung aus der Formel stem:[y = Δy \/ Δz * z + c]]
 
 ==== Orthogonal
-[.inlined]
-[.with-padding]
+[.inlined.with-padding]
 [cols="1,1"]
 |===
 | stem:[c_x = x]
 | stem:[c_y = y]
 |===
 
+[.not-in-cheatsheet]
 === View Frustum
 Bezeichnet die Sichtbarkeit (Clip-Space) bei der perspektivischen Projektion. Es wird definiert durch:
 
@@ -53,6 +56,7 @@ footnote:[Die Brennweite (Kamera) bestimmt die Tiefenschärfe.]
 
 image::graphics-pipeline.png[]
 
+[.not-in-cheatsheet]
 === Double Frame Buffering
 Beschreibt die *abwechselnde* Verwendung von zwei Framebuffer für die Berechnung und Darstellung eines Frames.
 
@@ -62,6 +66,7 @@ Beschreibt die *abwechselnde* Verwendung von zwei Framebuffer für die Berechnun
 footnote:[Berechnungen werden nicht auf dem Anzeigebild durchgeführt.]
 footnote:[So können Berechnungsartefakte vermieden werden.]
 
+[.not-in-cheatsheet]
 === Shader-Programme
 Sind auf der GPU laufende Programme für die Berechnung des Bildes. Es gibt:
 

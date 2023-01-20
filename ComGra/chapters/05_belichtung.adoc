@@ -1,4 +1,5 @@
 == Beleuchtung & Texturen
+[.not-in-cheatsheet]
 === Allgemeines
 Die Farbe eines Objekts (bzw. Pixels) setzt sich zusammen aus:
 
@@ -8,6 +9,7 @@ Die Farbe eines Objekts (bzw. Pixels) setzt sich zusammen aus:
 footnote:[Oftmals verwenden wir dabei RGB-Farben: stem:[C = (R, G ,B)].]
 footnote:[Remission: Beschreibt das Abprallen von Licht auf Objekten.]
 
+[.not-in-cheatsheet]
 === Farbdarstellung
 ==== Subtraktive Farbberechnung
 Nur die Farbanteile, welche in Lichtquelle und Objekt vorkommen, sind sichtbar:
@@ -38,6 +40,7 @@ footnote:[Die *nicht enthaltenen* Lichtanteile werden
 reduziert.]
 
 === Oberflächennormale
+[.not-in-cheatsheet]
 Nicht-triviale Belichtungsmodelle berücksichtigen die Ausrichtung der Oberfläche:
 
 [stem]
@@ -51,16 +54,19 @@ footnote:[Kann im voraus oder «on-the-fly» berechnet werden.]
 
 '''
 
+[.not-in-cheatsheet]
 image::example-normals.png[]
 
 === Beleuchtungsmodelle
 ==== Ambient Lighting
+[.not-in-cheatsheet]
 Belichtung von einem globalen Licht mit Remission in alle Richtungen.
 
 image::ambient-lighting.jpg[]
 
 '''
 
+[.not-in-cheatsheet]
 [source,glsl]
 ----
 void main() {
@@ -72,10 +78,12 @@ void main() {
 [.code-annotation]#ambient-fragment-shader.glsl#
 
 ==== Diffuse Lighting
+[.not-in-cheatsheet]
 Belichtung von einer Punktquelle mit Remission in alle Richtungen.
 
 image::diffuse-lighting.jpg[]
 
+[.not-in-cheatsheet]
 [source,glsl]
 ----
 void main() {
@@ -94,10 +102,12 @@ footnote:[Wird für *matte* Oberflächen verwendet.]
 footnote:[Das `+norm+` steht für die Funktion `+normalize+`.]
 
 ==== Specular Lighting
+[.not-in-cheatsheet]
 Belichtung von einer Punktquelle mit Remission in *eine* Richtung.
 
 image::specular-lighting.jpg[]
 
+[.not-in-cheatsheet]
 [source,glsl]
 ----
 void main() {
@@ -120,6 +130,7 @@ footnote:[Wird für *spiegelnde* Oberflächen verwendet.]
 
 === Kombinationsmodelle
 ==== Phong-Shading
+[.not-in-cheatsheet]
 Die Belichtung wird aus Ambient-, Diffuse- und Specular-Anteilen zusammengesetzt.
 
 [stem]
@@ -131,10 +142,12 @@ C_"Total" = 1/(3) * (C_"Ambient" + C_"Diffuse" + C_"Specular")
 footnote:[Problem: Ab 90° gibt es keine Spiegelung mehr.]
 
 ==== Blinn-Phong-Shading
+[.not-in-cheatsheet]
 Löst das Problem von Phong-Shading durch die Verwendung eines sogenannten «Halfway-Vectors».
 
 image::blinn-phong-shading.jpg[]
 
+[.not-in-cheatsheet]
 [source,glsl]
 ----
 void main() {
@@ -147,6 +160,7 @@ void main() {
 ----
 [.code-annotation]#blinn-phong-fragment-shader.glsl#
 
+[.not-in-cheatsheet]
 === Texturen
 Texturen sind Bilddateien, welche Eigenschaften (wie z.B. die Farbe) einer Oberfläche definieren.
 
@@ -160,6 +174,7 @@ footnote:[Sampling: Umrechnung von Fragment- in Texturkoordinaten.]
 
 '''
 
+[.not-in-cheatsheet]
 [source,glsl]
 ----
 void main(void) {
