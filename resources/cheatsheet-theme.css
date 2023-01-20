@@ -1,5 +1,11 @@
-.not-in-cheatsheet, .footnote, hr {
+.not-in-cheatsheet, .footnote, hr, .code-annotation {
   display: none;
+}
+
+.compress-in-cheatsheet h4, .compress-in-cheatsheet h5 {
+  opacity: 0;
+  height: 3px;
+  overflow: hidden;
 }
 
 body {
@@ -16,6 +22,14 @@ ul, ol {
 
 @page {
   size: 74mm 210mm;
+}
+h1, h2, h3, h4, h5, .paragraph {
+  padding: 0 0.1cm !important;
+}
+
+img {
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 /*# sourceMappingURL=cheatsheet-theme.css.map */
