@@ -1,0 +1,70 @@
+== Ray Tracing Pronzip
+=== Bildgenerierung
+
+
+=== Verdeckung
+
+=== Rekursive Weiterverfolgen
+Farbe des Elements (am Schnittpunkt) hängt ab von:
+* Farbe & Intensität sichtbarer Lichtquelle in Umgebung
+* Richtung Lichtquelle
+* Oberflächenfarbe & -beschaffenheit
+* Position Beobachter
+
+Zur Berechnung der Objektfarbe, Strahlenbrechung rekursiv weiterführen (Sekundärstrahlen)
+* Strahlen können beliebig oft reflektiert werden (irgendwann muss abgebrochen werden)
+
+=== Rückweg aus Rekursion
+* Beim Rückweg kann Farbe & Licht-Intensität bestimmt werden
+* *Baumstruktur:* Strahl erzeugt beim auftreffen mehrere Folgestrahlen
+
+=== Ray Tracing
+* *Triangle-Meshes:* Operation relativ rechenintensiv
+* *Elemente mit impliziter Darstellung:* oft sehr effizient berechnet
+    ** z.B. für Kugel stem:[(x - c_"x")^2+(y-c_"y")^2-r^2=0] kann für stem:[(x, y)] der parametrische Strahl stem:[0+t vec v] eingesetzt und nach stem:[t] aufgelöst werden => liefert Schnittpunkt
+
+
+== Minimal Ray Tracer (vereinfacht)
+=== Generieren von Primarstrahlen
+Kamera im Ursprung & Projektfläche mit Höhe 1 im Abstand z
+* stem:[d =  1/h]
+* stem:[p_"x"(0)=(w-1)d/2]
+* stem:[p_"y"(0)=(h-1)d/2=1/2-1/(2h)]
+* Inkrement von stem:[p_"x",p_"y":d]
+* Strahlen durch Ursprung und stem:[(p_"x",p_"y",z)]: stem:[0+t*normalize(p_"x",p_"y",z)]
+
+*Am einfachsten:*
+* Rudimentären, nicht Performance optimierten Ray Tracer
+* Kugeln und Ebenen haben einfache implizite Gleichungen
+
+=> TODO: Keine Ahnung wie viel man davon noch aufschreiben soll, sind viele Berechnungen die wahrscheinlich nicht kommen
+
+= Acceleration Structures
+== Bounding Volume Hierarchies
+=== Acceleration Structures
+
+=== Axen-alierte Bounding Box
+
+=== Bounding Volumes
+
+=== Bounding Volumes Hierarchy (BVH)
+
+
+== Raumteilende Strukturen
+*Voxel:* Zellen im Raum
+=== Uniform Grid
+* Raum in gleich grosse Zellen Aufteilen (Voxels)
+* Jede Zelle hat Referenz auf alle Primitiven, welche sich überlappen
+* Strahlenschnitt
+    ** Mit Bresenham (Algorithmus) Voxels in Strahlenrichtung traversieren
+    ** Mit allen den individuellen Voxels zugeordneten Elementen
+    ** Abbruch bei ersten geschnittenen Primitive
+* Auflösung Grid
+    ** *zu tief:* Keine Reduktion der Anzahl Schnitt-Tests
+    ** *zu hoch:* Unnötig hoher Traversierungsaufwand
+=== Uniform Grid Heuristik
+* Anzahl Voxel = ca. Anzahl Primitiven
+* Funktioniert gut bei uniformer Verteilung der Primitiven
+
+=== Quad-Tree
+TODO
