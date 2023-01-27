@@ -68,3 +68,18 @@ Kamera im Ursprung & Projektfläche mit Höhe 1 im Abstand z
 
 === Quad-Tree
 TODO
+
+=== Advanced Ray Tracing
+* Ray-tracing wurde lange als Technik verstanden um fotorealistische Bilder zu berechnen. Das ist aber nicht ganz korrekt
+* Fotorealistische, computergenerierte Bilder sind eine Kombination aus "light transport algorithm" und einer Technik, um die Sichtbarkeit zwischen Oberflächen zu berechnen (rasterization, ray-tracing) 
+
+==== Whitted Ray Tracing (1980)
+Die Farbe eines Punktes auf einer Oberfläche besteht aus 3 Komponenten:
+* Oberflächenfarbe am Schnittpunkt unter Berücksichtigung des Lictes aller direkt sichtbaren Lichtquellen (Phong-Shading)
+* Farbe des Lichtes aus der reflektierten Richtung
+* Farbe des Lichtes aus Richtung der Lichtbrechung 
+
+=== Kamera-Linsen-Effekt (Cook, 1984)
+* Objekte nicht in Fokusebene, erscheinen unscharf
+* Jeder Punkt wird als runde Scheibe abgebildet
+* Verfolge mehrere Strahlen durch jeweils einen zufälligen Punkt auf der Linseu
