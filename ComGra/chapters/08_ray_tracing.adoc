@@ -1,4 +1,4 @@
-== Ray Tracing Pronzip
+== Ray Tracing Prinzip
 === Bildgenerierung
 
 
@@ -19,6 +19,8 @@ Zur Berechnung der Objektfarbe, Strahlenbrechung rekursiv weiterführen (Sekund�
 * *Baumstruktur:* Strahl erzeugt beim auftreffen mehrere Folgestrahlen
 
 === Ray Tracing
+Von der Kamera aus werden Strahlen durch alle Pixel der Bildebene verfolgt und mit der Szene geschnitten. Bei einem primitiven, einstufigen Ray Tracing bestimmt die Objektfarbe am Schnittpunkt die Pixelfarbe. In der Regel wird beim Aufschlagpunkt einer oder mehrere Reflktionsstrahlen berechnet und diese rekursiv weiterverfolgt.  Entsprechend wird die Pixelfarbe auf dem Weg zurück aus der Rekursion zusammengerechnet, in der Regel auch unter Einbezug der Strahlen zu den Lichtquellen. 
+
 * *Triangle-Meshes:* Operation relativ rechenintensiv
 * *Elemente mit impliziter Darstellung:* oft sehr effizient berechnet
     ** z.B. für Kugel stem:[(x - c_"x")^2+(y-c_"y")^2-r^2=0] kann für stem:[(x, y)] der parametrische Strahl stem:[0+t vec v] eingesetzt und nach stem:[t] aufgelöst werden => liefert Schnittpunkt
@@ -79,7 +81,59 @@ Die Farbe eines Punktes auf einer Oberfläche besteht aus 3 Komponenten:
 * Farbe des Lichtes aus der reflektierten Richtung
 * Farbe des Lichtes aus Richtung der Lichtbrechung 
 
-=== Kamera-Linsen-Effekt (Cook, 1984)
+==== Cook, 1984
+*Kamera-Linsen-Effekt*
 * Objekte nicht in Fokusebene, erscheinen unscharf
 * Jeder Punkt wird als runde Scheibe abgebildet
 * Verfolge mehrere Strahlen durch jeweils einen zufälligen Punkt auf der Linseu
+
+*Bewegungsunschärfe*
+Emmitierte Strahlen zu verschiedenen Zeitpunkten und berechne das Durchschnittsbild
+
+==== Globale Beleuchtung
+* Alle (nicht komplett schwarzen) Oberflächen (r)emittieren Licht
+* Für Belichtung eines Punktes haben alle sichtbaren Oberflächen einen Einfluss
+* Light Transport Algorithmus
+
+==== Light Transport
+* Approximation mittels Monte-Carlo Simulation durch Auswahl zufällig gewählten Richtungsvektoren
+
+*Monte Carlo Simulation*
+* Zufall verwenden um komplexe Berechnungen zu vereinfachen
+* Für einzelne Punkte kann Lösung einfach berechnet werden
+* Einzelne Lösungen können aggregiert werden, dass die exakte Lösung approximiert wird.
+
+=== Realtime ray tracing
+TODO
+
+
+== Animation
+Eine Folge zeitlich schnell hintereinander gereihten Bildern erscheint als Bewegung.
+
+=== Explizite Berechnung
+* In Computeranimation ist Modell mathematisch repräsentiert
+* Die einfachste Möglichkeit ist Eigenschaften wie Position, Rotation oder Farbe explizit aufgrund der "Simulationszeit" zu berechnen
+
+=== Key Frames und "tweening"
+* Animation wird anhand von Schlüsselbildern aufgebaut
+* Bilder dazwischen dienen dazu Bewegung flüssig und natürlich erscheinen zu lassen
+* Ansatz für handgezeichnete wie auch computergenerierte Animationen
+
+=== Grundlegende Techniken der Computeranimation
+* Vom Künstler orchestiert (key frames)
+* Datat driven (motion capture)
+* Procedural (simulation, calculation using physics formulas)
+footnote:[Kommen auch kombiniert zum Einsatz]
+
+=== Animation mittels Key Frames
+Kommt bei Handlung zum Zuge, oder wenn sich ein Einfluss von "aussen" ändert
+
+*Library für Interpolation:* Tween.js
+
+*Mathematisch beschriebene Modelle:* 
+*Szene:* Beschrieben durch Modellparameter
+*Tweening:* Erreicht durch Interpolation der Parameter
+
+Dafür bieten sich z.B. Splines an
+* Gehen per Definition durch die Punkte
+* Bilden einen kontinuierlichen Übergang dazwischen ab
