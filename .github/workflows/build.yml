@@ -5,7 +5,7 @@ jobs:
   Build:
     strategy:
       matrix:
-        lecture: [AIFo, ComGra, 'ICTh (DigCod)', PmQm, RheKI]
+        lecture: [AIFo, ComGra, PmQm, RheKI]
         version: [summary, cheatsheet]
 
     runs-on: ubuntu-latest
