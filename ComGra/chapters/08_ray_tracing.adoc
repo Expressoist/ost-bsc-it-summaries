@@ -6,12 +6,14 @@
 
 === Rekursive Weiterverfolgen
 Farbe des Elements (am Schnittpunkt) hängt ab von:
+
 * Farbe & Intensität sichtbarer Lichtquelle in Umgebung
 * Richtung Lichtquelle
 * Oberflächenfarbe & -beschaffenheit
 * Position Beobachter
 
 Zur Berechnung der Objektfarbe, Strahlenbrechung rekursiv weiterführen (Sekundärstrahlen)
+
 * Strahlen können beliebig oft reflektiert werden (irgendwann muss abgebrochen werden)
 
 === Rückweg aus Rekursion
@@ -29,6 +31,7 @@ Von der Kamera aus werden Strahlen durch alle Pixel der Bildebene verfolgt und m
 == Minimal Ray Tracer (vereinfacht)
 === Generieren von Primarstrahlen
 Kamera im Ursprung & Projektfläche mit Höhe 1 im Abstand z
+
 * stem:[d =  1/h]
 * stem:[p_"x"(0)=(w-1)d/2]
 * stem:[p_"y"(0)=(h-1)d/2=1/2-1/(2h)]
@@ -41,19 +44,20 @@ Kamera im Ursprung & Projektfläche mit Höhe 1 im Abstand z
 
 => TODO: Keine Ahnung wie viel man davon noch aufschreiben soll, sind viele Berechnungen die wahrscheinlich nicht kommen
 
-= Acceleration Structures
-== Bounding Volume Hierarchies
-=== Acceleration Structures
+== Acceleration Structures
+=== Bounding Volume Hierarchies
+==== Acceleration Structures
 
-=== Axen-alierte Bounding Box
+==== Axen-alierte Bounding Box
 
-=== Bounding Volumes
+==== Bounding Volumes
 
-=== Bounding Volumes Hierarchy (BVH)
+==== Bounding Volumes Hierarchy (BVH)
 
 
 == Raumteilende Strukturen
 *Voxel:* Zellen im Raum
+
 === Uniform Grid
 * Raum in gleich grosse Zellen Aufteilen (Voxels)
 * Jede Zelle hat Referenz auf alle Primitiven, welche sich überlappen
@@ -64,6 +68,7 @@ Kamera im Ursprung & Projektfläche mit Höhe 1 im Abstand z
 * Auflösung Grid
     ** *zu tief:* Keine Reduktion der Anzahl Schnitt-Tests
     ** *zu hoch:* Unnötig hoher Traversierungsaufwand
+
 === Uniform Grid Heuristik
 * Anzahl Voxel = ca. Anzahl Primitiven
 * Funktioniert gut bei uniformer Verteilung der Primitiven
@@ -77,17 +82,20 @@ TODO
 
 ==== Whitted Ray Tracing (1980)
 Die Farbe eines Punktes auf einer Oberfläche besteht aus 3 Komponenten:
+
 * Oberflächenfarbe am Schnittpunkt unter Berücksichtigung des Lictes aller direkt sichtbaren Lichtquellen (Phong-Shading)
 * Farbe des Lichtes aus der reflektierten Richtung
 * Farbe des Lichtes aus Richtung der Lichtbrechung 
 
 ==== Cook, 1984
 *Kamera-Linsen-Effekt*
+
 * Objekte nicht in Fokusebene, erscheinen unscharf
 * Jeder Punkt wird als runde Scheibe abgebildet
 * Verfolge mehrere Strahlen durch jeweils einen zufälligen Punkt auf der Linseu
 
 *Bewegungsunschärfe*
+
 Emmitierte Strahlen zu verschiedenen Zeitpunkten und berechne das Durchschnittsbild
 
 ==== Globale Beleuchtung
@@ -99,6 +107,7 @@ Emmitierte Strahlen zu verschiedenen Zeitpunkten und berechne das Durchschnittsb
 * Approximation mittels Monte-Carlo Simulation durch Auswahl zufällig gewählten Richtungsvektoren
 
 *Monte Carlo Simulation*
+
 * Zufall verwenden um komplexe Berechnungen zu vereinfachen
 * Für einzelne Punkte kann Lösung einfach berechnet werden
 * Einzelne Lösungen können aggregiert werden, dass die exakte Lösung approximiert wird.
@@ -123,6 +132,7 @@ Eine Folge zeitlich schnell hintereinander gereihten Bildern erscheint als Beweg
 * Vom Künstler orchestiert (key frames)
 * Datat driven (motion capture)
 * Procedural (simulation, calculation using physics formulas)
+
 footnote:[Kommen auch kombiniert zum Einsatz]
 
 === Animation mittels Key Frames
@@ -135,5 +145,6 @@ Kommt bei Handlung zum Zuge, oder wenn sich ein Einfluss von "aussen" ändert
 *Tweening:* Erreicht durch Interpolation der Parameter
 
 Dafür bieten sich z.B. Splines an
+
 * Gehen per Definition durch die Punkte
 * Bilden einen kontinuierlichen Übergang dazwischen ab

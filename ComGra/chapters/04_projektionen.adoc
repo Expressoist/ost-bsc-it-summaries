@@ -104,5 +104,5 @@ void main() {
   normal = vec4(normalIn, 1.0) * model;
 }
 ----
-[.code-annotation]#vertex-shader.glsl#
+[.code-annotation]#Vertex Shader#
 footnote:[`+in+` und `+out+` verwenden dabei «matching by name».]

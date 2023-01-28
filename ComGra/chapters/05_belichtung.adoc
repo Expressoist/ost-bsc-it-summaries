@@ -75,7 +75,7 @@ void main() {
   fragColor = vec4(color, 1.0);
 }
 ----
-[.code-annotation]#ambient-fragment-shader.glsl#
+[.code-annotation]#Fragment Shader#
 
 ==== Diffuse Lighting
 [.not-in-cheatsheet]
@@ -97,7 +97,7 @@ void main() {
   fragColor = vec4(diffuse, 1.0);
 }
 ----
-[.code-annotation]#diffuse-fragment-shader.glsl#
+[.code-annotation]#Fragment Shader#
 footnote:[Wird für *matte* Oberflächen verwendet.]
 footnote:[Das `+norm+` steht für die Funktion `+normalize+`.]
 
@@ -125,7 +125,7 @@ void main() {
   fragColor = vec4(specular, 1.0);
 }
 ----
-[.code-annotation]#specular-fragment-shader.glsl#
+[.code-annotation]#Fragment Shader#
 footnote:[Wird für *spiegelnde* Oberflächen verwendet.]
 
 === Kombinationsmodelle
@@ -158,7 +158,7 @@ void main() {
   ...
 }
 ----
-[.code-annotation]#blinn-phong-fragment-shader.glsl#
+[.code-annotation]#Fragment Shader#
 
 [.not-in-cheatsheet]
 === Texturen
@@ -181,4 +181,4 @@ void main(void) {
   fragColor = texture(texUnit, texCoord);
 }
 ----
-[.code-annotation]#texture-fragment-shader.glsl#
+[.code-annotation]#Fragment Shader#
