@@ -14,7 +14,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: npm install
+        run:
+          - sudo apt update
+          - sudo apt install pdfxup
+          - npm install
 
       - name: Build
         run: make ${{ matrix.version }} lecture=${{ matrix.lecture }}
@@ -22,5 +25,5 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
-          name: documents
+          name: ${{ matrix.lecture }}-${{matrix.version}}
           path: ${{ matrix.lecture }}/*.pdf
