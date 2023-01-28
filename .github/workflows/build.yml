@@ -15,8 +15,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt update
-          sudo apt install pdfxup
+          sudo apt-get update
+          sudo apt-get install texlive texlive-latex-extra
           npm install
 
       - name: Build
