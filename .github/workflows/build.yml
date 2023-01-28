@@ -5,7 +5,7 @@ jobs:
   Build:
     strategy:
       matrix:
-        lecture: [ComGra, PmQm, RheKI]
+        lecture: [ComGra, PmQm]
         version: [summary, cheatsheet]
 
     runs-on: ubuntu-latest
