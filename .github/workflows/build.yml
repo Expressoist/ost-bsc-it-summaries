@@ -1,0 +1,26 @@
+name: Build
+on: [push]
+
+jobs:
+  Build:
+    strategy:
+      matrix:
+        version: [summary, cheatsheet]
+        lecture: [ComGra]
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: make ${{ matrix.version }} lecture='${{ matrix.lecture }}'
+
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: documents
+          path: '${{ matrix.lecture }}'/*.pdf
