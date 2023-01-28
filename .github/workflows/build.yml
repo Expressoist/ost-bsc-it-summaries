@@ -23,4 +23,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: documents
-          path: '${{ matrix.lecture }}'/*.pdf
+          path: ${{ matrix.lecture }}/*.pdf
