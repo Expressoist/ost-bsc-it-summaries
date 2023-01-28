@@ -5,8 +5,8 @@ jobs:
   Build:
     strategy:
       matrix:
+        lecture: [AIFo, ComGra, 'ICTh (DigCod)', PmQm, RheKI]
         version: [summary, cheatsheet]
-        lecture: [ComGra]
 
     runs-on: ubuntu-latest
     steps:
