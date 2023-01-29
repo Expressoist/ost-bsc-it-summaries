@@ -79,7 +79,7 @@ endif::[]
 |===
 
 === Orthogonale Projektion
-
+stem:[vec v] projeziert auf stem:[vec u] ergibt stem:[vec u_p]
 [.inlined]
 [.smaller]
 [cols="1,1"]
