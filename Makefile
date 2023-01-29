@@ -19,7 +19,7 @@ make-summary:
 make-cheatsheet:
 	for file in $(lecture)/*.adoc; \
 	do \
-	  	npx asciidoctor-web-pdf $${file} -a stylesdir="../resources" -a stylesheet="summary-theme.css,cheatsheet-theme.css"; \
+	  	npx asciidoctor-web-pdf $${file} -a stylesdir="../resources" -a stylesheet="summary-theme.css,cheatsheet-theme.css" -a cheatsheet; \
 	  	yes | pdfxup -x 4 -fw 0 -im 2pt -o $${file%.adoc}.pdf $${file%.adoc}.pdf; \
 	done
 	rm $(lecture)/*.html

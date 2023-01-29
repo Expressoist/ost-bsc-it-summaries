@@ -88,7 +88,9 @@ footnote:[Die 3D-Berechnung ist in diesem Modul nicht relevant.]
 [.not-in-cheatsheet]
 Aus Effizienzgründen würden wir gerne die Transformationen zuerst zusammenrechnen und dann auf alle Punkte anwenden.
 
+ifndef::cheatsheet[]
 *Problem:* Die Translation ist keine lineare Abbildung. Das bedeutet:
+endif::[]
 
 [stem]
 ++++

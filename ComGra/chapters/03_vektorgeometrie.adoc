@@ -14,10 +14,12 @@ Grundsätzlich sind alle Punkte *Ortsvektoren* durch den Ursprung. Es gilt daher
 [.inlined.with-padding.smaller]
 [cols="1,1"]
 |===
+ifndef::cheatsheet[]
 | Addition / Subtraktion
     stem:[vec a + vec b = ((a_1 + b_1), (a_2 + b_2), (...))]
 | Skalarmultiplikation
     stem:[r * vec a = ((r * a_1), (r * a_2), (...))]
+endif::[]
 
 | Kreuzprodukt
 stem:[vec a xx vec b = ((a_2 b_3 - a_3 b_2), (a_3 b_1 - a_1 b_3), (a_1 b_2 - a_2 b_1))]
@@ -52,7 +54,9 @@ Allgemein *nicht* kommutativ:
 image::matrix-multiplication.jpg[]
 
 === Gleichungssysteme
+ifndef::cheatsheet[]
 Allgemeine Definition:
+endif::[]
 
 [stem]
 ++++
