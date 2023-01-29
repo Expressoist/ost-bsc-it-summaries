@@ -1,3 +1,4 @@
+[.not-in-cheatsheet]
 == Ray Tracing Prinzip
 === Bildgenerierung
 
@@ -27,7 +28,7 @@ Von der Kamera aus werden Strahlen durch alle Pixel der Bildebene verfolgt und m
 * *Elemente mit impliziter Darstellung:* oft sehr effizient berechnet
     ** z.B. für Kugel stem:[(x - c_"x")^2+(y-c_"y")^2-r^2=0] kann für stem:[(x, y)] der parametrische Strahl stem:[0+t vec v] eingesetzt und nach stem:[t] aufgelöst werden => liefert Schnittpunkt
 
-
+[.not-in-cheatsheet]
 == Minimal Ray Tracer (vereinfacht)
 === Generieren von Primarstrahlen
 Kamera im Ursprung & Projektfläche mit Höhe 1 im Abstand z
@@ -44,6 +45,7 @@ Kamera im Ursprung & Projektfläche mit Höhe 1 im Abstand z
 
 => TODO: Keine Ahnung wie viel man davon noch aufschreiben soll, sind viele Berechnungen die wahrscheinlich nicht kommen
 
+[.not-in-cheatsheet]
 == Acceleration Structures
 === Bounding Volume Hierarchies
 ==== Acceleration Structures
@@ -54,7 +56,7 @@ Kamera im Ursprung & Projektfläche mit Höhe 1 im Abstand z
 
 ==== Bounding Volumes Hierarchy (BVH)
 
-
+[.not-in-cheatsheet]
 == Raumteilende Strukturen
 *Voxel:* Zellen im Raum
 
@@ -115,7 +117,7 @@ Emmitierte Strahlen zu verschiedenen Zeitpunkten und berechne das Durchschnittsb
 === Realtime ray tracing
 TODO
 
-
+[.not-in-cheatsheet]
 == Animation
 Eine Folge zeitlich schnell hintereinander gereihten Bildern erscheint als Bewegung.
 

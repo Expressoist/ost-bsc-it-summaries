@@ -1,7 +1,9 @@
 == Rasterisierung & Sichtbarkeit
 === Rasterisierung
+[.not-in-cheatsheet]
 Da ein 2D-Bildschirm aus Pixeln besteht, müssen wir nach der Projektion die Linien noch in ein Raster abbilden. Es gibt verschiedene Methoden dazu:
 
+[.not-in-cheatsheet]
 * Vollständig Zusammenhängend
 * Minimal Zusammenhängend
     ** Aliased (Binär)
@@ -9,6 +11,7 @@ Da ein 2D-Bildschirm aus Pixeln besteht, müssen wir nach der Projektion die Lin
 
 '''
 
+[.not-in-cheatsheet]
 image:lines-and-rasterisation.jpg[]
 
 
@@ -23,6 +26,7 @@ footnote:[Technisch wird das Dreieck **zeilen**weise gezeichnet.]
 footnote:[Dazu wird u.a. der Bresenham Linien-Algorithmus verwendet.]
 
 ===== Bresenham Linien-Algorithmus
+[.not-in-cheatsheet]
 Basierend auf zwei Punkten stem:[P_"Start"] und stem:[P_"Ende"], zeichne die Linie nach dem Bresenham Linien-Algorithmus:
 
 . Berechne stem:[Δx = x_"Ende" - x_"Start"]
@@ -36,6 +40,7 @@ Basierend auf zwei Punkten stem:[P_"Start"] und stem:[P_"Ende"], zeichne die Lin
 
 footnote:[Bei stem:[Δx < Δy] wird die Berechnung von stem:[x_i] und stem:[y_i] vertauscht.]
 
+[.not-in-cheatsheet]
 ==== Anti-Aliasing
 Zeichne alle Pixel eines Dreiecks unter Beachtung der prozentualen Abdeckung. Das bedeutet:
 
@@ -54,6 +59,7 @@ footnote:[Die Objektränder erhalten also eine «weiche» Transparenz.]
 
 image::aliasing-variants.png[]
 
+[.not-in-cheatsheet]
 ==== Probleme (Aliasing Effekte)
 Wenn die Auflösung eines Texturmusters grösser ist als die Auflösung der Anzeigefläche, kann der Moiré-Effekt auftreten.
 
@@ -72,8 +78,10 @@ image::mipmap-example.png[]
 
 === Sichtbarkeit
 ==== Z-Buffer (Depth-Buffer)
+[.not-in-cheatsheet]
 Erlaubt das korrekte Zeichnen von überlappenden Objekten.
 
+[.not-in-cheatsheet]
 * Initialisiere den Buffer mit [.smaller]#stem:[Z_"B" = oo"]#
 * Für alle Objekt-Pixel:
     ** Ermittle die Distanz zur Kamera [.smaller]#stem:[Z_"O"]#
@@ -108,17 +116,20 @@ a| image::mirror-projection-sphere.png[]
 | Kugel
 |===
 
+[.not-in-cheatsheet]
 ==== Flächen
 Berechne die Szene aus Sicht einer virtuellen Spiegelkamera und projiziere das Bild in Form einer Textur auf die Fläche.
 
 footnote:[Winkel und Distanz sind dabei äquivalent.]
 
+[.not-in-cheatsheet]
 ==== Kugeln
 Berechne die Szene für alle Seiten einer umliegenden Bounding-Box und projiziere das Bild dann auf die Kugel.
 
 footnote:[Die Spiegelkamera steht dabei in der Kugelmitte.]
 footnote:[Je grösser die Bounding-Box, desto kleiner der Fehler.]
 
+[.not-in-cheatsheet]
 === Environment Mapping
 Beschreiben 360°-Bilder, welche für Spiegelungen und Hintergründe verwendet werden können.
 
@@ -126,6 +137,7 @@ footnote:[z.B. Cube-Maps, Sphere-Maps, Cylinder-Maps, etc.]
 
 === Schatten
 ==== Shadow Mapping
+[.not-in-cheatsheet]
 Projiziere die Szene aus Sicht der Lichtquelle auf die zu belichtende Oberfläche.
 
 footnote:[Zeichne zuerst die Schatten und dann die Objekte.]
@@ -143,4 +155,5 @@ Visualisierung des Z-Buffers.
 
 '''
 
+[.not-in-cheatsheet]
 image::depth-map.png[]
