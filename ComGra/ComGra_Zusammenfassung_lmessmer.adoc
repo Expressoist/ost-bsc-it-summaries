@@ -4,7 +4,8 @@
 :stylesheet: ../resources/summary-theme.css
 :docinfodir: ../resources/
 :docinfo: shared-head
-:source-highlighter: rouge
+:source-highlighter: highlight.js
+:highlightjs-languages: glsl
 :lang: de
 :stem:
 

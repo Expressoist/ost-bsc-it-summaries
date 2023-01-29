@@ -100,9 +100,9 @@ void main() {
                 * view
                 * projection;
 
-  // Component-wise multiplication
   normal = vec4(normalIn, 1.0) * model;
 }
 ----
 [.code-annotation]#Vertex Shader#
 footnote:[`+in+` und `+out+` verwenden dabei «matching by name».]
+footnote:[`+vec3*vec3+` ist in GLSL eine komponentenweise Multiplikation.]
