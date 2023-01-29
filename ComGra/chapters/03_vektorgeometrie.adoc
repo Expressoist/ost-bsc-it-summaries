@@ -36,6 +36,7 @@ stem:[hat a = 1 / \|vec a\| * vec a ]
 
 footnote:[Ist stem:[vec a circ vec b = 0], sind die Vektoren orthogonal.]
 footnote:[Orthogonal: Vektoren stehen senkrecht aufeinander.]
+footnote:[stem:[\|vec a xx vec b\| * 1/(2)] entspricht der Fläche des aufgespannten Dreiecks.]
 
 === Multiplikation
 Allgemein *nicht* kommutativ:

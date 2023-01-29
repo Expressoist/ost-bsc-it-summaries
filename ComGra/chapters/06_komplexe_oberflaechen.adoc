@@ -204,27 +204,104 @@ footnote:[NURBS-Flächen können nur Scheiben, Zylinder oder Tori sein.]
 
 [.not-in-cheatsheet]
 === Korrektur & Optimierung
-TODO
+3D-Modelle können aus verschiedenen Quellen stammen. Oftmals sind dabei folgende Qualitätsprobleme zu beobachten:
 
-==== Qualitätsmerkmale
+* Künstliche Unebenheiten der Flächen
+* Zu grosse Datenmengen
+* Schlechte Triangulierung wie z.B. topologische Inkonsistenz und spitze / ungleichmässige Dreiecke
 
-==== Mesh Smoothing
+'''
+
+image::issues-with-3d-objects.png[]
+
+==== Visualisierung von Fehlern
+Um die genannten Qualitätsprobleme zu visualisieren, können wir z.B.:
+
+* Die Reflexionslinien des Modells betrachten.
+* Ungleichmässige Dreiecke basierend auf dem Kantenverhältnis einfärben.
+
+==== Modell-Reparatur
+Für die Verbesserung der Modellqualität gibt es verschiedenen Flächen- und Volumen-orientierte Algorithmen:
+
+* *Flächen-orientierte Algorithmen*:
+    ** *Vorteil*: Die assoziierten Oberflächeneigenschaften bleibt gut erhalten.
+    ** *Nachteil*: Schlechte automatische Fehlererkennung und Behebung.
+* *Volumen-orientierte Algorithmen*:
+    ** *Vorteil*: Gute automatische Fehlererkennung und Behebung.
+    ** *Nachteil*: Oft zu detailliert und mit Verlust der Oberflächeneigenschaften.
+
+footnote:[z.B.: Mesh Smoothing, Mesh Reduktion, Remeshing, etc.]
+footnote:[Mesh Smoothing ist für dieses Modul nicht relevant.]
 
 ==== Mesh Reduktion / Remeshing
-Diese Verfahren haben das Ziel, die Anzahl der Oberflächen zu reduzieren.
+Mit diesen Verfahren wollen wir die Anzahl Vertices und Faces reduzieren.
 
 ===== Vertex Clustering
-. Wähle ein Grösse epsilon (Toleranz)
+. Wähle ein Grösse stem:[Ɛ] (Toleranz)
 . Teile den Raum in Quadrate dieser Grösse
 . Berechne pro Quadrat *einen* repräsentativen Eckpunkt (z.B. Mittelpunkt aller Punkte)
 . Lösche die originalen Punkte und ersetzte sie durch den neuen Eckpunkt.
 
 Je nach Berechnungsverfahren des repräsentativen Eckpunkts kann sich die Topologie des Meshes stark unterscheiden.
 
-footnote:[Das Verfahren spielt also eine starke Rolle für die Qualität]
+footnote:[Das Verfahren spielt also eine starke Rolle für die Qualität.]
+footnote:[Allgemein gilt: Laufzeit stem:[O(n)] mit möglichen Alias Errors.]
+
+'''
+
+image::vertex-clustering-variants.png[]
+
+[.inlined.tiny]
+[cols="1,1,1,1"]
+|===
+| Original
+| Durchschnitt
+| Median
+| Least Squares
+|===
+
+footnote:[Am besten geeignet ist also der «Least Squares»-Algorithmus.]
+footnote:[D.h.: Minimiere den quadrierten Abstand zur Oberfläche.]
 
 ===== Inkrementelle Reduktion
+Sequenzielle Anwendung von zwei primitiven Reduktionsoperationen:
 
+* Eckpunkt entfernen
+* Kante kollabieren (zusammenlegen)
 
+Die Reihenfolge der Operationen wird durch eine globale Metrik (den Approximationsfehler) bestimmt.
 
-==== Resampling / Remeshing
+footnote:[Diese Metrik muss bei jeder Reduktion neu berechnet werden.]
+footnote:[Allgemein gilt: Laufzeit stem:[O(n log n)] bis stem:[O(n²)] ohne Alias Errors.]
+
+===== Resampling / Remeshing
+Komplette Neuberechnung des Meshes, wobei die Struktur auf verschiedene Arten verändert werden kann:
+
+* Wechsel von Dreiecke auf Vierecke
+* Verwendung von gleichmässigen Dreiecken
+* Variieren der Flächendichte
+* Erhöhung der Regularität der Struktur
+
+footnote:[Die Eckpunkte des neuen Meshes müssen dabei nicht zwingend mit denen des alten Meshes assoziiert sein.]
+footnote:[Alias Errors sind jedoch weiterhin möglich.]
+
+'''
+
+image::remeshing-example.png[]
+
+==== Alias Error
+Beschreibt die inkorrekte Approximation eines Meshes aufgrund mangelnder Abtastgenauigkeit.
+
+footnote:[z.B.: Zu grosse Toleranz stem:[Ɛ] beim «Vertex Clustering».]
+
+'''
+
+[.inlined.tiny]
+[cols="1,1"]
+|===
+a| image::alias-error-original.png[]
+a| image::alias-error-approximation.png[]
+
+| Original
+| Approximation
+|===
