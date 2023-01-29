@@ -134,6 +134,7 @@ h5 {
   content: "⇨";
   position: absolute;
   left: -2mm;
+  top: calc(50% - 1mm);
 }
 .footnote .mjx-n *::before {
   font-size: smaller;
