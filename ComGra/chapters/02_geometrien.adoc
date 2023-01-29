@@ -57,19 +57,21 @@ footnote:[Weitere Transformationen sind Spiegelung und Scherung.]
 [.not-in-cheatsheet]
 Verschiebe alle Punkte einer Geometrie um einen *Vektor* (Vektoraddition).
 
-[stem]
-++++
-    T(vec x) = ((x + d_1), (y + d_2)) = vec x + vec d
-++++
+stem:[T(vec x)]
+ifndef::cheatsheet[]
+stem:[= ((x + d_1), (y + d_2))]
+endif::[]
+stem:[= vec x + vec d]
 
 ==== Skalierung
 [.not-in-cheatsheet]
 Verschiebe alle Punkte einer Geometrie um einen *Faktor* (Skalarmultiplikation).
 
-[stem]
-++++
-    S(vec x) = ((s * x), (s * y)) = s * vec x
-++++
+stem:[S(vec x)]
+ifndef::cheatsheet[]
+stem:[= ((s * x), (s * y))]
+endif::[]
+stem:[= s * vec x]
 
 footnote:[Die Faktoren stem:[s] können auch unterschiedlich sein (s. Matrix).]
 

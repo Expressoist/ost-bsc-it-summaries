@@ -132,7 +132,7 @@ Eine Folge zeitlich schnell hintereinander gereihten Bildern erscheint als Beweg
 
 === Grundlegende Techniken der Computeranimation
 * Vom Künstler orchestiert (key frames)
-* Datat driven (motion capture)
+* Data driven (motion capture)
 * Procedural (simulation, calculation using physics formulas)
 
 footnote:[Kommen auch kombiniert zum Einsatz]
