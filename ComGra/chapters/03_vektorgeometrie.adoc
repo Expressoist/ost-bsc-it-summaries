@@ -22,23 +22,26 @@ ifndef::cheatsheet[]
 endif::[]
 
 | Kreuzprodukt
-stem:[vec a xx vec b = ((a_2 b_3 - a_3 b_2), (a_3 b_1 - a_1 b_3), (a_1 b_2 - a_2 b_1))]
+    stem:[vec a xx vec b = ((a_2 b_3 - a_3 b_2), (a_3 b_1 - a_1 b_3), (a_1 b_2 - a_2 b_1))]
 | Transponieren
     stem:[((a_1), (a_2), (...))^T = (a_1, a_2, ...)]
 
 | Euklidische Norm (Länge)
-stem:[\|vec a\| = sqrt(a_1^2 + a_2^2 + ...)]
+    stem:[\|vec a\| = sqrt(a_1^2 + a_2^2 + ...)]
 | Normalisierung
-stem:[hat a = 1 / \|vec a\| * vec a ]
+    stem:[hat a = 1 / \|vec a\| * vec a ]
 
 2.1+| Skalarprodukt
-
     stem:[vec a circ vec b = sum_i(a_i * b_i) = \|\vec a\| * \|\vec b\| * cos α]
+
+| Fläche (Parallelogram)
+    stem:[\|vec a xx vec b\|]
+| Fläche (Dreieck)
+    stem:[\|vec a xx vec b\| * 1/(2)]
 |===
 
 footnote:[Ist stem:[vec a circ vec b = 0], sind die Vektoren orthogonal.]
 footnote:[Orthogonal: Vektoren stehen senkrecht aufeinander.]
-footnote:[stem:[\|vec a xx vec b\| * 1/(2)] entspricht der Fläche des aufgespannten Dreiecks.]
 
 [.not-in-cheatsheet]
 === Multiplikation

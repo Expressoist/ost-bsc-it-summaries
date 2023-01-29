@@ -19,7 +19,7 @@ Projiziere den Punkt stem:[P(x, y, z)] auf die XY-Ebene (stem:[z = 0]) basierend
 [.not-in-cheatsheet]
 Gesucht ist die Projektion stem:[C(c_x, c_y)].
 
-footnote:[Die Dimension wird also um eins reduziert (stem:[RR]³ zu stem:[RR]²).]
+footnote:[Die Dimension wird also um eins reduziert (stem:[RR³] zu stem:[RR²]).]
 footnote:[Bei 2D einfach eine Komponente (z.B. stem:[x]) weglassen.]
 
 ==== Perspektivisch
@@ -75,12 +75,12 @@ Sind auf der GPU laufende Programme für die Berechnung des Bildes. Es gibt:
 
 footnote:[Arbeiten immer mit *einzelnen* Primitiven (z.B. *ein* Eckpunkt).]
 
-==== GLSL Programmiermodell
+=== GLSL Programmiermodell
 Kommunikation in den Pipeline-Stages:
 
-* `+in+`: Aus vorherigem Stage
-* `+out+`: An nächsten Stage
-* `+uniform+`: Für alle Primitiven gleich
+* `+in+`: Aus vorheriger Stage
+* `+out+`: An nächste Stage
+* `+uniform+`: Vom Host für alle Primitiven
 
 [source,glsl]
 ----
@@ -105,4 +105,4 @@ void main() {
 ----
 [.code-annotation]#Vertex Shader#
 footnote:[`+in+` und `+out+` verwenden dabei «matching by name».]
-footnote:[`+vec3*vec3+` ist in GLSL eine komponentenweise Multiplikation.]
+footnote:[`+vec * vec+` ist in GLSL eine komponentenweise Multiplikation.]

@@ -202,10 +202,11 @@ Vorteile von Subdivision-Surface, insbesondere im Vergleich zu NURBS:
 
 footnote:[NURBS-Flächen können nur Scheiben, Zylinder oder Tori sein.]
 
-[.not-in-cheatsheet]
 === Korrektur & Optimierung
+[.not-in-cheatsheet]
 3D-Modelle können aus verschiedenen Quellen stammen. Oftmals sind dabei folgende Qualitätsprobleme zu beobachten:
 
+[.not-in-cheatsheet]
 * Künstliche Unebenheiten der Flächen
 * Zu grosse Datenmengen
 * Schlechte Triangulierung wie z.B. topologische Inkonsistenz und spitze / ungleichmässige Dreiecke
@@ -214,12 +215,14 @@ footnote:[NURBS-Flächen können nur Scheiben, Zylinder oder Tori sein.]
 
 image::issues-with-3d-objects.png[]
 
+[.not-in-cheatsheet]
 ==== Visualisierung von Fehlern
 Um die genannten Qualitätsprobleme zu visualisieren, können wir z.B.:
 
 * Die Reflexionslinien des Modells betrachten.
 * Ungleichmässige Dreiecke basierend auf dem Kantenverhältnis einfärben.
 
+[.not-in-cheatsheet]
 ==== Modell-Reparatur
 Für die Verbesserung der Modellqualität gibt es verschiedenen Flächen- und Volumen-orientierte Algorithmen:
 
@@ -234,6 +237,7 @@ footnote:[z.B.: Mesh Smoothing, Mesh Reduktion, Remeshing, etc.]
 footnote:[Mesh Smoothing ist für dieses Modul nicht relevant.]
 
 ==== Mesh Reduktion / Remeshing
+[.not-in-cheatsheet]
 Mit diesen Verfahren wollen wir die Anzahl Vertices und Faces reduzieren.
 
 ===== Vertex Clustering
@@ -242,6 +246,7 @@ Mit diesen Verfahren wollen wir die Anzahl Vertices und Faces reduzieren.
 . Berechne pro Quadrat *einen* repräsentativen Eckpunkt (z.B. Mittelpunkt aller Punkte)
 . Lösche die originalen Punkte und ersetzte sie durch den neuen Eckpunkt.
 
+[.not-in-cheatsheet]
 Je nach Berechnungsverfahren des repräsentativen Eckpunkts kann sich die Topologie des Meshes stark unterscheiden.
 
 footnote:[Das Verfahren spielt also eine starke Rolle für die Qualität.]
@@ -249,9 +254,10 @@ footnote:[Allgemein gilt: Laufzeit stem:[O(n)] mit möglichen Alias Errors.]
 
 '''
 
+[.not-in-cheatsheet]
 image::vertex-clustering-variants.png[]
 
-[.inlined.tiny]
+[.inlined.tiny.not-in-cheatsheet]
 [cols="1,1,1,1"]
 |===
 | Original
@@ -263,6 +269,7 @@ image::vertex-clustering-variants.png[]
 footnote:[Am besten geeignet ist also der «Least Squares»-Algorithmus.]
 footnote:[D.h.: Minimiere den quadrierten Abstand zur Oberfläche.]
 
+[.not-in-cheatsheet]
 ===== Inkrementelle Reduktion
 Sequenzielle Anwendung von zwei primitiven Reduktionsoperationen:
 
@@ -274,6 +281,7 @@ Die Reihenfolge der Operationen wird durch eine globale Metrik (den Approximatio
 footnote:[Diese Metrik muss bei jeder Reduktion neu berechnet werden.]
 footnote:[Allgemein gilt: Laufzeit stem:[O(n log n)] bis stem:[O(n²)] ohne Alias Errors.]
 
+[.not-in-cheatsheet]
 ===== Resampling / Remeshing
 Komplette Neuberechnung des Meshes, wobei die Struktur auf verschiedene Arten verändert werden kann:
 
@@ -289,6 +297,7 @@ footnote:[Alias Errors sind jedoch weiterhin möglich.]
 
 image::remeshing-example.png[]
 
+[.not-in-cheatsheet]
 ==== Alias Error
 Beschreibt die inkorrekte Approximation eines Meshes aufgrund mangelnder Abtastgenauigkeit.
 
