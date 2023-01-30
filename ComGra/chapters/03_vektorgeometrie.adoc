@@ -65,7 +65,7 @@ endif::[]
 
 [stem]
 ++++
-    Ax+b <=> {:(a_11x_1+a_12x_2=b_1),(a_21x_1+a_22x_2=b_2):}
+    A vec x + vec b <=> {:(a_11x_1+a_12x_2=b_1),(a_21x_1+a_22x_2=b_2):}
 ++++
 
 ==== Gauss-Verfahren
@@ -74,12 +74,13 @@ endif::[]
 [.with-padding]
 [cols="1,3"]
 |===
-| stem:[[A\|b\]]:
+| stem:[[A\|vec b\]]:
 | stem:[[[1,4,\|,2\],[2,9,\|,5\]\] => [[1,0,\|,-2\],[0,1,\|,1\]\]]
 |===
 
 === Orthogonale Projektion
-stem:[vec v] projeziert auf stem:[vec u] ergibt stem:[vec u_p]
+Definition: stem:[vec v] projiziert auf stem:[vec u] ergibt stem:[vec u_p].
+
 [.inlined]
 [.smaller]
 [cols="1,1"]

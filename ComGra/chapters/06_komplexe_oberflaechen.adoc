@@ -122,12 +122,12 @@ image::marching-squares-algorithm.jpg[]
 
 image::interpolation.jpg[]
 
-[.not-in-cheatsheet]
 === Lindenmayer Systeme
 L-Systeme beschreiben beliebig feine, selbstähnliche geometrische Strukturen.
 
 footnote:[Sie können rekursiv definiert und aufgebaut werden.]
 
+[.not-in-cheatsheet]
 ==== Formale Definition
 
 * Anfangsform [.smaller]#(z.B. Strich)#: stem:[f]
@@ -167,8 +167,6 @@ footnote:[Diese Gewichtung kann auch variiert werden.]
 image::subdivision-surface.jpg[]
 
 ==== *Surfaces*: Algorithmen
-[.compress-in-cheatsheet]
-===== Dreiecksbasiert
 [.inlined]
 [cols="1,1"]
 |===
@@ -177,13 +175,7 @@ image::subdivision-surface.jpg[]
 
 a| image::subdivision-surfaces-loop.png[]
 a| image::subdivision-surfaces-sqrt-3.png[]
-|===
 
-[.compress-in-cheatsheet]
-===== Rechtecksbasiert
-[.inlined]
-[cols="1,1"]
-|===
 | Catmull-Clark
 | Doo-Sabin
 
@@ -209,7 +201,7 @@ footnote:[NURBS-Flächen können nur Scheiben, Zylinder oder Tori sein.]
 [.not-in-cheatsheet]
 * Künstliche Unebenheiten der Flächen
 * Zu grosse Datenmengen
-* Schlechte Triangulierung wie z.B. topologische Inkonsistenz und spitze / ungleichmässige Dreiecke
+* Schlechte Triangulierung wie z.B. topologische Inkonsistenz oder spitze / ungleichmässige Dreiecke
 
 '''
 
@@ -227,7 +219,7 @@ Um die genannten Qualitätsprobleme zu visualisieren, können wir z.B.:
 Für die Verbesserung der Modellqualität gibt es verschiedenen Flächen- und Volumen-orientierte Algorithmen:
 
 * *Flächen-orientierte Algorithmen*:
-    ** *Vorteil*: Die assoziierten Oberflächeneigenschaften bleibt gut erhalten.
+    ** *Vorteil*: Die assoziierten Oberflächeneigenschaften bleiben gut erhalten.
     ** *Nachteil*: Schlechte automatische Fehlererkennung und Behebung.
 * *Volumen-orientierte Algorithmen*:
     ** *Vorteil*: Gute automatische Fehlererkennung und Behebung.
@@ -299,7 +291,7 @@ image::remeshing-example.png[]
 
 [.not-in-cheatsheet]
 ==== Alias Error
-Beschreibt die inkorrekte Approximation eines Meshes aufgrund mangelnder Abtastgenauigkeit.
+Beschreibt eine inkorrekte Approximation des Meshes aufgrund mangelnder Abtastgenauigkeit.
 
 footnote:[z.B.: Zu grosse Toleranz stem:[Ɛ] beim «Vertex Clustering».]
 

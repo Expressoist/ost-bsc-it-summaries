@@ -20,6 +20,8 @@ Zeichne ausschliesslich die Pixel eines Dreiecks, für die gilt:
 
 * Das Pixel-Zentrum liegt *in* dem Dreieck.
 * Das Pixel-Zentrum liegt *auf* der oberen oder linken Seite des Dreiecks.
+    ** Bei *Eckpunkten* muss das Zentrum auf der oberen *und* linken Seite liegen.
+    ** Zwei *linke* Seiten sind auch gültig.
 
 footnote:[Achtung: Die obere Seite muss dazu exakt horizontal sein.]
 footnote:[Technisch wird das Dreieck **zeilen**weise gezeichnet.]
@@ -40,8 +42,8 @@ Basierend auf zwei Punkten stem:[P_"Start"] und stem:[P_"Ende"], zeichne die Lin
 
 footnote:[Bei stem:[Δx < Δy] wird die Berechnung von stem:[x_i] und stem:[y_i] vertauscht.]
 
-[.not-in-cheatsheet]
 ==== Anti-Aliasing
+ifndef::cheatsheet[]
 Zeichne alle Pixel eines Dreiecks unter Beachtung der prozentualen Abdeckung. Das bedeutet:
 
 * Erhöhe das Pixelraster (z.B. 4x)
@@ -56,6 +58,7 @@ Varianten davon sind:
 footnote:[Die Objektränder erhalten also eine «weiche» Transparenz.]
 
 '''
+endif::[]
 
 image::aliasing-variants.png[]
 
@@ -128,6 +131,22 @@ Berechne die Szene für alle Seiten einer umliegenden Bounding-Box und projizier
 
 footnote:[Die Spiegelkamera steht dabei in der Kugelmitte.]
 footnote:[Je grösser die Bounding-Box, desto kleiner der Fehler.]
+
+==== Berechnungen
+[.not-in-cheatsheet]
+Basierend auf einem Spiegel an Position stem:[M] mit der Normalen stem:[vec n] und einer Kamera an Position stem:[E]. Berechne die Position der Spiegelkamera stem:[E^'].
+
+[.inlined.with-padding]
+[cols="1,1"]
+|===
+| stem:[vec v = E - M]
+| stem:[vec d = ((vec n circ vec v) / (\|vec n\|^2)) * vec n]
+
+2.1+| stem:[E^' = E - 2 * vec d]
+
+|===
+
+footnote:[Es handelt sich dabei um eine orthogonale Projektion, welche uns die Distanz [.smaller]#stem:[d]# von der Kamera zum Spiegel liefert.]
 
 [.not-in-cheatsheet]
 === Environment Mapping

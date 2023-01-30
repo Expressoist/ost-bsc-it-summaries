@@ -59,7 +59,6 @@ image::example-normals.png[]
 
 === Beleuchtungsmodelle
 ==== Ambient Lighting
-[.not-in-cheatsheet]
 Belichtung von einem globalen Licht mit Remission in alle Richtungen.
 
 image::ambient-lighting.jpg[]
@@ -78,7 +77,6 @@ void main() {
 [.code-annotation]#Fragment Shader#
 
 ==== Diffuse Lighting
-[.not-in-cheatsheet]
 Belichtung von einer Punktquelle mit Remission in alle Richtungen.
 
 image::diffuse-lighting.jpg[]
@@ -102,7 +100,6 @@ footnote:[Wird für *matte* Oberflächen verwendet.]
 footnote:[Das `+norm+` steht für die Funktion `+normalize+`.]
 
 ==== Specular Lighting
-[.not-in-cheatsheet]
 Belichtung von einer Punktquelle mit Remission in *eine* Richtung.
 
 image::specular-lighting.jpg[]
@@ -127,6 +124,25 @@ void main() {
 ----
 [.code-annotation]#Fragment Shader#
 footnote:[Wird für *spiegelnde* Oberflächen verwendet.]
+
+==== Berechnungen
+ifndef::cheatsheet[]
+Berechne die diffuse Belichtungsenergie stem:[e_F] der Fläche stem:[F], wenn die Energie bei direkter Beleuchtung stem:[e] beträgt.
+
+Gegeben ist die Normale stem:[vec n] von stem:[F] sowie die Position des Lichtes stem:[vec p].
+endif::[]
+
+[stem]
+++++
+    e_α = cos α * e = (vec n circ vec p) / (\|\vec n\| * \|\vec p\|) * e
+++++
+
+[stem]
+++++
+    e_F = max(e_α, 0) * F
+++++
+
+footnote:[Anstatt stem:[max] könnte man auch den Betrag nehmen.]
 
 === Kombinationsmodelle
 ==== Phong-Shading
@@ -174,9 +190,6 @@ footnote:[Sampling: Umrechnung von Fragment- in Texturkoordinaten.]
 
 '''
 
-=== HDR & HDRI
-A High Dynamic Range Image is a 360° image for lighting and background purposes. It is created by mixing several images of the same scene with different exposures. It stores the three color values with floating point precision. These photos contain 32 bits per pixel per channel, which is much more than the traditional 8-bit.
-
 [.not-in-cheatsheet]
 [source,glsl]
 ----
@@ -185,3 +198,10 @@ void main(void) {
 }
 ----
 [.code-annotation]#Fragment Shader#
+
+==== HDR & HDRI
+Ein «High Dynamic Range Image» ist ein 360°-Bild für Belichtung- und Hintergrundzwecken. HDR-Bilder werden durch das Zusammensetzen von mehreren Bildern der gleichen Scene mit jeweils anderer Belichtung erzeugt.
+
+'''
+
+image::hdr-images.png[]

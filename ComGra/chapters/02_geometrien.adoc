@@ -39,7 +39,7 @@ Ein Punkt einer Geometrie kann je nach Ansichtsweise von verschiedenen Koordinat
 . Bildschirm (2D)
 
 footnote:[Bei der Darstellung werden die Punkte jeweils umtransformiert.]
-footnote:[z.B. stem:[P(1, 3, 2)] steht auf dem Bildschirm an stem:[P(5, 4)].]
+footnote:[z.B.: stem:[P(1, 3, 2)] steht auf dem Bildschirm an stem:[P(5, 4)].]
 
 '''
 
@@ -117,13 +117,13 @@ endif::[]
 
 footnote:[D.h.: Sukzessive Anwendung ist nicht gleich gemeinsame.]
 
-==== Rechnungsbeispiel
+=== Berechnungen
 [.not-in-cheatsheet]
 Gegeben ist eine Kamera an Position stem:[E]. Transformiere den Punkt stem:[P] vom Weltsystem ins Kamerasystem.
 
 [stem]
 ++++
-    P' = P - E
+    P^' = P - E
 ++++
 
 footnote:[Der Ursprung stem:[U] wird an die Kameraposition stem:[E] verschoben.]

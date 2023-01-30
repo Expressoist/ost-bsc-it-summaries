@@ -80,7 +80,7 @@ Kommunikation in den Pipeline-Stages:
 
 * `+in+`: Aus vorheriger Stage
 * `+out+`: An nächste Stage
-* `+uniform+`: Vom Host für alle Primitiven
+* `+uniform+`: Vom Host an alle Primitiven
 
 [source,glsl]
 ----
@@ -105,4 +105,4 @@ void main() {
 ----
 [.code-annotation]#Vertex Shader#
 footnote:[`+in+` und `+out+` verwenden dabei «matching by name».]
-footnote:[`+vec * vec+` ist in GLSL eine komponentenweise Multiplikation.]
+footnote:[`+vec+` `+*+` `+vec+` ist in GLSL eine komponentenweise Multiplikation.]
