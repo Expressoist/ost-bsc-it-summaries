@@ -57,21 +57,37 @@ footnote:[Weitere Transformationen sind Spiegelung und Scherung.]
 [.not-in-cheatsheet]
 Verschiebe alle Punkte einer Geometrie um einen *Vektor* (Vektoraddition).
 
-stem:[T(vec x)]
 ifndef::cheatsheet[]
-stem:[= ((x + d_1), (y + d_2))]
+[stem]
+++++
+T(vec x) = ((x + d_1), (y + d_2)) = vec x + vec d
+++++
 endif::[]
-stem:[= vec x + vec d]
+
+ifdef::cheatsheet[]
+[stem]
+++++
+T(vec x) = vec x + vec d
+++++
+endif::[]
 
 ==== Skalierung
 [.not-in-cheatsheet]
 Verschiebe alle Punkte einer Geometrie um einen *Faktor* (Skalarmultiplikation).
 
-stem:[S(vec x)]
 ifndef::cheatsheet[]
-stem:[= ((s * x), (s * y))]
+[stem]
+++++
+S(vec x) = ((s * x), (s * y)) = s * vec x
+++++
 endif::[]
-stem:[= s * vec x]
+
+ifdef::cheatsheet[]
+[stem]
+++++
+S(vec x) = s * vec x
+++++
+endif::[]
 
 footnote:[Die Faktoren stem:[s] können auch unterschiedlich sein (s. Matrix).]
 
@@ -101,12 +117,13 @@ endif::[]
 
 footnote:[D.h.: Sukzessive Anwendung ist nicht gleich gemeinsame.]
 
-=== Rechnungsbeispiel
+==== Rechnungsbeispiel
+[.not-in-cheatsheet]
 Gegeben ist eine Kamera an Position stem:[E]. Transformiere den Punkt stem:[P] vom Weltsystem ins Kamerasystem.
 
 [stem]
 ++++
-P_"Kamera" = P - E
+    P' = P - E
 ++++
 
 footnote:[Der Ursprung stem:[U] wird an die Kameraposition stem:[E] verschoben.]
