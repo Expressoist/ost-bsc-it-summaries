@@ -1,3 +1,19 @@
+== Ray Tracing
+=== Generierung von Primärstrahlen
+image::ray-tracing-primarstrahlen.png[]
+
+=== Reflexionsberechnung
+stem:[vec r = vec v - 2(vec n * vec v) * vec n]
+
+image::ray-tracing-reflection.png[]
+
+=== Quad-Tree (Acceleration structure)
+* Adaptive, rekursive Aufteilung der Fläche
+* Solange mehr als ein Punkt → Aufteilung in 4 gleich grosse, untergeordnete
+Flächen
+
+image::ray-tracing-quad-tree.png[]
+
 [.not-in-cheatsheet]
 == Ray Tracing Prinzip
 === Bildgenerierung
