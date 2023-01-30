@@ -117,7 +117,7 @@ endif::[]
 
 footnote:[D.h.: Sukzessive Anwendung ist nicht gleich gemeinsame.]
 
-=== Berechnungen
+==== Berechnungen
 [.not-in-cheatsheet]
 Gegeben ist eine Kamera an Position stem:[E]. Transformiere den Punkt stem:[P] vom Weltsystem ins Kamerasystem.
 
@@ -131,7 +131,7 @@ footnote:[Der Ursprung stem:[U] wird an die Kameraposition stem:[E] verschoben.]
 [.compress-in-cheatsheet]
 === Homogene Koordinaten
 [.not-in-cheatsheet]
-Um das Problem der Translation zu lösen, werden alle kartesischen Koordinaten [.smaller]#stem:[P(x,y)]# auf homogene Koordinaten [.smaller]#stem:[P_H(x,y,1)]# abgebildet.
+Um das Problem der Translation zu lösen, werden alle kartesischen Koordinaten [.smaller]#stem:[P(x,y)]# auf homogene Koordinaten [.smaller][.line-through]#####stem:[P_H(x,y,1)]# abgebildet.
 
 footnote:[Oder Allgemeiner: stem:[P(x,y,w)] repräsentiert stem:[P(x \/ w, y \/ w)].]
 footnote:[Die Punkte werden so zu Linien im projektiven Raum.]

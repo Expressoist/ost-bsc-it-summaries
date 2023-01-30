@@ -1,0 +1,18 @@
+== Animationen
+=== Techniken
+[.not-in-cheatsheet]
+Es gibt verschiedene Techniken für das Erstellen von Computeranimationen:
+
+* Vom Künstler erstellt (Key Frames)
+* Datengetrieben (Motion Capture)
+* Prozedural (Simulation & Calculation)
+
+=== Key Frames & Tweening
+Beschreibt ein Verfahren, bei dem wichtige Animationspunkte (Key Frames) manuel erstellt und die Übergänge dazwischen interpoliert werden.
+
+footnote:[Die Interpolation erfolgt z.B. über Splines.]
+
+'''
+
+[.not-in-cheatsheet]
+image::example-tweening.jpg[]

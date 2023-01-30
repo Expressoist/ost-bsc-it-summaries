@@ -1,0 +1,99 @@
+== Ray-Tracing
+=== Grundprinzip
+[.not-in-cheatsheet]
+Bei Ray-Tracing werden Strahlen ausgehend von der Kamera durch alle Pixel der Anzeigefläche geschickt und rekursiv weiterverfolgt.
+
+'''
+
+image::ray-tracing-principle.png[]
+
+'''
+
+[.not-in-cheatsheet]
+Bei der Rückkehr aus der Rekursion werden die verschiedenen Einflussfaktoren (Licht, Farbe, etc.) zusammengerechnet.
+
+footnote:[Problem: Die Rekursion könnte unendlich lange weiterlaufen.]
+footnote:[Aus diesem Grund wird nach einigen Schritten abgebrochen.]
+
+[.not-in-cheatsheet]
+==== Generierung der Primärstrahlen
+Die Primärstrahlen werden jeweils von der Pixelmitte aus generiert. Die Auflösung bestimmt die Anzahl der Strahlen.
+
+footnote:[Dies wirkt sich dementsprechend auf die Performance aus.]
+
+'''
+
+image::ray-tracing-primarstrahlen.png[]
+
+==== «Whitted Ray Tracing»-Algorithmus
+[.not-in-cheatsheet]
+Je nach Oberflächenbeschaffenheit werden rekursiv diese Schritte durchlaufen:
+
+. Spiegelnd: Reflexionsstrahl [.not-in-cheatsheet]#weiterverfolgen#
+. Durchsichtig: Lichtstrahl [.not-in-cheatsheet]#weiterverfolgen#
+. Diffuse: Strahlen zu [.not-in-cheatsheet]#allen# Lichtquellen
+    * Schatten: Kein Betrag
+    * Belichtet: Betrag vom remittierten Licht berechnen (Phong-Shading)
+
+==== Advanced Ray-Tracing
+[.not-in-cheatsheet]
+Ray-Tracing kann mit zahlreichen Varianten weiter verfeinert werden:
+
+[.not-in-cheatsheet]
+* *Kamera-Linsen-Effekt*: Erzeugung eines Fokuseffekts durch die Simulation einer Kameralinse bei der Strahlenberechnung.
+* *Bewegungsunschärfe*: Erzeugung eines Bewegungseffekts durch Berechnung der Strahlen zu unterschiedlichen Zeitpunkten.
+* *Globale Belichtung*: Realitätsnahe Belichtung durch rekursive Weiterverfolgung von mehreren, zufälligen Strahlen bei jedem Schnittpunkt.
+
+footnote:[Durch die zufällige Strahlenberechnung entsteht Rauschen.]
+footnote:[Dieses Rauschen wird mit Denoising (AI) reduziert.]
+
+'''
+
+image::ray-tracing-global-illumination.png[]
+
+=== Acceleration Structures
+[.not-in-cheatsheet]
+Beschreiben Datenstrukturen, welche die Anzahl der Schnitttests reduzieren sollen.
+
+* *Problem*: Objekte in der Szene haben sehr komplexe Oberflächen.
+* *Lösung*: Umschliesse alle Objekte in einfache Bounding Volumes.
+
+==== Elementteilend
+[.not-in-cheatsheet]
+Verwendung einer binären Bounding Volumes Hierarchy (BHV), welche alle Elemente einer Szene umschliessen.
+
+footnote:[Die Traversierung erfolgt rekursiv von vorne nach hinten.]
+footnote:[Abbruch, sobald ein *effektiver* Schnittpunkt gefunden wurde.]
+
+'''
+
+[.inlined.tiny]
+[cols="1,1"]
+|===
+a| image::bvh-example.png[]
+a| image::bvh-example-traversal.png[]
+|===
+
+footnote:[Für eine optimale Aufteilung ist leider kein Algorithmus mit subexponentieller Laufzeit bekannt.]
+
+==== Raumteilend
+[.not-in-cheatsheet]
+Bei diesem Verfahren werden nicht die Objekte selbst, sondern der Raum um die Szene unterteilt.
+
+[.not-in-cheatsheet]
+* *Uniform Grid*: Gleichmässige Aufteilung des Raums in Quadrate (Voxels)
+* *Quad-Tree*: Rekursive Aufteilung in Quadrate, wobei jedes Quadrat mit mehr als einem Eckpunkt weiter unterteilt wird.
+
+footnote:[Uniform Grid Heuristik: Anzahl Quadrate = Anzahl Primitiven.]
+
+'''
+
+[.inlined.tiny]
+[cols="1,1"]
+|===
+a| image::ray-tracing-uniform-grid.png[]
+a| image::ray-tracing-quad-tree.png[]
+
+| Uniform Grid
+| Quad-Tree
+|===

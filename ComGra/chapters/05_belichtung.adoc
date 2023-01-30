@@ -59,6 +59,7 @@ image::example-normals.png[]
 
 === Beleuchtungsmodelle
 ==== Ambient Lighting
+[.not-in-cheatsheet]
 Belichtung von einem globalen Licht mit Remission in alle Richtungen.
 
 image::ambient-lighting.jpg[]
@@ -77,6 +78,7 @@ void main() {
 [.code-annotation]#Fragment Shader#
 
 ==== Diffuse Lighting
+[.not-in-cheatsheet]
 Belichtung von einer Punktquelle mit Remission in alle Richtungen.
 
 image::diffuse-lighting.jpg[]
@@ -100,6 +102,7 @@ footnote:[Wird für *matte* Oberflächen verwendet.]
 footnote:[Das `+norm+` steht für die Funktion `+normalize+`.]
 
 ==== Specular Lighting
+[.not-in-cheatsheet]
 Belichtung von einer Punktquelle mit Remission in *eine* Richtung.
 
 image::specular-lighting.jpg[]
@@ -200,7 +203,7 @@ void main(void) {
 [.code-annotation]#Fragment Shader#
 
 ==== HDR & HDRI
-Ein «High Dynamic Range Image» ist ein 360°-Bild für Belichtung- und Hintergrundzwecken. HDR-Bilder werden durch das Zusammensetzen von mehreren Bildern der gleichen Scene mit jeweils anderer Belichtung erzeugt.
+Ein «High Dynamic Range Image» ist ein 360°-Bild für Belichtung- und Hintergrundzwecken. HDR-Bilder werden durch das Zusammensetzen von mehreren Bildern der gleichen Szene mit jeweils anderer Belichtung erzeugt.
 
 '''
 

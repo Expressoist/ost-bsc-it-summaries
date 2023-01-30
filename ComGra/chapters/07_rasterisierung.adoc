@@ -18,10 +18,19 @@ image:lines-and-rasterisation.jpg[]
 ==== Aliasing
 Zeichne ausschliesslich die Pixel eines Dreiecks, für die gilt:
 
+ifndef::cheatsheet[]
 * Das Pixel-Zentrum liegt *in* dem Dreieck.
 * Das Pixel-Zentrum liegt *auf* der oberen oder linken Seite des Dreiecks.
     ** Bei *Eckpunkten* muss das Zentrum auf der oberen *und* linken Seite liegen.
     ** Zwei *linke* Seiten sind auch gültig.
+endif::[]
+
+ifdef::cheatsheet[]
+* Das Zentrum liegt *in* dem Dreieck.
+* Das Zentrum liegt *auf* der oberen oder linken Seite des Dreiecks.
+** Bei *Eckpunkten* muss das Zentrum auf der oberen *und* linken Seite liegen.
+** Zwei *linke* Seiten sind auch gültig.
+endif::[]
 
 footnote:[Achtung: Die obere Seite muss dazu exakt horizontal sein.]
 footnote:[Technisch wird das Dreieck **zeilen**weise gezeichnet.]
@@ -79,6 +88,7 @@ footnote:[Damit kann der Moiré-Effekt verhindert werden.]
 
 image::mipmap-example.png[]
 
+[.compress-in-cheatsheet]
 === Sichtbarkeit
 ==== Z-Buffer (Depth-Buffer)
 [.not-in-cheatsheet]

@@ -76,11 +76,12 @@ Sind auf der GPU laufende Programme für die Berechnung des Bildes. Es gibt:
 footnote:[Arbeiten immer mit *einzelnen* Primitiven (z.B. *ein* Eckpunkt).]
 
 === GLSL Programmiermodell
+[.not-in-cheatsheet]
 Kommunikation in den Pipeline-Stages:
 
 * `+in+`: Aus vorheriger Stage
 * `+out+`: An nächste Stage
-* `+uniform+`: Vom Host an alle Primitiven
+* `+uniform+`: Vom Host an [.not-in-cheatsheet]#alle# Primitiven
 
 [source,glsl]
 ----
@@ -94,7 +95,6 @@ uniform mat4 view;
 uniform mat4 projection;
 
 void main() {
-  // Homogene Transformation
   gl_Position = vec4(positionIn, 1.0)
                 * model
                 * view

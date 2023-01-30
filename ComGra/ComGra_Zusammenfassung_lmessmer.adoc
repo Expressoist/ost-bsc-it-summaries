@@ -23,4 +23,6 @@ include::chapters/06_komplexe_oberflaechen.adoc[]
 
 include::chapters/07_rasterisierung.adoc[]
 
-include::chapters/08_ray_tracing.adoc[]
+include::chapters/08_ray_tracing_reduced.adoc[]
+
+include::chapters/09_animation.adoc[]

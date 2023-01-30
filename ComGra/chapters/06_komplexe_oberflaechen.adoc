@@ -55,7 +55,7 @@ a| image::insert-strategie.jpg[]
 . Für jeden Punkt:
     .. Zeichne eine Linie zu den *2* vorherigen Punkten, für die gilt:
         ** Keine Dellen entstehen
-        ** Keine Überschneidungen entstehen
+        ** Keine Überschneidungen [.not-in-cheatsheet]#entstehen#
     .. Verbinde nun alle weiteren Punkte innerhalb dieser Form.
 . Wiederhole, bis zum Ende.
 
@@ -64,8 +64,8 @@ footnote:[Die entstehende Form nennt sich «Konvexe Hülle».]
 ==== Insert-Strategie
 . Zeichne *2* Anfangsdreiecke um alle Punkte.
 . Für alle Punkte (zufällige Wahl):
-    .. Bestimme das umfassende Dreieck.
-    .. Unterteile dieses Dreieck in 3 weitere Dreiecke. D.h. Verbinde alle Eckpunkte mit dem gewählten Punkt.
+    .. Bestimme [.not-in-cheatsheet]#das# umfassende Dreieck.
+    .. Unterteile dieses Dreieck in 3 weitere Dreiecke. D.h. Verbinde alle Eckpunkte mit dem [.not-in-cheatsheet]#gewählten# Punkt.
 . Wiederhole, bis zum Ende.
 . Entferne nun alle künstlichen Anfangs**punkte** und die damit verbundenen Dreiecke.
 
@@ -95,10 +95,10 @@ a| image::edge-flip-example.png[]
 Mit diesem Algorithmus lassen sich Isolinien von Heat Maps diskret bestimmen.
 
 . Gitter über die Daten legen.
-. Betrachtungshöhe (Potenzial) festlegen.
+. Betrachtungshöhe [.not-in-cheatsheet]#(Potenzial)# festlegen.
 . Für alle Quadrate im Gitter:
     .. Eckpunkte beachten.
-    .. Nach Schema unten Linien einzeichnen.
+    .. Nach Schema [.not-in-cheatsheet]#unten# Linien einzeichnen.
 . Wiederhole, bis zum Ende.
 
 footnote:[«Heat Map»: 2D-Visualisierung von 3D-Landschaften.]
@@ -122,12 +122,12 @@ image::marching-squares-algorithm.jpg[]
 
 image::interpolation.jpg[]
 
+[.not-in-cheatsheet]
 === Lindenmayer Systeme
 L-Systeme beschreiben beliebig feine, selbstähnliche geometrische Strukturen.
 
 footnote:[Sie können rekursiv definiert und aufgebaut werden.]
 
-[.not-in-cheatsheet]
 ==== Formale Definition
 
 * Anfangsform [.smaller]#(z.B. Strich)#: stem:[f]

@@ -79,6 +79,7 @@ endif::[]
 |===
 
 === Orthogonale Projektion
+[.not-in-cheatsheet]
 Definition: stem:[vec v] projiziert auf stem:[vec u] ergibt stem:[vec u_p].
 
 [.inlined]
