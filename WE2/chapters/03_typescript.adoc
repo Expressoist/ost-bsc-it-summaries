@@ -1,0 +1,173 @@
+== TypeScript
+=== Was ist TypeScript?
+TypeScript ist eine *Programmiersprache*, welche JavaScript mit Typen und weiteren Syntaxelementen ergänzt.
+Ein Pre-Processor übersetzt TypeScript in JavaScript, d.h. es existiert *kein* Runtime-Typechecking.
+Jedes valide JS ist valides TS.
+
+footnote:[Die Typen müssen oft mitinstalliert werden (`npm i -D @types/node`)]
+footnote:[Statt Node.js kann auch ts-node verwendet werden (bietet JIT-Compilation von TS)]
+
+==== TS-Config
+
+==== Strict Mode
+*noImplicitAny*: Keine untypisierten Variablen.
+*alwaysStrict*: Verwendet automatisch ein `"use strict"` im JS-File.
+*strictNullChecks*: `null` und `undefined` sind nicht mehr Teil der Basistypen (explizite Deklaration nötig).
+*strictFunctionTypes*: Strenge Überprüfung von Funktionstypen.
+*strictPropertyInitialization*: Klasseneigenschaften müssen initialisiert werden.
+
+footnote:[Weitere Einstellungen sind noImplicitThis und strictBindCallApply]
+
+=== Spezifikation
+==== Basistypen
+`boolean`, `number`, `string`, `null`: Wie in anderen Sprachen.
+`undefined`: Variable deklariert, aber kein Wert zugewiesen.
+`any`: Beliebiger Wert. Zuweisung in *beide* Richtungen *beliebig* möglich.
+`unknown`: Unbekannter Typ. Zuweisung *zu* `unknown` beliebig möglich, Zuweisung *von* `unknown` erst nach Type Narrowing. *Type Inference*: Ohne Typdeklaration wird der Typ automatisch bestimmt.
+
+[source, typescript]
+----
+let aNumber: number = 1
+let aString = 'abc' // Inferred string
+let aUndefined: undefined;
+let aUnknown: unknown;
+let aAny: any = true
+
+aNumber = aString       // NOK
+aNumber = aAny          // OK
+aAny = aString          // OK
+aUndefined = undefined  // OK
+aString = undefined     // NOK (in Strict Mode)
+aUnknown = aNumber      // OK
+aNumber = aUnknown      // NOK
+if (typeof aUnknown === 'number'){
+    aNumber = aUnknown  // OK
+}
+----
+
+==== Komplexe Typen und Typdeklaration
+*Arrays*, *Tupels* und *Enums* wie in anderen Sprachen.
+*Union Types*: Zusammengesetzte Typen (`boolean | string`).
+*String/Number Literal Union Types*: Zusammengesetze Typen aus Text- oder Zahlenwerten, ähnlich wie Enums.
+*Wichtig*: Keine Type Inference bei Tupeln! Diese werden als "Union Type Arrays" erkannt.
+
+Neue Typen können mit `type CustomType = ...` deklariert werden.
+
+[source, typescript]
+----
+enum EnumType { A, B, C }
+type UnionType = number | undefined
+type StrLitUnionType = 'A' | 'B' | 'C'
+
+let aUnionType: UnionType;
+let anArray: number[] = [1, 2, 3]
+let anUnionArray = [1, 'abc'] // Inferred (number|string)[]
+let aTupel: [number, string] = [1, 'abc']
+let anEnum = EnumType.A
+let aStrLit: StrLitUnionType;
+
+aUnionType = 1          // OK
+aUnionType = undefined  // OK
+aUnionType = 'abc'      // NOK
+anUnionArray[0] = 'abc' // OK
+aTupel[0] = 'abc'       // NOK
+aStrLit = 'B'           // OK
+aStrLit = 'abc'         // NOK
+----
+
+==== Type Narrowing
+TypeScript verwendet Flussanalyse, um die tatsächlichen Typen von Variablen zu bestimmen.
+Zuweisungen werden so möglich. *Achtung*: `unknown` braucht explizites Type Narrowing mit `typeof ...`.
+
+[source, typescript]
+----
+let aNumberOrString: string | number
+let aUnknown: unknown;
+let aNumber: number
+
+aNumber = aNumberOrString   // NOK
+aNumber = aUnknown          // NOK
+
+aNumberOrString = 1         // OK
+aUnknown = 1                // OK
+aNumber = aNumberOrString   // OK
+aNumber = aUnknown          // NOK
+if (typeof aUnknown === 'number'){
+    aNumber = aUnknown      // OK
+}
+----
+
+==== Funktionen
+Wie in anderen Sprachen.
+Erlauben Default und optionale Parameter.
+Mehrere Signaturen pro Funktion möglich (Function Overloading).
+Funktionen als Parameter möglich.
+
+[source, typescript]
+----
+function myFuncA(a: string | number = '', b?: number): void { }
+function myFuncB(a: (num: number) => number): void { }
+
+myFuncA('abc', 1)           // OK
+myFuncA('abc')              // OK
+myFuncA()                   // OK
+myFuncB((num) => num + 1)   // OK
+----
+
+==== Klassen und Interfaces
+Wie in anderen Sprachen. Properties lassen sich im Konstruktor definieren (automatische Generierung und Initialisierung). Generics sind möglich. Mit `Readonly<T>` können alle *direkten Felder* einer Klasse `T` unveränderlich gemacht werden.
+
+*Type Assertions:* Erlauben Spezialisierung und Generalisierung eines Typs. Im Gegensatz zu Type Casting sind inkompatible Typen nicht erlaubt.
+*Structural Typing:* JS-Objekte können, wenn sie vom Typ her passen, an TS-Objekte zugewiesen werden.
+
+footnote:[Structural Typing verwendet natives "Duck-Typing" aus JavaScript.]
+
+[source, typescript]
+----
+class AClass {
+ #val1: number              // Private: ES2022
+ private val2: string       // Private: TS Default
+ readonly val3?: number     // Public, Optional, Readonly
+ static readonly VAL4 = 1   // Public, Readonly
+
+ constructor(val1: number, val2: string, val3?: number) {
+     this.#val1 = val1; this.val2 = val2; this.val3 = val3;
+ }
+ set val1(val: number) { this.#val1 = val } // ES6
+ get val1() { return this.#val1 }           // ES6
+}
+
+interface AInterface<T> {
+    readonly valA: T    // Public (Never static, private, ...)
+    valB?: boolean      // Public (Never static, private, ...)
+    func(): void        // Public (Never static, private, ...)
+}
+
+class ASubClass<T> extends AClass implements AInterface<T> {
+    constructor(public valA: T, private valC: number) {
+        super(1, 'abc')
+    }
+    func() { /* ... */ }
+}
+
+let aClass = new AClass(1, 'abc', 2);
+let aSubClass = new ASubClass<number>(1, 2);
+aSubClass.val1 = 1;
+
+// Structural Typing
+let aIntA: AInterface<number> = { valA: 1, func() {} } // OK
+let aIntB: AInterface<number> = { valZ: 'abc' }        // NOK
+// Type Assertions
+let aTypeA= aSubClass as AClass;    // OK
+let aTypeB= aSubClass as number;    // NOK
+----
+
+==== Weiters
+*Globale Variablen* aus nicht TS-Files können mit `declare let aGlobal :...` deklariert werden. *Keyof* und *Template Literal Types* erlauben die Generierung von speziellen String Literal Union Types.
+
+[source, typescript]
+----
+type Keys = keyof { x: any, y: any } // type Keys = 'x' | 'y'
+type TempLit = `my-${Keys}` // type TempLit = 'my-x' | 'my-y'
+----
+

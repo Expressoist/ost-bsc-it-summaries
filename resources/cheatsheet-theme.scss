@@ -1,4 +1,4 @@
-.not-in-cheatsheet, .footnote, hr, .code-annotation {
+.not-in-cheatsheet {
   display: none;
 }
 
@@ -11,7 +11,7 @@
 }
 
 body {
-  font-size: 12pt;
+  font-size: 5pt;
 }
 
 mjx-math {
@@ -19,22 +19,34 @@ mjx-math {
 }
 
 code {
-  font-size: 10pt !important;
+  font-size: 4pt !important;
+}
+
+.highlight {
+  margin: 0;
+}
+
+.footnote {
+  font-size: 4pt !important;
+  &:last-of-type {
+    margin-bottom: -0.03cm !important;
+  }
 }
 
 ul, ol {
-  font-size: 12pt;
-}
-
-@page {
-  size: 74mm 210mm;
+  font-size: 4pt;
 }
 
 h1, h2, h3, h4, h5, .paragraph{
-  padding: 0 0.1cm !important;
+  padding: 0.05cm 0.1cm !important;
 }
 
 img {
-  max-width: 80%;
+  max-width: 90%;
   margin: 0 auto;
+}
+
+.code-annotation {
+  margin: -11px 0;
+  font-size: 4pt;
 }

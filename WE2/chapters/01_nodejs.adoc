@@ -1,0 +1,100 @@
+== Node.js
+=== Begrifflichkeiten
+*Webseite/Webapplikation*: Beinhaltet die Logik der Anwendung.
+*Web-Server*: Nimmt Anfragen vom Netzwerk entgegen und leitet diese an die Webseite weiter.
+*Server*: Stellt Hardware und das OS für den Web-Server bereit.
+
+=== Was ist Node.js?
+Node.js ist eine *JavaScript Runtime* mit einem riesigen Package Ecosystem.
+*Vorteile*:
+Server und Client in selber Sprache (JavaScript),
+nativer Support von JSON (z.B. für REST APIs),
+einfaches und schnelles Deployment,
+modularer Aufbau mit zahlreichen Packages,
+wenig "Magie".
+
+footnote:[Node.js baut auf Chrome's V8 JavaScript Engine auf.]
+footnote:[Es ist aber kein Web-Framework und keine Programmiersprache]
+
+==== Event-Driven, Non-Blocking I/O-Model
+Node.js verwendet nur *einen Thread*. Wird ein Event ausgelöst [.smaller]#(z.B. GetDocs)# nimmt Node dieses entgegen, übergibt es an eine API [.smaller]#(z.B. File-API)#, registriert ein Callback-Event und arbeitet dann weiter. Wird das Callback-Event ausgelöst, wiederholt Node diesen Prozess bis zum Ende.
+
+footnote:[Sinnvoll für viele kleine, delegierbare Aufgaben in Single-Threaded Systemen.]
+footnote:[Ab Node.js 12 sind jedoch auch "Worker Threads" möglich.]
+
+'''
+
+image::nodejs-thread.drawio.png[]
+
+==== Callbacks und Events
+*Callbacks* sind Funktionen, welche zu einem späteren Zeitpunkt aufgerufen werden.
+*Events* sind Ereignisse, auf welche man sich registrieren kann.
+
+[source, javascript]
+----
+fs.readFile('demo.txt', (err, data) => { /* ... */ })
+button.addEventListener('click', (event) => { /* ... */ });
+----
+
+footnote:[Callbacks sind 1:1 Verbindungen, Events sind 1:n Verbindungen.]
+
+===== Promises
+*Promises* sind eine Callback-Alternative. Lösen die http://callbackhell.com/[Callback-Hell].
+
+[source, javascript]
+----
+fs.promises.readFile('demo.txt')
+    .then(data => { /* ... */ })
+    .catch(err => { /* ... */ })
+----
+[.code-annotation]#Variante 1#
+[source, javascript]
+----
+try { const data = await fs.promises.readFile('demo.txt') }
+catch (err) { /* ... */ }
+----
+[.code-annotation]#Variante 2#
+footnote:[Der aktuelle Standard in Node.js sind immer noch Callbacks.]
+footnote:[Viele Module bieten aber eine Promise-Variante zusätzlich an (z.B. `+fs.promises+`).]
+
+=== Module
+*Module* sind Code-Pakete, welche Funktionalitäten für andere Module bereitstellen.
+Node verwendet den Package Manager `+npm+` und kennt zwei https://dev.to/lico/how-to-import-and-export-in-commonjs-and-es-modules-43m1[Systeme]:
+
+* *CommonJS*: Standard seit Beginn (`+module.js+` / `+module.cjs+`)
+* *ESM*: Verwendbar seit ECMAScript 2015 und Node.js 14 (`+module.mjs+`)
+
+[source, javascript]
+----
+function funcStuff() { /* ... */ }
+const valueStuff = '...';
+
+module.exports = { funcStuff, valueStuff };
+
+const module = require('./module.js');
+module.funcStuff(); module.valueStuff;
+----
+[.code-annotation]#CommonJS#
+[source, javascript]
+----
+export default function funcStuff() { /* ... */ }
+export const valueStuff = '...';
+
+import funcStuff, { valueStuff } from './module.mjs';
+funcStuff(); valueStuff;
+----
+[.code-annotation]#ESM#
+
+*Auflösungsreihenfolge*:
+*1.* Core-Module (`+'fs'+`),
+*2.* Pfade (`+'./module.mjs'+`). Suche relativ zum aktuellen Pfad,
+*3.* Filenamen (`+'module'+`). Suche in `+node_modules+` und danach bis zum File-System-Root.
+
+footnote:[Module werden vom System nur einmal geladen.]
+footnote:[Core-Module: `+http+`, `+url+`, `+fs+`, `+net+`, `+crypto+`, `+dns+`, `+util+`, `+path+`, `+os+`, etc.]
+
+=== Weiteres
+*package.json*: Beinhaltet die Projektinformationen (Name, Scripts, Packages, etc.) und ist zwingend.
+*package-lock.json*: Beinhaltet die exakten Package-Abhängigkeiten. Wird automatisch aktualisiert und gehört ins Repo.
+*Native Module:* Beinhalten nativen Code.
+*NVM:* Versionsmanager für Node.js.

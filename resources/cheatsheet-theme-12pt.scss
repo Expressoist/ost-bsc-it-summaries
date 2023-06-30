@@ -1,0 +1,40 @@
+.not-in-cheatsheet, .footnote, hr, .code-annotation {
+  display: none;
+}
+
+.compress-in-cheatsheet {
+  h4, h5 {
+    opacity: 0;
+    height: 1px;
+    overflow: hidden;
+  }
+}
+
+body {
+  font-size: 12pt;
+}
+
+mjx-math {
+  font-size: 95% !important;
+}
+
+code {
+  font-size: 10pt !important;
+}
+
+ul, ol {
+  font-size: 12pt;
+}
+
+@page {
+  size: 74mm 210mm;
+}
+
+h1, h2, h3, h4, h5, .paragraph{
+  padding: 0 0.1cm !important;
+}
+
+img {
+  max-width: 80%;
+  margin: 0 auto;
+}

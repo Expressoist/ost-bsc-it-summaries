@@ -1,0 +1,155 @@
+== Express.js
+=== Was ist Express.js
+Express.js ist ein bekanntes *Web-Framework* für Node.js.
+Es baut auf dem *MVC-Pattern* auf und verwendet Middlewares für die Request-Bearbeitung.
+
+==== Model-View-Controller (MVC)
+Beschreibt ein Frontend Design Pattern. *Model*: Beinhaltet die Daten und Datenaufbereitung. *View*: Stellt die Daten dar. *Controller*: Verknüpft das Model mit der View.
+
+footnote:[Ziel ist "Seperation of Concerns" (Alternativen dazu sind MVVM, MVP, etc.)]
+
+image::expressjs-mvc.drawio.png[]
+
+==== Middlewares
+Middlewares sind ein *Stack von Anweisungen*, welche für einen Request ausgeführt werden.
+Merke: Registrierungsreihenfolge `+=+` Ausführungsreihenfolge.
+
+footnote:[Express.js stellt ab V4 viele Middlewares zur Verfügung (zuvor "Connect"-Plugin).]
+footnote:[Beispiele: Body-Parser (`+bodyParser+`), Cookie-Parser (`+cookieParser+`), Cors, etc.]
+
+==== Authentisierung
+Benutzer (bzw. HTTP-Anfragen) lassen sich im Web über *Cookies/Sessions* oder *Tokens* authentifizieren.
+
+footnote:[Session/Cookies sind nicht Stateless. Tokens hingegen schon.]
+footnote:[Authentisierung: Wer bin ich? (Pin, 2FA, etc.) Autorisierung: Was darf ich?]
+
+'''
+
+*Cookies:* Repräsentieren ein kleines Stück von Daten. Der Server schreibt die Cookies zum Client, der Client sendet alle seine Cookies bei jedem Request mit.
+*Sessions:* Bauen auf Cookies auf. Beim ersten Request wird eine Session-ID vom Server erstellt und als Cookie zum Client gesendet. Der Server kann den Benutzer nun bei jedem Request mit dieser ID identifizieren.
+
+image::expressjs-sessions.drawio.png[]
+
+==== Weiteres
+*Routing* Zuordnung von Routes (`+GET /orders+`) zu Actions (`+orderController.getAll+`).
+*Template Engines*: Engines für das Definieren und Rendern von HTML-Templates über einen einfachen Syntax.
+
+=== Verwendung von Express.js
+[source, javascript]
+----
+import express from 'express';
+import bodyParser from "express";
+import session from 'express-session'
+import path from "path";
+import exphbs from 'express-handlebars'
+import customLogSessionMiddleware from './custom-middleware.js';
+import router from "./routes.js";
+
+const app = express();
+
+/* Middlewares */
+app.use(express.static(path.resolve('public'))); // Static files
+app.use(session({ secret: '1234567', resave: false,
+                  saveUninitialized: true }));
+app.use(bodyParser.urlencoded({ extended: false })); // req.body
+app.use(customLogSessionMiddleware);
+app.use(router);
+
+/* Handlebars */
+const hbs = exphbs.create({ extname: '.hbs' });
+hbs.handlebars.registerHelper('concat', (a, b) => a + '-' + b);
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
+
+app.listen(3001, '127.0.0.1', () => {
+    console.log('Example app listening on port 3001!');
+});
+----
+[.code-annotation]#app.js#
+
+[source, javascript]
+----
+import express from "express";
+import { controller } from './controller.js'
+const router = express.Router();
+
+router.get('/books/:id/', controller.getBooks)
+router.route('/orders/')
+    .get(controller.getOrders)
+    .post(controller.postOrders) // Multiple callbacks possible
+router.all('/*', controller.default) // Uses pattern matching
+
+export default router;
+----
+[.code-annotation]#routes.js#
+
+[source, javascript]
+----
+class Controller {
+    default(req, res) { res.render('index', { id: 0 }); }
+    getBooks(req, res) { res.render('index', {id: req.params.id,
+                                    books: [{ name: 'A'}] }); }
+    getOrders(req, res) { /* … */ }
+    postOrders(req, res) { /* … */ }
+}
+export const controller = new Controller();
+----
+[.code-annotation]#controller.js#
+
+[source, javascript]
+----
+function customLogSessionMiddleware(req, res, next) {
+    console.log(req.session.counter);
+    req.session.counter += 1;
+    next(); /* Calls next middleware */
+}
+export default customLogSessionMiddleware;
+----
+[.code-annotation]#custom-middleware.js#
+
+[source, html]
+----
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Example App</title>
+</head>
+<body>
+    {{{body}}}
+</body>
+</html>
+----
+[.code-annotation]#views/layouts/main.hbs#
+
+[source, html]
+----
+<h1>{{id}}</h1>
+<p>{{concat "book" id}}</p>
+<ul>
+    {{#each books}}
+        <li>{{name}}: {{@root.id}}</li>
+    {{/each}}
+</ul>
+----
+[.code-annotation]#views/index.hbs#
+
+=== NeDB
+NeDB ist eine *NoSQL-Datenbank*.
+Alle Daten werden in JSON-Dokumenten abgespeichert.
+Relationen müssen *manuell* gesetzt und verwaltet werden (z.B. via `+doc._id+`).
+
+[source, javascript]
+----
+import Datastore from 'nedb'
+const db = new Datastore({ filename: './books.db',
+                           autoload: true });
+
+db.insert({ name: 'A' }, (err, doc) => { /* … */ });
+db.find({ name: 'A' }, (err, docs) => { /* … */ });
+db.findOne({ name: 'A' }, (err, doc) => { /* … */ });
+db.update({ name: 'A' }, { name: 'B' }, {},
+          (err, num) => { /* … */ });
+
+----
+[.code-annotation]#data-store.js#
