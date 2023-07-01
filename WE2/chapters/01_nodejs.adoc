@@ -1,8 +1,8 @@
 == Node.js
 === Begrifflichkeiten
 *Webseite/Webapplikation*: Beinhaltet die Logik der Anwendung.
-*Web-Server*: Nimmt Anfragen vom Netzwerk entgegen und leitet diese an die Webseite weiter.
-*Server*: Stellt Hardware und das OS für den Web-Server bereit.
+*Web-Server*: Nimmt Anfragen vom Netzwerk entgegen und leitet diese an die entsprechende Webseite weiter.
+*Server*: Stellt die Hardware und das OS für den Web-Server bereit.
 
 === Was ist Node.js?
 Node.js ist eine *JavaScript Runtime* mit einem riesigen Package Ecosystem.
@@ -39,7 +39,7 @@ button.addEventListener('click', (event) => { /* ... */ });
 footnote:[Callbacks sind 1:1 Verbindungen, Events sind 1:n Verbindungen.]
 
 ===== Promises
-*Promises* sind eine Callback-Alternative. Lösen die http://callbackhell.com/[Callback-Hell].
+Sind eine Alternative zu Callbacks und lösen die http://callbackhell.com/[Callback-Hell].
 
 [source, javascript]
 ----
@@ -50,8 +50,11 @@ fs.promises.readFile('demo.txt')
 [.code-annotation]#Variante 1#
 [source, javascript]
 ----
-try { const data = await fs.promises.readFile('demo.txt') }
-catch (err) { /* ... */ }
+try {
+    const data = await fs.promises.readFile('demo.txt')
+} catch (err) {
+    /* ... */
+}
 ----
 [.code-annotation]#Variante 2#
 footnote:[Der aktuelle Standard in Node.js sind immer noch Callbacks.]
@@ -59,10 +62,9 @@ footnote:[Viele Module bieten aber eine Promise-Variante zusätzlich an (z.B. `+
 
 === Module
 *Module* sind Code-Pakete, welche Funktionalitäten für andere Module bereitstellen.
-Node verwendet den Package Manager `+npm+` und kennt zwei https://dev.to/lico/how-to-import-and-export-in-commonjs-and-es-modules-43m1[Systeme]:
-
-* *CommonJS*: Standard seit Beginn (`+module.js+` / `+module.cjs+`)
-* *ESM*: Verwendbar seit ECMAScript 2015 und Node.js 14 (`+module.mjs+`)
+Node verwendet den Package Manager `+npm+` und kennt zwei https://dev.to/lico/how-to-import-and-export-in-commonjs-and-es-modules-43m1[Modulsysteme]:
+*CommonJS*: Standard seit Beginn (`+module.js+` / `+module.cjs+`).
+*ESM*: Verwendbar seit ECMAScript 2015 und Node.js 14 (`+module.mjs+`).
 
 [source, javascript]
 ----

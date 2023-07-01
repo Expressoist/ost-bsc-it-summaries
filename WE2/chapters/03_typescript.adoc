@@ -1,7 +1,7 @@
 == TypeScript
 === Was ist TypeScript?
 TypeScript ist eine *Programmiersprache*, welche JavaScript mit Typen und weiteren Syntaxelementen ergänzt.
-Ein Pre-Processor übersetzt TypeScript in JavaScript, d.h. es existiert *kein* Runtime-Typechecking.
+Ein Pre-Processor übersetzt TypeScript in JavaScript, d.h. es existiert *kein Runtime-Typechecking*.
 Jedes valide JS ist valides TS.
 
 footnote:[Die Typen müssen oft mitinstalliert werden (`npm i -D @types/node`)]
@@ -30,7 +30,6 @@ footnote:[Weitere Einstellungen sind noImplicitThis und strictBindCallApply]
 let aNumber: number = 1
 let aString = 'abc' // Inferred string
 let aUndefined: undefined;
-let aUnknown: unknown;
 let aAny: any = true
 
 aNumber = aString       // NOK
@@ -38,11 +37,6 @@ aNumber = aAny          // OK
 aAny = aString          // OK
 aUndefined = undefined  // OK
 aString = undefined     // NOK (in Strict Mode)
-aUnknown = aNumber      // OK
-aNumber = aUnknown      // NOK
-if (typeof aUnknown === 'number'){
-    aNumber = aUnknown  // OK
-}
 ----
 
 ==== Komplexe Typen und Typdeklaration
@@ -99,7 +93,7 @@ if (typeof aUnknown === 'number'){
 
 ==== Funktionen
 Wie in anderen Sprachen.
-Erlauben Default und optionale Parameter.
+Erlauben Defaults und optionale Parameter.
 Mehrere Signaturen pro Funktion möglich (Function Overloading).
 Funktionen als Parameter möglich.
 
@@ -128,7 +122,7 @@ class AClass {
  #val1: number              // Private: ES2022
  private val2: string       // Private: TS Default
  readonly val3?: number     // Public, Optional, Readonly
- static readonly VAL4 = 1   // Public, Readonly
+ static readonly VAL4 = 1   // Public, Static, Readonly
 
  constructor(val1: number, val2: string, val3?: number) {
      this.#val1 = val1; this.val2 = val2; this.val3 = val3;

@@ -11,28 +11,35 @@ footnote:[Ziel ist "Seperation of Concerns" (Alternativen dazu sind MVVM, MVP, e
 image::expressjs-mvc.drawio.png[]
 
 ==== Middlewares
-Middlewares sind ein *Stack von Anweisungen*, welche für einen Request ausgeführt werden.
-Merke: Registrierungsreihenfolge `+=+` Ausführungsreihenfolge.
+Middlewares sind ein *Stack von Anweisungen*, welche für einen Request ausgeführt werden. Die Reihenfolge der Registrierung bestimmt die Ausführungsreihenfolge.
 
 footnote:[Express.js stellt ab V4 viele Middlewares zur Verfügung (zuvor "Connect"-Plugin).]
 footnote:[Beispiele: Body-Parser (`+bodyParser+`), Cookie-Parser (`+cookieParser+`), Cors, etc.]
 
 ==== Authentisierung
-Benutzer (bzw. HTTP-Anfragen) lassen sich im Web über *Cookies/Sessions* oder *Tokens* authentifizieren.
-
-footnote:[Session/Cookies sind nicht Stateless. Tokens hingegen schon.]
-footnote:[Authentisierung: Wer bin ich? (Pin, 2FA, etc.) Autorisierung: Was darf ich?]
-
-'''
-
+===== Cookies/Sessions
 *Cookies:* Repräsentieren ein kleines Stück von Daten. Der Server schreibt die Cookies zum Client, der Client sendet alle seine Cookies bei jedem Request mit.
-*Sessions:* Bauen auf Cookies auf. Beim ersten Request wird eine Session-ID vom Server erstellt und als Cookie zum Client gesendet. Der Server kann den Benutzer nun bei jedem Request mit dieser ID identifizieren.
+*Sessions:* Bauen auf Cookies auf. Beim ersten Request wird eine Session-ID vom Server erstellt und als Cookie zum Client gesendet. Der Server kann den Benutzer nun bei jedem Request mit dieser ID authentifizieren.
 
 image::expressjs-sessions.drawio.png[]
 
+footnote:[Session/Cookies sind nicht Stateless, Tokens hingegen schon.]
+footnote:[Authentisierung: Wer bin ich? (Pin, 2FA, etc.) Autorisierung: Was darf ich?]
+
+===== Tokens
+*Tokens*: Beinhalten alle Informationen für die Authentisierung und Autorisierung eines Benutzers (Ausstelldatum, Ablaufdatum, Benutzerdaten, etc,). Werden vom Server ausgestellt und vom Client bei jedem Request mitgesendet. *Vorteile*: Sind Stateless und Serverübergreifend (vgl. Git-Tokens) *Nachteile*: Können geklaut werden (Lösung: kurzes Ablaufdatum und Invalidierung).
+
+*JSON Web Tokens (JWT)*: Offener Standard für die Erstellung von Tokens. Wird über den HTTP-Header mitgesendet und beinhaltet [.font-color.red]#Header# (Algorithmen, etc.), [.font-color.violet]#Payload# (Daten) und [.font-color.blue]#Signatur#.
+
+``Authorization: Bearer ``[.font-color.red]#`eyJhbGciOiJIUzI1NiJ9`#`.`[.font-color.violet]#`eyJuYW1lIjoiSm9obiBEb2UifQ`#`.`[.font-color.blue]#`SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`#
+
+footnote:[Einige Services bieten ihre Tokens öffentlich an (z.B. REST API Tokens)]
+footnote:[Tokens nur über sichere Verbindungen senden]
+
 ==== Weiteres
-*Routing* Zuordnung von Routes (`+GET /orders+`) zu Actions (`+orderController.getAll+`).
+*Routing*: Zuordnung von Routes (`+GET /orders+`) zu Actions (`+orderController.getAll+`).
 *Template Engines*: Engines für das Definieren und Rendern von HTML-Templates über einen einfachen Syntax.
+*AJAX*: Asynchrones Laden von Webinhalten (Filter, Single Page Applications, etc.). Schwierigkeiten bei SEO und Undo/Redo. Verwendung via `+fetch('/page').then(res => res.json()).then(...)+`
 
 === Verwendung von Express.js
 [source, javascript]

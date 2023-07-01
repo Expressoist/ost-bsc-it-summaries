@@ -1,0 +1,30 @@
+== Accessibility
+=== Rechtliches
+Seit 2021 gilt in der Schweiz für die öffentliche Verwaltung [.smaller]#(Bund, SBB, etc.)# der *eCH-0059* Accessibility Standard [.smaller]#(Konformitätsstufe AA)#.
+
+footnote:[Wichtig für Menschen mit Seh-, Hör-, kognitiven oder motorischen Behinderungen.]
+
+=== Themen
+*Farbenblindheit*: Informationen nicht nur mit Farben codieren. Stattdessen Mehrfach-Codierung anwenden (Farbe & Form, Farbe & Icon, etc.). Simulation u.a. via Chrome Dev Tools möglich.
+
+*Kontrast*: Wichtig für Personen mit Sehschwäche oder Alter ü. 50. Kontraststufe 5.7:1 für ü. 50 (AA), 15.9:1 für ü. 80 (AAA). Testing u.a. via Chrome Accessibility Audit oder Wave-Plugin.
+
+*Auszeichnung von Medien*: Bilder sollten immer einen Alt-Text haben. Art von Bild, Kontext, Inhalt und allenfalls Text als Zitat angeben. (_A comic strip of a confused man saying "Ok"._)
+
+*Zoombarkeit*: Zoom nicht unterbinden (kein `user-scalable = 0`, etc.). Schrift soll via Browsereinstellungen separat skalierbar sein (Verwendung von `em`/`rem`/`%` statt `px`).
+
+*Animationen*: Animationen sollten abstellbar sein, um Ablenkungen (z.B. bei ADHS), Epilepsie und Migräne zu verhindern.
+
+*Bedienbarkeit mit der Tastatur*: Alle wichtigen Elemente sind in der richtigen Reihenfolge fokussierbar (Tab). Fokus soll sichtbar sein. Dazu Standard-Controls nutzen und Controls nicht mit CSS umsortieren (kein `flex-direction: reverse`, etc.).
+
+*Screenreader*: Für Unterstützung keine Heading-Levels auslassen, semantische Elemente verwenden (anstatt ARIA-Attribute), versteckte Skip-Links ("Zum Hauptinhalt") am Seitenanfang einbauen, Lang-Attribut setzen, Tabellen-Headings für Zeilen/Spalten verwenden, Captions verwenden, Inputs mit Labels versehen.
+
+*Custom-Controls*: Nicht selber entwickeln. Bestehende Controls mit angepassten Styling verwenden (Star-Rating aus Radio-Buttons). Drag & Drop vermeiden. Gute Control-Libraries verwenden.
+
+footnote:[Automatische Accessibility Tests sind limitiert. Manuelle Tests immer empfohlen.]
+footnote:[Top-5 Probleme: Kontrast, kein Alt-Text, leere Links, keine Labels, leere Buttons.]
+
+=== Wer braucht was?
+*Sehbehindert*: Kontraste, Zoombarkeit, Trennung von Inhalt und Layout. *Hörbehindert*: Audiotranskription, visuelles Feedback, einfache Texte. *Blind*: Gute Dokumentstruktur, Alt-Texte, Tastaturbedienung. *Motorische Einschränkung*: Grosse Schaltflächen, Tastaturbedienung, keine ungewollten, automatischen Aktionen. *Lern- & Aufmerksamkeitsstörung*: Einfache Texte, lesbare Schriftarten, keine ablenkenden Elemente.
+
+footnote:[Betrifft 21% der Schweizer Bevölkerung.]

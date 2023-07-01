@@ -226,4 +226,14 @@ img {
   background: #43A047;
 }
 
+.font-color.red {
+  color: #c0392b;
+}
+.font-color.violet {
+  color: #8e44ad;
+}
+.font-color.blue {
+  color: #2980b9;
+}
+
 /*# sourceMappingURL=summary-theme.css.map */

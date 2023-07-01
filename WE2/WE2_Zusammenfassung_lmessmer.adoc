@@ -14,3 +14,5 @@ include::chapters/01_nodejs.adoc[]
 include::chapters/02_expressjs.adoc[]
 
 include::chapters/03_typescript.adoc[]
+
+include::chapters/08_accessibility.adoc[]

@@ -247,3 +247,15 @@ img {
     background: #43A047;
   }
 }
+
+.font-color {
+  &.red {
+    color: #c0392b;
+  }
+  &.violet {
+    color: #8e44ad;
+  }
+  &.blue {
+    color: #2980b9;
+  }
+}
