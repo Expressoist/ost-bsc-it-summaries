@@ -1,0 +1,69 @@
+== Testing
+=== Testarten
+*Static*: Statische Code-Analyse.
+*Unit*: Testen einer einzelnen Komponente (Klasse, Modul, etc.).
+*Integration*: Testen von mehreren Komponenten.
+*E2E/System*: Testen von allen Komponenten.
+*Funktional*: Testen von konkreten Anforderungen (Use-Cases).
+*Regression*: Testen auf potenzielle Fehler nach Code-Änderungen.
+*Weiteres*: Testen von Security, Usability, Performance, Stress, etc.
+
+footnote:[Oft wird dabei von einem SUT (System Under Test) gesprochen.]
+
+=== Struktur von Unit-Tests
+*Test-Gruppe/Fixture*: Beinhaltet die Tests. *Test-Environment*: Umgebung, in welcher die Tests ausgeführt werden. *Doubles/Mocks*: Fake-Klassen fürs Testen.
+
+*Phasen*: 1. Setup, 2. Exercise, 3. Verify, 4. Teardown
+
+footnote:[Achtung: z.T. wird auch das Test-Environment als «Fixture» bezeichnet.]
+
+=== Tools
+
+*Assertion Libraries*: Erlauben eine einfache Spezifikation von Tests (Chai, Expect.js).
+*Test-Runners*: Führen die Tests aus (Mocha, Cypress, Jest).
+*Mocking Libraries*: Erlauben die Erstellung von Mocks (Proxyquire, Sinon.js).
+*DOM-Handling*: Erlauben das Testen von Web-UIs (Cypress, Puppeteer).
+
+footnote:[Assertion Library könnte mit throw new Error (…) ersetzt werden (Sinnlos).]
+
+=== Prinzipen
+Alles Testen, das kaputt ging oder gehen könnte. Neuer Code ist immer ‹schuldig›, bis das Gegenteil bewiesen wurde. Vor einem Push ins Repo immer alle Tests laufen lassen. Mocks/Doubles mittels Dependency Injection zulassen.
+
+=== Test Smells
+Hard-to-Test Code, Production Bugs, Fragile Tests (Tests sind zu stark von interner Logik abhängig), Erratic Tests (manchmal erfolgreich, manchmal nicht), Developers not Writing Tests, Assertion Roulette (zu viele Assertions in einem Tests), Test Logic in Production Code, Obscure Tests (zu kompliziert), Slow Tests, Test Code Duplication, Conditional Test Logic (Codeteile werden nicht ausgeführt)
+
+=== Verwendung (Chai)
+Beginnt mit expect(…)
+.to.equal(1), .to.be.false, to.not.be.undefined, to.deep.equal(array), .to.be.a(number), .to.throw(TypeError), .to.be.an(‹array).that.does.not.include(3), .to.have.any.key(‹key›)
+
+[source, javascript]
+----
+import chai, {expect} from 'chai'
+import chaiHttp from 'chai-http';
+import jsdom from 'jsdom';
+import app from './app.js'
+
+chai.use(chaiHttp);
+
+describe('My Test-Fixture', () => {
+    let aNumber;
+    beforeEach(() =>{
+        aNumber = 1                           // Setup
+    })
+    it('Unit: Changed value is new value', () => {
+        aNumber = 2                             // Exercise
+        expect(aNumber).to.equal(2)       // Verify
+    })
+    it('Integration: Title contains id of book', () => {
+        chai.request(app).get('/books/42').end((err, res) => {
+            const dom = new jsdom.JSDOM(res.text)
+            expect(dom.window.document.querySelector('h1')).to.contain('42')
+        });
+    })
+    afterEach(() => {
+        aNumber = 0;                            // Teardown
+    })
+})
+----
+
+

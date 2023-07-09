@@ -1,0 +1,70 @@
+== Security
+=== OWASP Top 10
+*A01*: Broken Access Control
+*A02*: Cryptographic Failures
+*A03*: Injection
+*A04*: Insecure Design
+*A05*: Security Misconfiguration
+*A06*: Vulnerable and Outdated Components
+*A07*: Identification and Authentication Failures
+*A08*: Software and Data Integrity Failures
+*A09*: Security Logging and Monitoring Failures
+*A10*: Server-Side Request Forgery
+
+=== Fokusthemen
+==== *A01.1*: Insecure Direct Object References (IDOR)
+*Beschreibung*: Eine Webseite ist verwundbar, wenn Daten ohne Sicherheitsmechanismen über direkte Referenzen erreichbar sind.
+*Beispiel*: Die persönlichen Daten eines Nutzers lassen sich über `my-site.ch/:userID` einsehen, ohne dass sichergestellt wird, dass der Aufrufer auch die entsprechenden Rechte hat. Ein Angreifer kann nun z.B. verschiedenen IDs ausprobieren, bis er auf die Seite eines Nutzers kommt.
+
+*Lösung*: Alle Seiten mit korrekter Berechtigungskontrolle ausstatten. Bei Express.js z.B. via Middlewares, welche die `req.params.id` mit der aktuellen Nutzer-ID vergleichen.
+
+==== *A01.2*: Cross-Site Request Forgery (CSRF)
+*Beschreibung*: Eine Webseite ist verwundbar, wenn sie Formulare zusammen mit Cookies verwendet und die Herkunft des Formulars nicht überprüft.
+*Beispiel*: Ein Angreifer bringt einen eingeloggten User dazu, auf `evil.ch` zu gehen. Auf dieser Seite wird (automatisch) ein Formular an `my-site.ch/deleteAccount` gesendet. Da der Browser die Cookies der realen Webseiten mitsendet, wird die Aktion im Namen des Nutzers ausgeführt.
+
+*Lösung*: Formulare mit einem CSRF-Token versehen und beim Request überprüfen. Bei Express.js z.B. das `csurf` Plugin verwenden. Alternativ keine Cookies verwenden (sondern z.B. JWT).
+
+==== *A01.3*: Replay Attacks
+*Beschreibung*: Eine Webseite ist verwundbar, wenn Aktionen unbeabsichtigt mehrmals ausgeführt werden können.
+
+*Beispiel*: Eine Webseite belohnt einen Nutzer für jede korrekte Aufgabe mit Punkten. Der Nutzer kann nun eine einzige Aufgabe mehrmals absenden und erhaltet so mehrere Punkte.
+
+*Lösung*: Keine "generische" Lösung möglich. In diesem Fall z.B. die Aufgaben abspeichern und nur einmal zählen.
+
+==== *A02*: Cryptographic Failures
+*Beschreibung*: Eine Webseite ist verwundbar, wenn Sie veraltete oder riskante Kryptoalgorithmen, mangelte Zufallszahlen, hart-kodierte Passwörter oder ähnliches verwendet.
+*Beispiel*: Eine Webseite sendet die Logindaten eines Benutzers unverschlüsselt und ohne HTTPs an den Server. Ein Angreifer kann nun mit einer Network Sniffing Software die Logindaten abhören.
+
+*Lösung*: Verwendung von HTTPs. Keine sensitiven Informationen in der URL codieren. Externe Auth-Services nutzen.
+
+==== *A03.1*: Cross Site Scripting (XSS)
+*Beschreibung*: Eine Webseite ist verwundbar, wenn ein Angreifer seinen Schadcode so auf der Seite abspeichern kann, dass dieser im Browser eines Nutzers ausgeführt wird.
+*Beispiel*: Die Eingaben in ein Formular werden ohne "Escaping" an andere Nutzer ausgeliefert. Ein Angreifer kann nun z.B. `+<img src='x' onerror='...'>+` eingeben und so Code auszuführen.
+
+*Lösung*: "Escaping"/"Encoding" verwenden (`+{{content}}+` statt `+{{{content}}}+` in HBS). Eingabebereinigung ("Sanitizing") via Libraries (XSS, DOMPurify) einbauen. CSP-Header setzen. HTTPOnly-Cookies setzen.
+
+==== *A03.2* Remote Code Execution / Injection
+*Beschreibung*: Ein Server ist verwundbar, wenn ein Angreifer den Server dazu bringen kann, seinen Schadcode (z.B. JavaScript, SQL, etc.) auszuführen.
+*Beispiel*: Die Eingaben in einem Formular werden mittels `eval(…)` vom Server in ein bestimmtes Format konvertiert. Ein Angreifer kann nun z.B. `while(true)`, `process.exit()` (DoS) oder `res.end(fs.readdirSync(…).toString())` ausführen.
+
+*Lösung*: Niemals `eval(…)`, sondern `parseInt(…)` oder `JSON.parse(…)` verwenden. Eingabebereinigung einbauen. Rechenintensive Tasks auslagern (gegen DDoS-Attacken). Node.js keine Root-Rechte geben. Globale Scopes und Variablen reduzieren.
+
+footnote:[`setTimeout(…)` und `setInterval(…)` verhalten sich ähnlich wie `eval(…)`]
+
+==== *A07*: Identification & Authentication Failure
+*Beschreibung*: Eine Webseite ist verwundbar, wenn sie u.a. Brute-Force-Attacken erlaubt, schlechte Passwörter zulässt oder keine Multi-Faktor-Authentisierung verwendet.
+
+*Beispiel*: Ein Angreifer bekommt Zugriff auf ein Nutzerkonto, indem er alle möglichen Passwortkombinationen durchprobiert. Da das Passwort 1234 war, ging die Attacke nur wenige Minuten.
+
+*Lösung*: Authentisierung korrekt umsetzen oder externen Auth-Service nutzen.
+
+=== Login & Password Handling
+Grundsätzlich sollte man, wenn immer möglich, einen externen Auth-Service (z.B. via OAuth) verwenden. Eine Middleware stellt dabei sicher, dass Anfragen auf geschützte Bereiche nur durch autorisierte Benutzer erlaubt sind (z.B. via Token-Validierung).
+
+footnote:[Bei grossen Firmen mit eignen CySec-Teams sind eigene Auth-Services in Ordnung.]
+footnote:[Möglichkeiten: OpenID Connect, Oauth, Passwordless (Magic-Links, WebAuthN, TOTP, etc.)]
+
+=== Weiteres
+*CSP-Header*: Mechanismus, um das Laden von Ressourcen auf die angegebenen Domains zu beschränken (`Content-Security-Policy: default-src self trusted-service.com`). *HTTPOnly-*, *Secure-* und *SameSite-Cookies*: Blockiert den Zugriff von Client-Scripts sowie von anderen Webseiten.
+
+`+(app.use(csurf({cookie: true}) und im Formular <input name=_csrf value={{csrfToken}}). Keine Cookies verwenden (stattdessen z.B. JWTs).+`

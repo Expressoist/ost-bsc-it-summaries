@@ -5,7 +5,7 @@
 :docinfodir: ../resources/
 :docinfo: shared-head
 :source-highlighter: highlight.js
-:highlightjs-languages: javascript, html, typescript
+:highlightjs-languages: javascript, html, typescript, css
 :lang: de
 :stem:
 
@@ -16,3 +16,11 @@ include::chapters/02_expressjs.adoc[]
 include::chapters/03_typescript.adoc[]
 
 include::chapters/08_accessibility.adoc[]
+
+include::chapters/09_security.adoc[]
+
+include::chapters/10_testing.adoc[]
+
+include::chapters/11_1_internationalization.adoc[]
+
+include::chapters/11_2_cssanimations.adoc[]

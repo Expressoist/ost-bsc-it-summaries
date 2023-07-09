@@ -1,0 +1,71 @@
+== Animationen mit CSS
+=== Transitions
+Erzeugen einen weichen Übergang zwischen zwei Zuständen.
+Die Frames dazwischen werden automatisch ausgerechnet (Tweening).
+
+`transition-property`: CSS-Property zum Animieren. ``transition-duratio``n: Animationsdauer. `transition-timing-function`: Beschleunigungsfunktion. `transition-delay`: Zeitdauer, bevor die Animation startet.
+
+Kurzschreibweise mit `transition`. Erlaubt auch mehrere Übergänge.
+
+image::cssanimations-transition-functions.png[]
+
+[source, css]
+----
+h1 {
+    transition: all 300ms ease-in 0s,
+      			color 1s linear 0.5s;
+}
+h1:hover {
+    background: red;	/* See 'all' */
+    color: white;		/* See 'color' */
+}
+----
+footnote:[Alle Animationen werden über eine https://cubic-bezier.com/#.17,.67,.83,.67[Cubic Bezier Curve] definiert.]
+
+=== Transform
+Verändert die Form und Position eines Elements, wenn es angezeigt wird.
+Kann über Transitions animiert werden.
+Rotationen sind im Uhrzeigersinn.
+Der Ursprung kann mittels transform-origin: horizontal vertical; festgelegt werden.
+Bei 3D-Animationen lässt sich auf dem Parent-Element das perspective-Property setzen (je tiefer der Wert, desto extremer die Perspektive).
+
+image::cssanimations-transforms.png[]
+
+[source, css]
+----
+p { transform: rotate(30deg)        /* rotateX, Y, Z, 3d    */
+               translate(20px, 5%)  /* translateX, Y, Z, 3d */
+               scale(1.5)           /* scaleX, Y, Z, 3d     */
+               skew(15deg);         /* skewX, Y             */
+    transform-origin: left top;     /* Or px, %             */
+    transition: transform 300ms ease; }
+
+/* Looses translate and scale! */
+p:hover { transform: rotate(60deg) skew(0deg); }
+----
+footnote:[Bei mehreren Transforms ist die Anordnung relevant.]
+footnote:[Achtung: Bei Zustandswechsel immer alle gesetzten Transforms wiederholen.]
+
+=== Keyframe Animationen
+Erlaubt die Animation von einer Serie von Zuständen.
+
+[source, css]
+----
+@keyframes my-animation {
+    0% { background: red; }
+    50% { background: green; }
+    100% { background: blue; } }
+
+h1 { animation-name: my-animation;
+     animation-duration: 5s;
+     animation-timing-function: linear;
+     animation-iteration-count: 3;  /* Or infinite */
+     animation-direction: normal;   /* Or revert, alternate */ }
+----
+
+Die meisten Properties mit quantitativen Werten oder Farben lassen sich animieren. Nicht quantifizierbar sind z.B. `border-style`, `display`, `auto`, `url(...)`, etc.
+
+footnote:[Mit Houdini (`@property`) lassen sich neu auch solche Properties animieren.]
+
+=== Weiteres
+*JS-Animationen*: Mächtiger, aber nicht performant (CSS bevorzugen). *SVG-Animationen*: Sehr praktisch, wenn Browser-Support vorhanden.

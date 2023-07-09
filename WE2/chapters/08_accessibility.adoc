@@ -13,7 +13,7 @@ footnote:[Wichtig für Menschen mit Seh-, Hör-, kognitiven oder motorischen Beh
 
 *Zoombarkeit*: Zoom nicht unterbinden (kein `user-scalable = 0`, etc.). Schrift soll via Browsereinstellungen separat skalierbar sein (Verwendung von `em`/`rem`/`%` statt `px`).
 
-*Animationen*: Animationen sollten abstellbar sein, um Ablenkungen (z.B. bei ADHS), Epilepsie und Migräne zu verhindern.
+*Animationen*: Animationen sollten abstellbar sein, um Ablenkungen (z.B. bei ADHS), Epilepsie und Migräne zu verhindern (`@media (prefers-reduced-motion){ }`). Animationen von `opacity` immer in Kombination mit `visibility: visible|hidden` verwenden.
 
 *Bedienbarkeit mit der Tastatur*: Alle wichtigen Elemente sind in der richtigen Reihenfolge fokussierbar (Tab). Fokus soll sichtbar sein. Dazu Standard-Controls nutzen und Controls nicht mit CSS umsortieren (kein `flex-direction: reverse`, etc.).
 

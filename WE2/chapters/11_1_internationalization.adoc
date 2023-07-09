@@ -1,0 +1,53 @@
+== Internationalisierung
+=== Begriffe
+*Internationalisierung* [.smaller]#(I18N)#: Programmieren auf eine Art, sodass Lokalisierung möglich wird.
+*Lokalisierung* [.smaller]#(L10N)# / *Globalisierung* [.smaller]#(G11N)#: Anpassung des Programms (Sprache, Farbe, etc.) an die Sprachregion.
+*Übersetzung* [.smaller]#(T9N)#: Übersetzung von Texten und Wörtern.
+*Locale*: Bezeichnung der Sprachregion (z.B. als String).
+
+footnote:[Herausforderungen: Sprache, Wortlänge, Schreibrichtung, Farbbedeutung, etc.]
+
+=== Best Practices
+*Layout*:
+Elementpositionen an kulturelle Benutzergruppe anpassen (z.B. Leserichtung).
+Textlänge soll Hierarchie nicht beeinflussen (ungünstige Umbrüche).
+Layout nicht von der Wortsortierung abhängig machen.
+*Eingabefelder*:
+Unterschiede bei Postleitzahl, Telefonnummer, Provinzbezeichnung, etc. beachten.
+Vollständiger Name anstatt Vor- und Nachname verwenden.
+Unterschiedliche Datums- und Zahlenformate zulassen.
+
+footnote:[Je nach Region/Zielgruppe ist der Lokalisierungsaufwand grösser oder kleiner.]
+footnote:[Nicht alles lässt sich automatisch lokalisieren (Denke: Farbe, Etiquette, etc.).]
+
+=== Umsetzung
+*Anführungszeichen*: Werden bei `<q>...</q>` automatisch basierend auf `lang`-Attribut gesetzt. *Standard*: ES2021 Internationalisierung. *Bibliotheken*: FormatJS, Polyglot.js, i18next.
+
+[source, javascript]
+----
+const regions = new Intl.DisplayNames(['en'], { type: 'region' })
+regions.of('CH'); // Switzerland
+
+const collator = new Intl.Collator(['de'])
+collator.compare('Äh?', 'Zzz') // Smaller (-1)
+
+const dFormatter = new Intl.DateTimeFormat(['en-US'])
+dFormatter.format(Date.now()) // 7/9/2023
+new Date(Date.now()).toLocaleString(['en-US']) // Alternative
+
+const tFormatter = new Intl.RelativeTimeFormat(['en'])
+tFormatter.format(-1, 'week') // 1 week ago
+
+const nFormatter = new Intl.NumberFormat(['de'])
+nFormatter.format(1250.50) // 1.250,5
+
+const lFormatter = new Intl.ListFormat(['en'])
+lFormatter.format(['Eggs','Milk','Fish']) // Eggs, Milk, and Fish
+
+const plural = new Intl.PluralRules(['en-US'])
+plural.select(1) // 'one': e.g. write '1 cat'
+plural.select(10) // 'other': e.g. write '10 cats'
+
+const swiss = new Intl.Locale('gsw') // Alternative zum String
+----
+[.code-annotation]#ES2021 Internat.#
