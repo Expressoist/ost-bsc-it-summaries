@@ -1,0 +1,128 @@
+== CSS-Präprozessoren
+Wandeln CSS-ähnlichen Code in CSS um (z.B. Sass, PostCSS, Less).
+Sind nicht an CSS-Limitationen gebunden.
+Erlauben Modularisierung, Wiederverwendbarkeit und wartbaren Code.
+
+=== Syntactically Awesome Style Sheets (SASS)
+CSS-Präprozessor. Erlaubt Sass- und SCSS-Syntax.
+*Sass*: "Einrück"-Syntax mit weniger Schreibaufwand.
+*SCSS*: Angepasster CSS-Syntax.
+
+footnote:[SCSS-Syntax wird bevorzugt. Sass-Syntax ist historisch bedingt.]
+
+==== Anwendung
+*Features*: Variablen, Verschachtelung, Partials, Mixins, Vererbung, Operatoren, Funktionen, Maps.
+*Weiteres*: Mixins und Extends funktionieren ähnlich.
+Mixins generieren mehr Code-Redundanz, erlauben aber Input-Parameter.
+Extends sind sinnvoll bei thematischen Abhängigkeiten.
+Im Zweifelsfall Mixins verwenden.
+
+footnote:[Beide haben Vor- und Nachteile. Immer den CSS-Code im Auge behalten.]
+footnote:[Maximal bis zu 3 Ebenen verschachteln (Lesbarkeit) und "use" bevorzugen (Überschreibungen).]
+
+[source, scss]
+----
+@use "colors";                    // Partials (use)
+@import "margins";                // Partials (import)
+
+@mixin toPosition($x, $y: 10px) { // Mixins with Parameters
+  position: absolute;
+  left: $x; bottom: $y;
+}
+
+@mixin onMobile() {               // Mixins
+  @content;                       // Content of Importer
+  & .narrow { display: block; }   // Reference to Importer (&)
+}
+
+ul {
+  color: colors.$main-color;      // With Namespace (use)
+  li {                            // Nesting
+    margin: $main-margin;         // No Namespace (import)
+    &:hover {                     // Parent-Selector (&)
+      margin: 2 * $main-margin;   // Calculations
+    }
+  }
+  > a { color: blue; }            // With Combinators
+  div & {                         // Also Possible (&)
+    @include toPosition(10px);    // Mixins
+    @include onMobile {
+      .wide { display: none; }
+    }
+  }
+}
+
+%abstract-rule { margin: 0; }     // Placeholder (not in CSS)
+
+ol {
+  @extend ul;                     // Inherits all ul-Rules
+  @extend %abstract-rule;         // Placeholder-Inheritance
+}
+----
+[.code-annotation]#stylesheet.scss#
+
+[source, scss]
+----
+$main-color: black;               // Variables
+----
+[.code-annotation]#_colors.scss#
+
+[source, scss]
+----
+$main-margin: 10px;               // Variables
+----
+[.code-annotation]#_margins.scss#
+
+[source, css]
+----
+ul, ol { color: black; }
+ul li, ol li { margin: 10px; }
+ul li:hover, ol li:hover { margin: 20px; }
+ul > a, ol > a { color: blue; }
+div ul, div ol { position: absolute;
+                 left: 10px;
+                 bottom: 10px; }
+div ul .wide, div ol .wide { display: none; }
+div ul .narrow, div ol .narrow { display: block; }
+ol { margin: 0; }
+----
+[.code-annotation]#result.css#
+
+==== Logik und Rechnen
+Einheiten: Numbers (`1`, `3.5`, `5px`), Strings (`+"foo"+`, `+'bar'+`, `px`), Colors (`blue`, `#04a3f3`), Booleans, Nulls, Listen, Maps.
+
+Rechnen funktioniert wie in der Physik!
+
+[source, scss]
+----
+$list: 2px 4px;                   // Lists
+$map: ("red": red, "blue": blue); // Maps
+
+@function do($val) {              // Functions
+  @if $val == 2px {
+    @return 2 * $val;             // 2 * 2px = 4px
+  } @else {
+    @return $val;
+  }
+}
+@each $elem in $list {            // Loops
+  body { margin: do($elem); }     // Function-Calls
+}
+
+// Creates text-red {...} and text-blue {...}
+@mixin color-modifiers {
+  @each $key, $val in $map {      // Loops with Maps
+    &-#{$key} { color: $val; }    // Template Strings
+  }
+}
+.text { @include color-modifiers; }
+----
+[.code-annotation]#calculations.scss#
+
+=== Weiteres
+*PostCSS*: Framework für CSS. Erlaubt Plugins fürs CSS-Parsing/Preprocessing (z.B. autoprefixer, minifier, etc.).
+*Built-Tools*: Automatisieren die Erstellung von App-Bundles (WebPack, Vite, Rollup, etc.).
+Optimieren Performance und Cross-Browser-Support. Beinhalten u.a. Tree-Shaking, Caching, Resource Loading Optimization, Polyfills und Transformationen (minify, compress, etc.).
+
+footnote:[Bekannte CSS-Frameworks: Bootstrap, Tailwind, Material UI.]
+footnote:[Natives CSS-Nesting soll bald möglich sein (aktuell nur Chrome/Edge).]

@@ -1,0 +1,105 @@
+== User-Centered Design
+=== User-Research
+*1st Rule of Usability*:
+Höre nicht auf deine User, sondern schaue, was sie machen.
+Befragungen führen zu Spekulation & Wunschkonzert.
+Kunden dürfen befragt werden (Kunde ≠ Benutzer)
+
+*Wichtig*:
+Benutzer, Aufgabe, Tool und Kontext beachten.
+Du bist nicht der Benutzer.
+User-Research ist immer möglich.
+*Problem Space*:
+Benutzer ist Experte.
+Kennt seine Aufgaben, Ziele, Probleme.
+Kann darauf analysiert und interviewt werden.
+*Solution Space*:
+Designer ist Experte.
+Kann Lösungen für die Probleme entwickeln.
+
+footnote:[Kunden und Benutzer müssen unterschiedlich analysiert und befriedigt werden.]
+footnote:[User-Research ist aufwändig, aber unersetzlich für benutzerorientierte Produkte.]
+
+==== Szenarios
+Zeigen eine Geschichte, wie ein Problem aktuell (Problem-Scenario) und in Zukunft (Future-Scenario) gelöst wird. Dokumentieren die Verbesserungen durch das neue Tool. Werden durch die Kunden und Benutzer validiert. Als Text oder Storyboard (Sketch, App, etc.) möglich.
+
+*Beinhalten*: Benutzer (Persona), realistisches/beobachtetes Problem mit Kontext, Auslöser, Schritte, Lösung oder Fehlschlag.
+
+footnote:[Releases sollen sich an den Szenarien orientieren (anstatt den Features).]
+
+==== Befragungen
+Grundsätzlich vermeiden.
+*Probleme*:
+Wer wird befragt (Sampling Bias)?
+Wie wird gefragt (Offen, Suggestiv, etc.)?
+Was wurde zuvor gefragt?
+
+*Qualitativ*: Wenige Befragungen, die viel aufdecken.
+*Quantitativ*: Viele Befragungen, die weniges validieren.
+
+=== Navigationsdesign
+Mit guter Ausschilderung wissen Nutzer stets:
+*Wo bin ich?* Eindeutige Seitentitel, Headers, Icons, etc. und Verwendung von Breadcrumbs.
+*Wo kann ich hin?* Eindeutige und sichtbare Navigationselemente.
+*Was ist passiert?* Kontinuität und Aktionsfluss durch Animationen, etc. sicherstellen.
+
+Qualität bestimmbar mit *Kofferraum-Test*:
+Welche Webseite?
+Welche Unterseite?
+Welche Hauptsektionen?
+Welche Navigationsoptionen?
+Wo im Gesamtkontext?
+Wo kann ich suchen?
+
+footnote:[mysite.ch / Vision / Our Goal, Inventor, … / Home, Team, … / About->Vision / Oben Rechts.]
+footnote:[Resultat: Benutzer fühlen sich gut aufgehoben.]
+
+==== Methoden
+*Concept Model*: Zeigt die Beziehungen zwischen Elementen (Klasse hat Lehrer).
+*Site Map*: Zeigt die Navigationshierarchie der Elemente (Klasse->Lehrer).
+*Information Scent*: Links sind so benannt, dass die erreichbaren Ziele erkennbar sind.
+
+*Card-Sorting*:
+*1.* Zielpunkte (Content Elements) definieren.
+*2.* Gruppen mit "Open Card Sort" bestimmen:
+*2.a* 5+ Personen der Zielgruppe rekrutieren.
+*2.b* Zielpunkte in disjunkte Gruppen unterteilen.
+*2.c* Gruppen benennen lassen.
+*3.* Gruppennamen bestimmen (Hypothese).
+*4.* Gruppen mit "Closed Card Sort" validieren:
+*4.a* 5+ neue Personen rekrutieren.
+*4.b* Gruppennamen vorgeben.
+*4.c* Zielpunkte den Gruppen zuordnen lassen.
+
+*Tree-Testing*:
+*1.* Aktuelle Navigationsstruktur aufnehmen.
+*2.* Szenarien definieren
+*3.* Auffindbarkeit der Zielpunkte testen.
+
+=== Usability-Test
+Gute Szenarios mit sinnvollen Zielen definieren. Aufs wichtigste fokussieren (schnelle Iteration). Keine konkreten Elemente (Button-Texte, etc.) benennen. Richtige Personen rekrutieren. Vor- und Nach-Interview führen. Personen zum laut denken anregen.
+
+*Vorgehen*: Benutzergruppe bestimmen, Testpersonen sammeln, Aufgaben (Szenarios) durchspielen, Probleme und Kontext analysieren. (Alles Dokumentieren)
+
+=== Usability-Standards
+*ISO 9241-11*: Effektivität: Die Benutzer können ihre Ziele erreichen. Effizient: Der Aufwand zur Erreichung ist angemessen. Zufriedenheit: Die Benutzer sind gegenüber dem System positiv eingestellt.
+
+*ISO 9241-110*: Aufgabenangemessenheit, Selbstbeschreibungsfähigkeit, Steuerbarkeit, Erwartungskonformität, Fehlertoleranz, Individualisierbarkeit, Lernförderlichkeit
+
+=== Undo
+Gibt Sicherheit, erlaubt Korrektur und vermeidet unnötige Dialoge.
+Hinweis auf Undo in passive Benachrichtigungen (Snackbar, Toast, etc.) einbauen.
+Undo immer mit Redo kombinieren.
+
+*Design-Erwägungen*:
+Kontext (Alles, ein Feld, ein Upload, etc.).
+Granularität (Buchstabe, Abschnitt, etc.).
+Operationen (Ausdrucken/Versenden nicht Undoable).
+
+=== Weiteres
+*Wireframes/Mockups*:
+Zeigen einen Sketch der Benutzeroberfläche mit möglichst realistischem Inhalt (Papier, Figma, Axure, etc.). Kann für Usability-Tests verwendet werden.
+*Vereinfachung*:
+Funktionen können entfernt, versteckt, gruppiert oder verschoben werden.
+
+footnote:[Weitere Tools (Gimbal, Flowmapp)]
