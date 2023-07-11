@@ -15,16 +15,18 @@ include::chapters/02_expressjs.adoc[]
 
 include::chapters/03_typescript.adoc[]
 
-include::chapters/08_accessibility.adoc[]
+include::chapters/04_responsivelayout.adoc[]
 
-include::chapters/09_security.adoc[]
+include::chapters/05_accessibility.adoc[]
 
-include::chapters/10_testing.adoc[]
+include::chapters/06_security.adoc[]
 
-include::chapters/11_1_internationalization.adoc[]
+include::chapters/07_testing.adoc[]
 
-include::chapters/11_2_cssanimations.adoc[]
+include::chapters/08_internationalization.adoc[]
 
-include::chapters/12_webdevops_sass.adoc[]
+include::chapters/09_cssanimations.adoc[]
 
-include::chapters/13_usercentereddesign_undo.adoc[]
+include::chapters/10_webdevops_sass.adoc[]
+
+include::chapters/11_usercentereddesign_undo.adoc[]
