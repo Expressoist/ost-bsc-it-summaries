@@ -2,9 +2,7 @@
 === Rechtliches
 Seit 2021 gilt in der Schweiz für die öffentliche Verwaltung [.smaller]#(Bund, SBB, etc.)# der *eCH-0059* Accessibility Standard [.smaller]#(Konformitätsstufe AA)#.
 
-footnote:[Wichtig für Menschen mit Seh-, Hör-, kognitiven oder motorischen Behinderungen.]
-
-=== Themen
+=== Wie kann man Accessibility sicherstellen?
 *Farbenblindheit*: Informationen nicht nur mit Farben codieren. Stattdessen Mehrfach-Codierung anwenden (Farbe & Form, Farbe & Icon, etc.). Simulation u.a. via Chrome Dev Tools möglich.
 
 *Kontrast*: Wichtig für Personen mit Sehschwäche oder Alter ü. 50. Kontraststufe 5.7:1 für ü. 50 (AA), 15.9:1 für ü. 80 (AAA). Testing u.a. via Chrome Accessibility Audit oder Wave-Plugin.

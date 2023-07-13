@@ -11,8 +11,8 @@ Du bist nicht der Benutzer.
 User-Research ist immer möglich.
 *Problem Space*:
 Benutzer ist Experte.
-Kennt seine Aufgaben, Ziele, Probleme.
-Kann darauf analysiert und interviewt werden.
+Kennt seine Aufgaben, Ziele und Probleme.
+Kann darauf analysiert werden.
 *Solution Space*:
 Designer ist Experte.
 Kann Lösungen für die Probleme entwickeln.
@@ -21,21 +21,24 @@ footnote:[Kunden und Benutzer müssen unterschiedlich analysiert und befriedigt 
 footnote:[User-Research ist aufwändig, aber unersetzlich für benutzerorientierte Produkte.]
 
 ==== Szenarios
-Zeigen eine Geschichte, wie ein Problem aktuell (Problem-Scenario) und in Zukunft (Future-Scenario) gelöst wird. Dokumentieren die Verbesserungen durch das neue Tool. Werden durch die Kunden und Benutzer validiert. Als Text oder Storyboard (Sketch, App, etc.) möglich.
+Zeigen eine Geschichte, wie ein Problem aktuell [.smaller]#(Problem-Scenario)# und in Zukunft [.smaller]#(Future-Scenario)# gelöst wird.
+Dokumentieren die Verbesserungen durch das neue Tool.
+Werden durch Kunden & Benutzer validiert.
+Als Text oder Storyboard [.smaller]#(Sketch, App, etc.)# möglich.
 
 *Beinhalten*: Benutzer (Persona), realistisches/beobachtetes Problem mit Kontext, Auslöser, Schritte, Lösung oder Fehlschlag.
 
-footnote:[Releases sollen sich an den Szenarien orientieren (anstatt den Features).]
+footnote:[Releases sollten sich an den Szenarien orientieren (anstatt den Features).]
 
 ==== Befragungen
 Grundsätzlich vermeiden.
 *Probleme*:
-Wer wird befragt (Sampling Bias)?
+Wer wird befragt?
 Wie wird gefragt (Offen, Suggestiv, etc.)?
 Was wurde zuvor gefragt?
 
-*Qualitativ*: Wenige Befragungen, die viel aufdecken.
-*Quantitativ*: Viele Befragungen, die weniges validieren.
+*Qualitative Studien*: Wenige Befragungen, die viel aufdecken.
+*Quantitative Studien*: Viele Befragungen, die weniges validieren.
 
 === Navigationsdesign
 Mit guter Ausschilderung wissen Nutzer stets:
@@ -52,7 +55,7 @@ Wo im Gesamtkontext?
 Wo kann ich suchen?
 
 footnote:[mysite.ch / Vision / Our Goal, Inventor, … / Home, Team, … / About->Vision / Oben Rechts.]
-footnote:[Resultat: Benutzer fühlen sich gut aufgehoben.]
+footnote:[Mit guter Ausschilderung fühlen sich die Benutzer gut aufgehoben (Ziel).]
 
 ==== Methoden
 *Concept Model*: Zeigt die Beziehungen zwischen Elementen (Klasse hat Lehrer).
@@ -79,7 +82,12 @@ footnote:[Resultat: Benutzer fühlen sich gut aufgehoben.]
 === Usability-Test
 Gute Szenarios mit sinnvollen Zielen definieren. Aufs wichtigste fokussieren (schnelle Iteration). Keine konkreten Elemente (Button-Texte, etc.) benennen. Richtige Personen rekrutieren. Vor- und Nach-Interview führen. Personen zum laut denken anregen.
 
-*Vorgehen*: Benutzergruppe bestimmen, Testpersonen sammeln, Aufgaben (Szenarios) durchspielen, Probleme und Kontext analysieren. (Alles Dokumentieren)
+*Vorgehen*:
+*1.* Benutzergruppe bestimmen.
+*2.* Testpersonen sammeln.
+*3.* Aufgaben (Szenarios) durchspielen.
+*4.* Probleme und Kontext analysieren.
+*5.* Alles dokumentieren.
 
 === Usability-Standards
 *ISO 9241-11*: Effektivität: Die Benutzer können ihre Ziele erreichen. Effizient: Der Aufwand zur Erreichung ist angemessen. Zufriedenheit: Die Benutzer sind gegenüber dem System positiv eingestellt.
@@ -98,8 +106,7 @@ Operationen (Ausdrucken/Versenden nicht Undoable).
 
 === Weiteres
 *Wireframes/Mockups*:
-Zeigen einen Sketch der Benutzeroberfläche mit möglichst realistischem Inhalt (Papier, Figma, Axure, etc.). Kann für Usability-Tests verwendet werden.
+Zeigen einen Sketch des UIs mit möglichst realistischem Inhalt [.smaller]#(Papier, Figma, Axure, etc.)#.
+Können für Usability-Tests verwendet werden.
 *Vereinfachung*:
 Funktionen können entfernt, versteckt, gruppiert oder verschoben werden.
-
-footnote:[Weitere Tools (Gimbal, Flowmapp)]

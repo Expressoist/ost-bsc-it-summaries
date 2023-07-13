@@ -1,14 +1,14 @@
 == Express.js
-=== Was ist Express.js
-Express.js ist ein bekanntes *Web-Framework* für Node.js.
-Es baut auf dem *MVC-Pattern* auf und verwendet Middlewares für die Request-Bearbeitung.
+=== Was ist Express.js?
+Bekanntes *Web-Framework* für Node.
+Baut auf dem *MVC-Pattern* auf und verwendet Middlewares für die Request-Bearbeitung.
 
 ==== Model-View-Controller (MVC)
 Beschreibt ein Frontend Design Pattern. *Model*: Beinhaltet die Daten und Datenaufbereitung. *View*: Stellt die Daten dar. *Controller*: Verknüpft das Model mit der View.
 
-footnote:[Ziel ist "Seperation of Concerns" (Alternativen dazu sind MVVM, MVP, etc.)]
-
 image::expressjs-mvc.drawio.png[]
+
+footnote:[Ziel ist "Seperation of Concerns" (Alternativen dazu sind MVVM, MVP, etc.)]
 
 ==== Middlewares
 Middlewares sind ein *Stack von Anweisungen*, welche für einen Request ausgeführt werden. Die Reihenfolge der Registrierung bestimmt die Ausführungsreihenfolge.
@@ -21,7 +21,7 @@ footnote:[Beispiele: Body-Parser (`+bodyParser+`), Cookie-Parser (`+cookieParser
 *Cookies:* Repräsentieren ein kleines Stück von Daten. Der Server schreibt die Cookies zum Client, der Client sendet alle seine Cookies bei jedem Request mit.
 *Sessions:* Bauen auf Cookies auf. Beim ersten Request wird eine Session-ID vom Server erstellt und als Cookie zum Client gesendet. Der Server kann den Benutzer nun bei jedem Request mit dieser ID authentifizieren.
 
-image::expressjs-sessions.drawio.png[]
+// image::expressjs-sessions.drawio.png[]
 
 footnote:[Session/Cookies sind nicht Stateless, Tokens hingegen schon.]
 footnote:[Authentisierung: Wer bin ich? (Pin, 2FA, etc.) Autorisierung: Was darf ich?]
@@ -33,8 +33,8 @@ footnote:[Authentisierung: Wer bin ich? (Pin, 2FA, etc.) Autorisierung: Was darf
 
 ``Authorization: Bearer ``[.font-color.red]#`eyJhbGciOiJIUzI1NiJ9`#`.`[.font-color.violet]#`eyJuYW1lIjoiSm9obiBEb2UifQ`#`.`[.font-color.blue]#`SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`#
 
-footnote:[Einige Services bieten ihre Tokens öffentlich an (z.B. REST API Tokens)]
-footnote:[Tokens nur über sichere Verbindungen senden]
+footnote:[Einige Services bieten ihre Tokens öffentlich an (z.B. REST API Tokens).]
+footnote:[Tokens nur über sichere Verbindungen senden.]
 
 ==== Weiteres
 *Routing*: Zuordnung von Routes (`+GET /orders+`) zu Actions (`+orderController.getAll+`).
@@ -51,7 +51,6 @@ import path from "path";
 import exphbs from 'express-handlebars'
 import customLogSessionMiddleware from './custom-middleware.js';
 import router from "./routes.js";
-
 const app = express();
 
 /* Middlewares */
@@ -118,13 +117,8 @@ export default customLogSessionMiddleware;
 ----
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>Example App</title>
-</head>
-<body>
-    {{{body}}}
-</body>
+<head> <meta charset="utf-8"> <title>App</title> </head>
+<body> {{{body}}} </body>
 </html>
 ----
 [.code-annotation]#views/layouts/main.hbs#
@@ -134,7 +128,7 @@ export default customLogSessionMiddleware;
 <h1>{{id}}</h1>
 <p>{{concat "book" id}}</p>
 <ul>
-    {{#each books}}
+    {{#each books}} <!-- #if, #unless, #with -->
         <li>{{name}}: {{@root.id}}</li>
     {{/each}}
 </ul>

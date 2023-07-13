@@ -1,33 +1,31 @@
 == Animationen mit CSS
-=== Transitions
-Erzeugen einen weichen Übergang zwischen zwei Zuständen.
-Die Frames dazwischen werden automatisch ausgerechnet (Tweening).
+=== CSS-Transitions
+Erzeugen einen Übergang von Zustand A zu Zustand B.
+Die Frames dazwischen werden automatisch berechnet (Tweening).
 
-`transition-property`: CSS-Property zum Animieren. ``transition-duratio``n: Animationsdauer. `transition-timing-function`: Beschleunigungsfunktion. `transition-delay`: Zeitdauer, bevor die Animation startet.
-
-Kurzschreibweise mit `transition`. Erlaubt auch mehrere Übergänge.
+`transition-property`: CSS-Property zum Animieren.
+`transition-duration`: Animationsdauer.
+`transition-timing-function`: Beschleunigungsfunktion.
+`transition-delay`: Zeitdauer, bevor die Animation startet.
+Kurzschreibweise mit `transition`.
 
 image::cssanimations-transition-functions.png[]
 
 [source, css]
 ----
-h1 {
-    transition: all 300ms ease-in 0s,
-      			color 1s linear 0.5s;
-}
-h1:hover {
-    background: red;	/* See 'all' */
-    color: white;		/* See 'color' */
-}
+h1 { transition: all 300ms ease-in 0s,
+                 color 1s linear 0.5s; }
+h1:hover { background: red;  /* See 'all' */
+           color: white;     /* See 'color' */ }
 ----
 footnote:[Alle Animationen werden über eine https://cubic-bezier.com/#.17,.67,.83,.67[Cubic Bezier Curve] definiert.]
 
-=== Transform
-Verändert die Form und Position eines Elements, wenn es angezeigt wird.
-Kann über Transitions animiert werden.
+=== CSS-Transforms
+Verändern die Form/Position eines Elements bei der Anzeige.
+Kann mit `transition` animiert werden.
 Rotationen sind im Uhrzeigersinn.
-Der Ursprung kann mittels transform-origin: horizontal vertical; festgelegt werden.
-Bei 3D-Animationen lässt sich auf dem Parent-Element das perspective-Property setzen (je tiefer der Wert, desto extremer die Perspektive).
+Der Ursprung kann mit `transform-origin: x y` festgelegt werden.
+Bei 3D-Transformationen kann `+perspective:[number]+` auf dem Parent gesetzt werden (höhere Werte wirken "extremer").
 
 image::cssanimations-transforms.png[]
 
@@ -47,7 +45,7 @@ footnote:[Bei mehreren Transforms ist die Anordnung relevant.]
 footnote:[Achtung: Bei Zustandswechsel immer alle gesetzten Transforms wiederholen.]
 
 === Keyframe Animationen
-Erlaubt die Animation von einer Serie von Zuständen.
+Erlauben komplexere Animationen mit mehreren Zuständen.
 
 [source, css]
 ----
@@ -62,10 +60,9 @@ h1 { animation-name: my-animation;
      animation-iteration-count: 3;  /* Or infinite */
      animation-direction: normal;   /* Or revert, alternate */ }
 ----
+Die meisten Properties mit quantitativen Werten/Farben lassen sich animieren.
+Nicht animierbar sind `display`, `auto`, `url(...)`, etc.
 
-Die meisten Properties mit quantitativen Werten oder Farben lassen sich animieren. Nicht quantifizierbar sind z.B. `border-style`, `display`, `auto`, `url(...)`, etc.
-
-footnote:[Mit Houdini (`@property`) lassen sich neu auch solche Properties animieren.]
-
-=== Weiteres
-*JS-Animationen*: Mächtiger, aber nicht performant (CSS bevorzugen). *SVG-Animationen*: Sehr praktisch, wenn Browser-Support vorhanden.
+footnote:[Mit der Houdini-API (`@property`) lassen sich auch solche Properties animieren.]
+footnote:[JS-Animationen sind grundsätzlich mächtiger, aber nicht so performant.]
+footnote:[SVG-Animationen sind sehr praktisch, wenn der Browser-Support vorhanden ist.]

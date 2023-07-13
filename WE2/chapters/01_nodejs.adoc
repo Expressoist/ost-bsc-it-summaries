@@ -5,10 +5,10 @@
 *Server*: Stellt die Hardware und das OS für den Web-Server bereit.
 
 === Was ist Node.js?
-Node.js ist eine *JavaScript Runtime* mit einem riesigen Package Ecosystem.
+Eine *JavaScript Runtime* mit einem riesigen Package Ecosystem.
 *Vorteile*:
-Server und Client in selber Sprache (JavaScript),
-nativer Support von JSON (z.B. für REST APIs),
+Serve und Client in selber Sprache [.smaller]#(JavaScript)#,
+nativer Support von JSON,
 einfaches und schnelles Deployment,
 modularer Aufbau mit zahlreichen Packages,
 wenig "Magie".
@@ -27,13 +27,13 @@ footnote:[Ab Node.js 12 sind jedoch auch "Worker Threads" möglich.]
 image::nodejs-thread.drawio.png[]
 
 ==== Callbacks und Events
-*Callbacks* sind Funktionen, welche zu einem späteren Zeitpunkt aufgerufen werden.
-*Events* sind Ereignisse, auf welche man sich registrieren kann.
+*Callbacks*: Funktionen, die erst später aufgerufen werden.
+*Events*: Ereignisse, auf die man sich registrieren kann.
 
 [source, javascript]
 ----
-fs.readFile('demo.txt', (err, data) => { /* ... */ })
-button.addEventListener('click', (event) => { /* ... */ });
+fs.readFile('demo.txt', (err, data) => { /* Callback... */ })
+button.addEventListener('click', (event) => { /* Event... */ })
 ----
 
 footnote:[Callbacks sind 1:1 Verbindungen, Events sind 1:n Verbindungen.]
@@ -43,28 +43,24 @@ Sind eine Alternative zu Callbacks und lösen die http://callbackhell.com/[Callb
 
 [source, javascript]
 ----
-fs.promises.readFile('demo.txt')
-    .then(data => { /* ... */ })
-    .catch(err => { /* ... */ })
+fs.promises.readFile('demo.txt').then(data => { /* ... */ })
+                                .catch(err => { /* ... */ })
 ----
 [.code-annotation]#Variante 1#
 [source, javascript]
 ----
-try {
-    const data = await fs.promises.readFile('demo.txt')
-} catch (err) {
-    /* ... */
-}
+try { const data = await fs.promises.readFile('demo.txt') }
+catch (err) { /* ... */ }
 ----
 [.code-annotation]#Variante 2#
 footnote:[Der aktuelle Standard in Node.js sind immer noch Callbacks.]
 footnote:[Viele Module bieten aber eine Promise-Variante zusätzlich an (z.B. `+fs.promises+`).]
 
 === Module
-*Module* sind Code-Pakete, welche Funktionalitäten für andere Module bereitstellen.
+*Code-Pakete*, die Funktionalitäten für andere Module bereitstellen.
 Node verwendet den Package Manager `+npm+` und kennt zwei https://dev.to/lico/how-to-import-and-export-in-commonjs-and-es-modules-43m1[Modulsysteme]:
 *CommonJS*: Standard seit Beginn (`+module.js+` / `+module.cjs+`).
-*ESM*: Verwendbar seit ECMAScript 2015 und Node.js 14 (`+module.mjs+`).
+*ESM*: Verwendbar seit ES2015/Node.js 14 (`+module.mjs+`).
 
 [source, javascript]
 ----
@@ -88,8 +84,8 @@ funcStuff(); valueStuff;
 [.code-annotation]#ESM#
 
 *Auflösungsreihenfolge*:
-*1.* Core-Module (`+'fs'+`),
-*2.* Pfade (`+'./module.mjs'+`). Suche relativ zum aktuellen Pfad,
+*1.* Core-Module (`+'fs'+`).
+*2.* Pfade (`+'./module.mjs'+`). Suche relativ zum aktuellen Pfad.
 *3.* Filenamen (`+'module'+`). Suche in `+node_modules+` und danach bis zum File-System-Root.
 
 footnote:[Module werden vom System nur einmal geladen.]

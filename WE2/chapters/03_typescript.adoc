@@ -7,8 +7,6 @@ Jedes valide JS ist valides TS.
 footnote:[Die Typen müssen oft mitinstalliert werden (`npm i -D @types/node`)]
 footnote:[Statt Node.js kann auch ts-node verwendet werden (bietet JIT-Compilation von TS)]
 
-==== TS-Config
-
 ==== Strict Mode
 *noImplicitAny*: Keine untypisierten Variablen.
 *alwaysStrict*: Verwendet automatisch ein `"use strict"` im JS-File.
@@ -29,14 +27,12 @@ footnote:[Weitere Einstellungen sind noImplicitThis und strictBindCallApply]
 ----
 let aNumber: number = 1
 let aString = 'abc' // Inferred string
-let aUndefined: undefined;
+let aUndefined: undefined
 let aAny: any = true
 
-aNumber = aString       // NOK
-aNumber = aAny          // OK
-aAny = aString          // OK
-aUndefined = undefined  // OK
-aString = undefined     // NOK (in Strict Mode)
+aNumber = aString; /* NOK */    aAny = aString;         /* OK */
+aNumber = aAny;    /* OK  */    aUndefined = undefined; /* OK */
+aString = undefined; /* NOK (in Strict Mode) */
 ----
 
 ==== Komplexe Typen und Typdeklaration
@@ -50,23 +46,19 @@ Neue Typen können mit `type CustomType = ...` deklariert werden.
 [source, typescript]
 ----
 enum EnumType { A, B, C }
-type UnionType = number | undefined
 type StrLitUnionType = 'A' | 'B' | 'C'
 
-let aUnionType: UnionType;
+let aUnionType: number | undefined
 let anArray: number[] = [1, 2, 3]
 let anUnionArray = [1, 'abc'] // Inferred (number|string)[]
 let aTupel: [number, string] = [1, 'abc']
 let anEnum = EnumType.A
-let aStrLit: StrLitUnionType;
+let aStrLit: StrLitUnionType
 
-aUnionType = 1          // OK
-aUnionType = undefined  // OK
-aUnionType = 'abc'      // NOK
-anUnionArray[0] = 'abc' // OK
-aTupel[0] = 'abc'       // NOK
-aStrLit = 'B'           // OK
-aStrLit = 'abc'         // NOK
+aUnionType = 1;          /* OK  */  aTupel[0] = 'abc'; /* NOK */
+aUnionType = undefined;  /* OK  */  aStrLit = 'B';     /* OK  */
+aUnionType = 'abc';      /* NOK */  aStrLit = 'abc';   /* NOK */
+anUnionArray[0] = 'abc'; /* OK  */
 ----
 
 ==== Type Narrowing
@@ -79,15 +71,14 @@ let aNumberOrString: string | number
 let aUnknown: unknown;
 let aNumber: number
 
-aNumber = aNumberOrString   // NOK
-aNumber = aUnknown          // NOK
-
-aNumberOrString = 1         // OK
-aUnknown = 1                // OK
-aNumber = aNumberOrString   // OK
-aNumber = aUnknown          // NOK
+aNumber = aNumberOrString   /* NOK */
+aNumber = aUnknown          /* NOK */
+aNumberOrString = 1         /* OK  */
+aUnknown = 1                /* OK  */
+aNumber = aNumberOrString   /* OK  */
+aNumber = aUnknown          /* NOK */
 if (typeof aUnknown === 'number'){
-    aNumber = aUnknown      // OK
+    aNumber = aUnknown      /* OK  */
 }
 ----
 
@@ -102,10 +93,8 @@ Funktionen als Parameter möglich.
 function myFuncA(a: string | number = '', b?: number): void { }
 function myFuncB(a: (num: number) => number): void { }
 
-myFuncA('abc', 1)           // OK
-myFuncA('abc')              // OK
-myFuncA()                   // OK
-myFuncB((num) => num + 1)   // OK
+myFuncA('abc', 1); /* OK */  myFuncA();                 /* OK */
+myFuncA('abc');    /* OK */  myFuncB((num) => num + 1); /* OK */
 ----
 
 ==== Klassen und Interfaces
@@ -152,16 +141,15 @@ aSubClass.val1 = 1;
 let aIntA: AInterface<number> = { valA: 1, func() {} } // OK
 let aIntB: AInterface<number> = { valZ: 'abc' }        // NOK
 // Type Assertions
-let aTypeA= aSubClass as AClass;    // OK
-let aTypeB= aSubClass as number;    // NOK
+let aTypeA = aSubClass as AClass;    // OK
+let aTypeB = aSubClass as number;    // NOK
 ----
 
 ==== Weiters
-*Globale Variablen* aus nicht TS-Files können mit `declare let aGlobal :...` deklariert werden. *Keyof* und *Template Literal Types* erlauben die Generierung von speziellen String Literal Union Types.
+*Globale Variablen* aus nicht TS-Files können mit `declare let aGlobal: ...` deklariert werden. *Keyof* und *Template Literal Types* erlauben die Generierung von speziellen String Literal Union Types.
 
 [source, typescript]
 ----
 type Keys = keyof { x: any, y: any } // type Keys = 'x' | 'y'
 type TempLit = `my-${Keys}` // type TempLit = 'my-x' | 'my-y'
 ----
-

@@ -21,7 +21,9 @@ footnote:[Je nach Region/Zielgruppe ist der Lokalisierungsaufwand grösser oder 
 footnote:[Nicht alles lässt sich automatisch lokalisieren (Denke: Farbe, Etiquette, etc.).]
 
 === Umsetzung
-*Anführungszeichen*: Werden bei `<q>...</q>` automatisch basierend auf `lang`-Attribut gesetzt. *Standard*: ES2021 Internationalisierung. *Bibliotheken*: FormatJS, Polyglot.js, i18next.
+*Anführungszeichen*: Werden bei `<q>...</q>` automatisch basierend auf `lang`-Attribut gesetzt.
+*Standard (JavaScript)*: ES2021 Internationalisierung.
+*Bibliotheken*: FormatJS, Polyglot.js, i18next.
 
 [source, javascript]
 ----

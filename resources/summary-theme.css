@@ -82,6 +82,9 @@ h1, h2, h3, h4, h5, .paragraph {
   padding: 0.05cm 0.1cm;
   margin: 0;
 }
+td h1, td h2, td h3, td h4, td h5, td .paragraph {
+  padding: 0 !important;
+}
 
 h3, h4, h5 {
   border-bottom: 1px solid black;
@@ -152,6 +155,15 @@ img {
   max-width: 100%;
 }
 
+table {
+  border-collapse: collapse;
+  margin: 1px;
+}
+
+td, tr, th {
+  border: 1px solid black;
+}
+
 .inlined {
   width: 100%;
   text-align: center;
@@ -160,6 +172,7 @@ img {
 .inlined td, .inlined tr, .inlined th {
   margin: 0;
   padding: 0;
+  border: none;
 }
 
 .align-left {
@@ -202,6 +215,10 @@ img {
   font-size: 6pt;
 }
 
+.table.first-left tr td:first-child {
+  text-align: left;
+}
+
 .centered {
   text-align: center;
 }
@@ -224,6 +241,10 @@ img {
 }
 .tag.green {
   background: #43A047;
+}
+
+.text-align.left {
+  text-align: center;
 }
 
 .font-color.red {
