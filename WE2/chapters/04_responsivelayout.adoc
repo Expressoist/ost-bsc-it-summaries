@@ -1,0 +1,179 @@
+== Responsive Layout
+=== Begriffe
+*Flexible Layout*: Verfügbarer Platz wird durch Verbreiterung der Elemente ausgefüllt.
+*Responsive Layout*: Verfügbarer Platz wird durch Umordnung oder mit neuen Elementen ausgefüllt (benötigt Media-Queries).
+*Graceful Degradation*: Fokus auf neue Browsers. Alle Features nutzen und dann Rückwärtskompatibel machen (Polyfills, etc.)
+*Progressive Enhancement*: Fokus auf alte Browser. Mit Grundfunktionen starten und dann neue Features zusätzlich anbieten.
+*Mobile-First*: Fokus auf Mobile statt Desktop (z.B. Base-CSS für Mobile)
+
+footnote:[Im Normalfall werden Flexible Layouts und Responsive Layouts miteinander kombiniert.]
+footnote:[Wichtig, da es zahlreiche Geräte mit unterschiedlichen Screen-Sizes gibt.]
+
+==== Normalize & Reset
+*Problem*: Alle Browser haben ein etwas anderes Default-Styling.
+*Reset*: Entfernt die meisten Default-Styles. Entwickler muss Konsistenz schaffen.
+*Normalize*: Entfernt ausschliesslich inkonsistente Default-Styles. Konsistenz so gewährleistet.
+
+=== Media-Queries
+Erlaubt CSS für unterschiedliche Medien/Dimensionen.
+
+*Typen*: `screen`, `print`.
+*Dimensionen*: `width`, `min-width`, `max-width`, `height`, `min-height`, `max-height`.
+*Zustände*: `orientation: landscape`, `hover: hover|none`, `pointer: fine|coarse|none`.
+*Operatoren*: `and`, `not`, `only`, `,` (or).
+Achtung: `and` bindet stärker als `,`.
+*Featureabfrage*: `+@supports (display: grid) {...}+`.
+
+=> Typische Breakpoints: Bis 480px/30em: Smartphones. Bis 768/48em: Tablets. Bis 992px/62em: Laptops. Danach Desktops.
+=> CSS verwendet CSS-Pixel (px). Das Verhältnis zu echten Pixel ist abhängig vom Zoom/Gerät.
+
+[source, css]
+----
+body { color: blue; }           /* Blue is the Standard */
+@media screen and (min-width: 480px) {
+    body { color: green; }     /* Green if width > 480px */
+}
+@media (hover: none) and (pointer: coarse) {
+    body { color: red; }       /* Red if Touchscreen */
+}
+----
+
+==== Viewport & Link
+Media-Queries können im `<link media=...>`-Tag gesetzt werden. CSS wird nur geladen, wenn auch benötigt (Ladezeitoptimierung).
+
+Mit `+<meta name="viewport" content="width=device-width,initial-scale=1">+` wird das "intelligente Zoomen" von Mobile-Browsern unterbunden. Wichtig, damit die Media-Queries greifen.
+
+=== CSS-Features
+*Box-Modell* (`box-sizing`): [.underline]#`content-box`# bedeutet, Boxgrösse ist `width + 2*padding + 2*margin` und Inhalt ist `width`. `border-box` bedeutet, Boxgrösse ist `width` und Inhalt ist `width - 2*padding - 2*margin`.
+
+[cols="1,1"]
+|===
+| Element
+| Left/Right Margin/Padding
+| Top/Bottom Margin/Padding
+| Width/Height
+| Causes Line-Break
+| Allows Scroll
+| Adds White-Space
+
+| inline
+| x
+|
+|
+|
+|
+| x
+
+| block
+| x
+| x
+| x
+| x
+| x
+|
+
+| inline-block
+| x
+| x
+| x
+|
+| x
+| x
+
+|===
+
+*Prozent* (`%`): Bezieht sich immer auf das Parent-Element, ausser bei `translate(x, y)`.
+*Viewgrösse* (`vh`/`vw`): Prozentual zur Viewgrösse. Achtung: `100vh` ist manchmal grösser als der Screen (z.B. Browserheader). Besser `100dvh` verwenden.
+*Funktionen*: `calc(100vh - 5px)`, `min(..., ...)`, `max(..., ...)`, `clamp(min, ideal, max)`.
+*Scrollen* (`overflow`): `hidden|visible|scroll|auto`. Scrollbar soll erkennbar sein (nicht immer der Fall).
+*Position* (`position`):
+`absolute` ist relativ zum ersten Parent mit `position: absolute|relative`.
+`fixed` ist relativ zum Browserfenster.
+`sticky` ist wie `absolute`, bleibt aber oben/unten am Bildschirmrand haften.
+`relative` ist relativ zur aktuellen ("realen") Position.
+[.underline]#`static`# ist normal im Fluss.
+
+==== Custom Properties
+CSS erlaubt Definition von Variablen.
+Werden bei der ersten Verwendung im DOM (Root-to-Leaf) ausgerechnet (Aufpassen bei "berechneten" Werten).
+Können in JS mit `style.getPropertyValue(...)` und `style.setProperty(...)` ausgelesen/verändert werden.
+
+[source, css]
+----
+:root { --main-color: yellow;
+        --calculated: var(--main-color); }
+ h1 {   color: var(--main-color);           /* Yellow (Eval.) */
+        background: var(--calculated) }     /* Yellow (Eval.) */
+ p {    --main-color: blue;                 /* Needs Reevaluation */
+        color: var(--main-color);           /* Blue (Eval.) */
+        background: var(--calculated) }     /* Yellow */
+----
+
+=== Flexbox
+==== Container/Parent
+Aktivierung mit `display: flex|inline-flex`. Gilt für alle direkten Kinder. `inline-flex` ist nach innen `flex`, nach aussen `inline`.
+
+Hauptachsendefinition:
+`*flex-direction*:`[.font-color.violet]#`row`#`|column|row-reverse|column-reverse`.
+Umbruchverhalten:
+`*flex-wrap*:`[.font-color.violet]#`nowrap`#`|wrap`.
+Hauptachsen-Ausrichtung (pro Zeile):
+`*justify-content*:`[.font-color.violet]#`flex-start`#`|flex-end|center|space-around|space-between|space-evenly`.
+Querachsen-Ausrichtung (pro Zeile):
+`*align-items*:`[.font-color.violet]#`stretch`#`|flex-start|flex-end|center|baseline`.
+Querachsen-Ausrichtung (Gesamtblock):
+`*align-content*:[justify-content]|stretch`.
+
+footnote:[`flex-wrap` beachtet `flex-basis`, `width`, `height` und ignoriert `flex-shrink`.]
+footnote:[`flex-wrap:wrap` garantiert keine exakte "Grid"-Ausrichtung der Elemente.]
+footnote:[Achtung: `row` bedeutet z.B. auf Japanisch von oben/unten und rechts/links.]
+
+==== Item/Child
+Verhält sich wie `inline-block`. Werden anhand der "Source-Order" im HTML platziert. `flex-grow`/`flex-shrink` sind Verhältniswerte. `flex-basis` bestimmt die Standardgrösse.
+
+Wachstumsverhalten:
+`*flex*: [flex-grow] [flex-shrink] [flex-basis]` (Standard: [.font-color.violet]#`0 1 auto`#).
+Umsortierung:
+`*order*: [number]` (Standard: [.font-color.violet]#`0`#).
+Querachsen-Ausrichtung:
+`*align-self*: [align-items]`.
+
+footnote:[`flex-basis:auto` bedeutet "nimm meine aktuelle Grösse".]
+footnote:[`flex-grow:2` ist 2× so gross wie `flex-grow:1`. `0` bedeutet kein Wachstum.]
+
+=== Grid
+==== Container/Parent
+Aktivierung mit `display: grid`. Gilt für alle direkten Kinder.
+
+Anzahl und Grösse von Zeilen/Spalten:
+`grid-template-columns|grid-template-rows: [measure]`.
+Row-Ausrichtung (pro Zeile):
+`*justify-items*: start|end|center|`[.font-color.violet]#`stretch`#.
+Column-Ausrichtung (pro Zeile):
+`*align-items*: [justify-items]|baseline`.
+
+
+Grid-template-rows: 10px 80% 1fr (3 Zeilen mit definierter Höhe)
+Berechnung: Grid-Grösse: 100px mit 10px 1fr 2fr => 90px freier Platz => 90/(1+2) = 30px => 1fr = 30px, 2fr = 60px;
+
+footnote:[Flexbox: Eine Primär-Achse, beliebige Anzahl von Elementen, Kinder bestimmen Grösse.]
+footnote:[Grid: Zwei Primär-Achsen, fixe Anzahl von Elementen, Parent bestimmt Grösse.]
+
+==== Item/Child
+Positionsbestimmung:
+`grid-column-start: x~1~`,
+`grid-column-end: x~2~`,
+`grid-row-start: y~1~`,
+`grid-row-end: y~2~`,
+`grid-column: y~1~/y~2~`,
+`grid-row: y~1~/y~2~`,
+`grid-area: y~1~/x~1~/y~2~/x~2~`.
+Row-Ausrichtung:
+`*justify-self*: start|end|center|`[.font-color.violet]#`stretch`#.
+Column-Ausrichtung:
+`*align-self*: [justify-self]`.
+Row+Column-Ausrichtung:
+`*place-self*: [justify-self]`.
+
+==== Werte
+`[number]fr`: Fraktion des verfügbaren Platzes. Erlaubt Dezimal. Können nicht schmaler als das längste Wort werden (Overflow wird vermieden). `min-content`: Breitenanpassung an das längste Wort. `max-content`: Breitenanpassung an den gesamten Text. `minmax(min, max)`: Gleichmässige Platzverteilung zwischen Min. und Max. `fit-content: [length]`: Entspricht `minmax(auto, [length])`. `repeat([number]|auto-fill|auto-fit, [measure])`: Wiederholt Wert so oft wie angegeben. `auto`: Automatische Grössenanpassung.
